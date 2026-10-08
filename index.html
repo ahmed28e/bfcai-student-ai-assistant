@@ -838,5 +838,31 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
     // Initialize Prompts
     renderPrompts();
   </script>
+
+  <!-- Floating WhatsApp Contact Developer Button -->
+  <a 
+    href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    id="whatsappFloatBtn"
+    class="fixed bottom-[84px] right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2.5 transition-all duration-300"
+    title="شكر المطور عبر واتساب"
+  >
+    <!-- Tooltip badge on hover -->
+    <span class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl bg-[#111622]/95 border border-[#1f283b] text-white text-xs font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md">
+      شكر المطور عبر واتساب 💬
+    </span>
+
+    <!-- WhatsApp Icon Circle -->
+    <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-xl shadow-emerald-500/30 group-hover:scale-110 active:scale-95 transition-transform duration-300 border-2 border-white/20">
+      <!-- Pulsing ring effect -->
+      <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25 pointer-events-none"></span>
+
+      <!-- Official WhatsApp SVG icon -->
+      <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-white relative z-10" viewBox="0 0 24 24">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-10.416c-5.522 0-10 4.477-10 10 0 1.761.459 3.417 1.261 4.861l-1.261 4.606 4.71-1.236c1.398.763 2.996 1.199 4.69 1.199 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
+      </svg>
+    </div>
+  </a>
 </body>
 </html>
