@@ -33,6 +33,15 @@ export default function Navbar({ onOpenSources }) {
         {/* Left side actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
+            onClick={onOpenSettings}
+            className="flex items-center gap-1.5 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 transition-colors shadow-sm"
+            title="إعدادات الذكاء الاصطناعي و Dify"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <span className="hidden sm:inline">محرك الـ AI</span>
+          </button>
+
+          <button
             onClick={onOpenSources}
             className="flex items-center gap-1.5 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60 transition-colors shadow-sm"
             title="المصادر المعتمدة"

@@ -5,10 +5,12 @@ import YearSelector from './components/YearSelector';
 import QuickPrompts from './components/QuickPrompts';
 import ChatWindow from './components/ChatWindow';
 import SourcesModal from './components/SourcesModal';
+import SettingsModal from './components/SettingsModal';
 import { useChat } from './hooks/useChat';
 
 export default function App() {
   const [sourcesModalOpen, setSourcesModalOpen] = useState(false);
+  const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const {
     years,
     selectedYear,
@@ -26,7 +28,10 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
       
       {/* Top Navbar */}
-      <Navbar onOpenSources={() => setSourcesModalOpen(true)} />
+      <Navbar 
+        onOpenSources={() => setSourcesModalOpen(true)} 
+        onOpenSettings={() => setSettingsModalOpen(true)}
+      />
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -65,6 +70,12 @@ export default function App() {
       <SourcesModal
         isOpen={sourcesModalOpen}
         onClose={() => setSourcesModalOpen(false)}
+      />
+
+      {/* AI & Dify Engine Settings Modal */}
+      <SettingsModal
+        isOpen={settingsModalOpen}
+        onClose={() => setSettingsModalOpen(false)}
       />
 
       {/* Bottom Footer */}

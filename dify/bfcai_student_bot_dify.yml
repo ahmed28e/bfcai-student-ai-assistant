@@ -1,0 +1,79 @@
+app:
+  description: المساعد الذكي التفاعلي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI)
+  icon: 🎓
+  icon_background: '#0284c7'
+  mode: chat
+  name: BFCAI Student AI Assistant
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 5
+    strategy: function_call
+    tools:
+      - enabled: true
+        provider_id: google
+        provider_name: google
+        tool_label: Google Search
+        tool_name: google_search
+      - enabled: true
+        provider_id: duckduckgo
+        provider_name: duckduckgo
+        tool_label: DuckDuckGo Search
+        tool_name: ddgo_search
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    retrieval_model: multiple
+  file_upload:
+    allowed_file_extensions:
+      - .pdf
+      - .txt
+      - .docx
+    allowed_file_types:
+      - document
+    allowed_file_upload_methods:
+      - local_file
+    enabled: true
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+        - local_file
+        - remote_url
+    number_limits: 3
+  model:
+    model: gemini-1.5-flash
+    provider: google
+  more_like_this:
+    enabled: false
+  opening_statement: |
+    أهلاً بك يا بطل في المساعد الذكي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) 🎓!
+    أنا هنا لمساعدتك في كل ما يخص لوائح الكلية، المواد الدراسية، الساعات المعتمدة، حساب الـ GPA، شروط التشعيب للأقسام، التدريب الصيفي، ومشاريع التخرج.
+    اختر فرقتك الدراسية أو اطرح سؤالك لنبدأ فوراً!
+  pre_prompt: |
+    أنت المساعد الأكاديمي الذكي المخصص لطلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها (BFCAI).
+    مهمتك:
+    1. الإجابة بدقة باللغة العربية الفصحى المبسطة على استفسارات الطلاب.
+    2. الاستناد أولاً إلى وثائق الكلية واللائحة المرفقة بقاعدة المعرفة (Knowledge Base).
+    3. إذا كان الاستفسار عن موضوع حديث أو جداول غير موجودة في المستندات، استخدم أداة البحث في الإنترنت (Google / DuckDuckGo Search) لتأكيد الإجابة مع ذكر المصدر.
+    4. كن ودوداً ومشجعاً دائماً.
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    enabled: false
+  speech_to_text:
+    enabled: true
+  suggested_questions:
+    - أين تقع مدرجات الفرقة الأولى وكيف استلم الكارنيه الجامعي؟
+    - ما هي مواد الفصل الدراسي الأول بالفرقة الأولى؟
+    - ما هي شروط وضوابط التشعيب للأقسام في الفرقة الثالثة؟
+    - ما هي ضوابط التدريب الصيفي الإجباري المعتمد للتخرج؟
+  suggested_questions_after_answer:
+    enabled: true
+  text_to_speech:
+    enabled: true
+    language: ar
+version: 0.1.5
