@@ -51,6 +51,57 @@
     });
   };
 
+  const OFFICIAL_RESOURCES = [
+    {
+      id: "drive-year-1",
+      name: "جوجل درايف الفرقة الأولى (Materials، سلايدات المحاضرات، الشيتات، بنوك الامتحانات السابقة)",
+      url: "https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l",
+      description: "المجلد الرسمي والشامل لتحميل سلايدات المحاضرات، شيتات السكاشن، ملخصات المواد، وأسئلة الامتحانات السابقة لطلاب الفرقة الأولى.",
+      keywords: ["درايف", "drive", "شيت", "شيتات", "سلايد", "سلايدات", "slides", "ماتريال", "material", "ملفات", "مذكرات", "تطبيقات", "امتحانات", "امتحان", "اسئلة", "مراجعة", "دراسة", "مذاكرة", "سنة اولى", "سنه اولي", "الفرقة الاولى", "لينك الدرايف", "رابط الدرايف"]
+    },
+    {
+      id: "ebook-platform",
+      name: "منصة الكتاب الجامعي الإلكتروني - جامعة بنها",
+      url: "https://ebook.bu.edu.eg/",
+      description: "المنصة الرسمية المعتمدة لجامعة بنها للحصول على الكتب والمقررات الجامعية الإلكترونية لجميع الفرق.",
+      keywords: ["كتاب", "كتب", "ebook", "منصة الكتب", "المنصه الكتب", "الكتاب الالكتروني", "الكتروني", "مقررات كتب", "شراء كتاب", "تحميل كتاب", "الكتاب الجامعي"]
+    },
+    {
+      id: "myu-portal",
+      name: "منصة MyU للخدمات الطلابية - جامعة بنها",
+      url: "https://myu.bu.edu.eg/",
+      description: "البوابة المركزية الرسمية لجامعة بنها لإدارة كافة شؤون الطلاب: تسجيل المقررات، إعلان النتائج والتقديرات (GPA)، كشوف السكاشن، متابعة الغياب، واستخراج الكارنيهات.",
+      keywords: ["myu", "ابن الهيثم", "تسجيل", "تسجيل المقررات", "تسجيل المواد", "نتيجة", "نتائج", "تقدير", "gpa", "غياب", "كارنيه", "كارنيهات", "شؤون الطلاب", "شئون الطلاب", "مصروفات", "فوري", "دفع"]
+    },
+    {
+      id: "whatsapp-channel",
+      name: "قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥",
+      url: "https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q",
+      description: "القناة المعتمدة لنشر التنبيهات العاجلة، إعلانات الجداول والمواعيد وتعديلاتها، كشوف تسليم الكارنيهات، والتعليمات الصادرة من الكلية أولاً بأول.",
+      keywords: ["واتس", "واتساب", "whatsapp", "قناة", "قناه", "تنبيه", "تنبيهات", "اعلان", "اعلانات", "خبر", "جروب", "قناة الواتس", "تنبيهات الكلية"]
+    },
+    {
+      id: "faculty-website",
+      name: "الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - جامعة بنها",
+      url: "https://fci.bu.edu.eg/",
+      description: "الموقع الأكاديمي الرسمي لكلية الحاسبات والذكاء الاصطناعي بنها (الأقسام، اللوائح، الجداول الرسمية، أعضاء هيئة التدريس).",
+      keywords: ["موقع الكلية", "موقع رسمي", "fci", "عميد", "وكيل", "اقسام", "لائحة", "رابط الكلية"]
+    },
+    {
+      id: "facebook-page",
+      name: "الصفحة الرسمية لكلية الحاسبات والذكاء الاصطناعي على فيسبوك",
+      url: "https://www.facebook.com/Official.BFCAI",
+      description: "الصفحة الرسمية المعتمدة للكلية على منصة فيسبوك لمتابعة المؤتمرات والأنشطة والبيانات الرسمية.",
+      keywords: ["فيس", "فيسبوك", "facebook", "صفحة الكلية", "بيج الكلية"]
+    }
+  ];
+
+  window.findFacultyResources = function(query) {
+    if (!query) return [];
+    const q = norm(query);
+    return OFFICIAL_RESOURCES.filter(r => r.keywords.some(k => q.includes(norm(k))));
+  };
+
   window.buildScheduleContext = function(query, yearName) {
     let ctx = '';
     const venue = window.findVenueInfo(query);
@@ -65,9 +116,17 @@
       ).join('\n');
     }
 
-    return { context: ctx, venue, lectures: lecs };
+    const res = window.findFacultyResources(query);
+    if (res.length > 0) {
+      ctx += `\n[المصادر والروابط المعتمدة ذات الصلة من قناة ومنصات الكلية الرسمية]:\n` + res.map(r =>
+        `- ${r.name}: ${r.url} (الوصف: ${r.description})`
+      ).join('\n');
+    }
+
+    return { context: ctx, venue, lectures: lecs, resources: res };
   };
 
   window.BFCAI_VENUES = VENUES;
   window.BFCAI_LECTURES = LECTURES;
+  window.BFCAI_RESOURCES = OFFICIAL_RESOURCES;
 })();

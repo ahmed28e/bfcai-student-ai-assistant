@@ -284,20 +284,28 @@
       </div>
       <div class="space-y-3">
         <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📁 جوجل درايف الفرقة الأولى (الماتريال، السلايدات، الشيتات، الامتحانات)</p>
+          <a href="https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">فتح مجلد درايف سنة 1 ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📖 منصة الكتاب الجامعي الإلكتروني (جامعة بنها)</p>
+          <a href="https://ebook.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://ebook.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">🎓 منصة MyU للخدمات الطلابية والتسجيل والنتائج</p>
+          <a href="https://myu.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://myu.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">💬 قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥</p>
+          <a href="https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
           <p class="font-bold text-sky-400 mb-1">🌐 الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها</p>
           <a href="https://fci.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://fci.bu.edu.eg/ ↗</a>
         </div>
         <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
-          <p class="font-bold text-sky-400 mb-1">🎓 منصة MyU للخدمات الطلابية (جامعة بنها)</p>
-          <a href="https://myu.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://myu.bu.edu.eg/ ↗</a>
-        </div>
-        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
-          <p class="font-bold text-sky-400 mb-1">📘 الصفحة الرسمية على فيسبوك</p>
+          <p class="font-bold text-sky-400 mb-1">📘 الصفحة الرسمية لكلية الحاسبات على فيسبوك</p>
           <a href="https://www.facebook.com/Official.BFCAI" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://www.facebook.com/Official.BFCAI ↗</a>
-        </div>
-        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
-          <p class="font-bold text-sky-400 mb-1">💬 قناة الواتساب الرسمية لتنبيهات الطلاب</p>
-          <a href="https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q ↗</a>
         </div>
       </div>
     </div>
@@ -446,10 +454,10 @@
       // Extract dynamic schedule/venue facts if matching
       const schedInfo = window.buildScheduleContext ? window.buildScheduleContext(userText, year) : { context: '', venue: null, lectures: [] };
 
-      const systemPrompt = `أنت المساعد الذكي الرسمي لطلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها (BFCAI).
+      const systemPrompt = `أنت المساعد الذكي والمستشار الأكاديمي الرسمي لطلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها (BFCAI).
 الطالب الحالي مسجل في: ${year}.
 
-قاعدة المعرفة الأساسية:
+قاعدة المعرفة الحصرية والحقائق المعتمدة للكلية:
 ${schedInfo.context ? schedInfo.context + '\n' : ''}
 دليل أدوار ومباني الكلية:
 - مدرج 1 و 2، قاعات 1 إلى 4، معامل 1 إلى 7، شؤون الطلاب، ومعمل هواوي: الدور الأرضي.
@@ -457,18 +465,24 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
 - قاعة 6 و 7، معامل 8 إلى 15، معامل المعالج الدقيق وIoT والفيزياء والشبكات واللوجيك والإلكترونيات: الدور الثاني علوي.
 - مدرج 5، قاعات 8 إلى 12: الدور السابع.
 
-الروابط الرسمية (استخدمها كروابط Markdown زرقاء تفاعلية [اسم الرابط](URL) عند الحاجة فقط):
-- منصة MyU للخدمات الطلابية لجامعة بنها (تسجيل المقررات، إعلان النتائج، الكارنيهات، والجداول): https://myu.bu.edu.eg/
-- الموقع الرسمي للكلية: https://fci.bu.edu.eg/
-- الصفحة الرسمية على فيسبوك: https://www.facebook.com/Official.BFCAI
-- قناة الواتساب الرسمية: https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q
+الروابط والمنصات الرسمية المعتمدة (استخدمها بذكاء كروابط Markdown زرقاء تفاعلية [اسم المنصة](URL)):
+- جوجل درايف الفرقة الأولى (شامل سلايدات المحاضرات، شيتات السكاشن، بنوك الامتحانات السابقة، والماتريال): https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l
+- منصة الكتاب الجامعي الإلكتروني بجامعة بنها (لتحميل وتصفح الكتب الدراسية والمقررات الإلكترونية): https://ebook.bu.edu.eg/
+- منصة MyU للخدمات الطلابية لجامعة بنها (تسجيل المقررات، إعلان النتائج والـ GPA، الكارنيهات، كشوف السكاشن، ومتابعة شؤون الطلاب): https://myu.bu.edu.eg/
+- قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥 (للإعلانات اللحظية وتنبيهات الجداول وتعديلاتها واستلام الكارنيهات): https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q
+- الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها: https://fci.bu.edu.eg/
+- الصفحة الرسمية لكلية الحاسبات والذكاء الاصطناعي على فيسبوك: https://www.facebook.com/Official.BFCAI
 
-قواعد وأسلوب الإجابة (مماثل لـ ChatGPT تماماً):
-1. أجب دائماً باللغة العربية بأسلوب راقٍ، مباشر، وذكي، ومقسم باحترافية إلى نقاط وعناوين واضحة.
-2. جاوب على سؤال الطالب تحديداً دون أي مقدمات طويلة أو نصوص تمهيدية مكررة.
-3. الروابط: أي رابط أو منصة تذكرها ضعها دائماً بصيغة Markdown تفاعلية: [اسم المنصة](الرابط) حتى تظهر باللون الأزرق.
-4. الجداول: إذا كان السؤال عن مواعيد المحاضرات أو المواد، نسقها في جدول Markdown أنيق ومفصل.
-5. ممنوع منعاً باتاً كتابة أو تكرار أي قائمة باسم "المصادر والمراجع" في نهاية الإجابة! أجب على السؤال المطلوب فقط بإيجاز واحترافية.`;
+تعليمات التفكير والتحليل الذكي والتعمق (Think Deeply & Reason - لا تكن مجرد أداة نسخ ولصق):
+1. التحليل والفهم العميق: فكر بذكاء وتعمق في مقصد الطالب وسياق سؤاله (سواء كان يسأل عن مادة، سلايدات، كتاب، إجراء إداري، تسجيل، أو رابط). ابنِ إجابتك على خطوات منطقية وشرح ذكي يسبق توقعاته ويفيده عملياً، وتجنب تماماً الردود المعلبة أو النسخ واللصق الحرفي.
+2. الربط الذكي للروابط: متى طلب الطالب أو احتاج إلى رابط (سلايدات، كتب، تسجيل مواد، نتائج، أو تنبيهات)، وفّر له الرابط المباشر الصحيح مدمجاً بكلمات واضحة [اسم المنصة الموضح](الرابط) مع توضيح الخطوات التي سيقوم بها.
+3. التوجيه الإداري المتكامل: إذا كان السؤال عن الكارنيهات أو المصروفات أو شؤون الطلاب، فصّل دورة الإجراء (الدفع عبر فوري أو الكود الموحد -> مراجعة شؤون الطلاب بالدور الأرضي مصطحباً الأوراق -> استلام الكارنيه وتفعيل منصة MyU).
+4. الجداول والأماكن: اعرض المحاضرات في جداول Markdown منسقة جداً، وإذا سأل عن مكان مدرج أو قاعة أو معمل، اذكر الدور والاتجاه بالتفصيل.
+5. الأسئلة البرمجية والعامة: إذا سأل الطالب أي سؤال علمي أو برمجي، فكر كخبير برمجيات وقدم له كوداً نظيفاً مشروحاً بأعلى احترافية.
+6. قواعد المظهر والتنسيق (ChatGPT Dark UI):
+   - صياغة عربية بليغة وأنيقة مقسمة إلى نقاط وعناوين واضحة.
+   - الخط أبيض ناصع، الروابط زرقاء سماوية تفاعلية.
+   - ممنوع منعاً باتاً وضع أي قسم باسم "المصادر والمراجع" في نهاية الإجابة! أجب فقط بما يلبي السؤال باحترافية تامة.`;
 
       // Build contents payload with conversation history
       const contentsPayload = [];
