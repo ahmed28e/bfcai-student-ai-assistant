@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0284c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0369a1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Shield -->
+  <circle cx="50" cy="50" r="46" fill="url(#grad)" stroke="url(#goldGrad)" stroke-width="3" />
+  
+  <!-- Inner Circuit / AI lines -->
+  <circle cx="50" cy="50" r="38" fill="#0f172a" />
+  <circle cx="35" cy="45" r="3" fill="#38bdf8" />
+  <circle cx="65" cy="45" r="3" fill="#38bdf8" />
+  <circle cx="50" cy="65" r="3.5" fill="#fbbf24" />
+  
+  <!-- Neural links -->
+  <line x1="35" y1="45" x2="50" y2="65" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2,2" />
+  <line x1="65" y1="45" x2="50" y2="65" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2,2" />
+  <line x1="35" y1="45" x2="65" y2="45" stroke="#38bdf8" stroke-width="1.5" />
+
+  <!-- Graduation Cap -->
+  <polygon points="50,24 26,35 50,44 74,35" fill="url(#goldGrad)" />
+  <polygon points="36,40 36,52 50,58 64,52 64,40 50,46" fill="#e2e8f0" />
+  <path d="M 70,37 L 72,50 L 74,50 L 72,37" fill="#fbbf24" />
+</svg>

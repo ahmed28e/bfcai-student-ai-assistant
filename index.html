@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المساعد الذكي | كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI)</title>
+  <!-- Google Cairo Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Marked.js for Clean Markdown Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Schedule & Venues Knowledge Engine -->
+  <script src="assets/schedule_knowledge.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { 
+      font-family: 'Cairo', sans-serif; 
+      background-color: #090b10;
+      color: #ffffff;
+    }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0e14; }
+    ::-webkit-scrollbar-thumb { background: #1e2638; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+    /* Markdown styling - ChatGPT Dark Mode */
+    .markdown-content {
+      color: #ffffff;
+      font-size: 0.925rem;
+      line-height: 1.8;
+      letter-spacing: -0.01em;
+    }
+    .markdown-content p {
+      margin-bottom: 0.85rem;
+      color: #f8fafc;
+    }
+    .markdown-content p:last-child {
+      margin-bottom: 0;
+    }
+    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .markdown-content h3 {
+      font-size: 1.05rem;
+      color: #38bdf8;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 0.35rem;
+    }
+    .markdown-content h4 {
+      font-size: 0.95rem;
+      color: #818cf8;
+      font-weight: 700;
+      margin-top: 0.75rem;
+      margin-bottom: 0.35rem;
+    }
+    .markdown-content strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .markdown-content ul {
+      list-style-type: disc;
+      margin-right: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-content ol {
+      list-style-type: decimal;
+      margin-right: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-content li {
+      margin-bottom: 0.4rem;
+      color: #f8fafc;
+      line-height: 1.7;
+    }
+
+    /* VIBRANT BLUE CLICKABLE LINKS */
+    .markdown-content a {
+      color: #38bdf8 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .markdown-content a:hover {
+      color: #93c5fd !important;
+      text-decoration-color: #93c5fd !important;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    /* TABLES (Schedules / Timetables) */
+    .markdown-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #0d111a;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid #1e2638;
+      font-size: 0.85rem;
+    }
+    .markdown-content th {
+      background: #182030;
+      color: #38bdf8;
+      padding: 0.65rem 0.85rem;
+      text-align: right;
+      font-weight: 700;
+      border-bottom: 1px solid #2b374e;
+    }
+    .markdown-content td {
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid #1e2638;
+      color: #ffffff;
+    }
+    .markdown-content tr:nth-child(even) {
+      background: #111622;
+    }
+
+    /* CODE BLOCKS */
+    .markdown-content code {
+      background: #1b2232;
+      color: #38bdf8;
+      padding: 0.2rem 0.45rem;
+      border-radius: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85em;
+    }
+    .markdown-content pre {
+      background: #05070a;
+      border: 1px solid #1e2638;
+      padding: 0.85rem 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin: 0.85rem 0;
+      direction: ltr;
+      text-align: left;
+    }
+    .markdown-content pre code {
+      background: transparent;
+      padding: 0;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-[#090b10] text-white min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 w-full bg-[#0d1017]/90 backdrop-blur-md border-b border-[#1b2232]">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/20">
+          <div class="w-full h-full bg-[#090b10] rounded-[10px] flex items-center justify-center text-lg">🎓</div>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <span>المساعد الذكي لطلاب BFCAI</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 hidden sm:inline-block">v2.5 AI</span>
+          </h1>
+          <p class="text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleModal('sourcesModal')" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+          <span>🛡️ المصادر الرسمية</span>
+        </button>
+        <button onclick="toggleModal('aiModal')" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+          <span>⚙️ الإعدادات</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-4 flex flex-col">
+    
+    <!-- Academic Year Selector Pills -->
+    <div class="flex items-center justify-between gap-2 mb-3 bg-[#0d1017] p-2 rounded-xl border border-[#1b2232]">
+      <span class="text-xs font-bold text-slate-400 px-1">الفرقة الدراسية:</span>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="setYear('الفرقة الأولى')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm" data-year="الفرقة الأولى">الفرقة الأولى</button>
+        <button onclick="setYear('الفرقة الثانية')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الثانية">الفرقة الثانية</button>
+        <button onclick="setYear('الفرقة الثالثة')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الثالثة">الفرقة الثالثة</button>
+        <button onclick="setYear('الفرقة الرابعة')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الرابعة">الفرقة الرابعة</button>
+        <button onclick="setYear('عام')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="عام">عام</button>
+      </div>
+    </div>
+
+    <!-- Chat Area (ChatGPT Style) -->
+    <div class="bg-[#0b0e14] rounded-2xl flex-1 flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden min-h-[550px]">
+      
+      <!-- Chat Header -->
+      <div class="px-4 py-2.5 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
+        <span class="text-slate-300 font-semibold flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>المساعد الذكي نشط • متصل ببيانات الكلية وجداول المحاضرات</span>
+        </span>
+        <button onclick="clearChat()" class="text-slate-400 hover:text-rose-400 transition font-medium flex items-center gap-1">
+          <span>🗑️ مسح المحادثة</span>
+        </button>
+      </div>
+
+      <!-- Messages Thread -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5" id="chatThread">
+        <!-- Initial Welcome Message -->
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">🤖</div>
+          <div class="flex-1 max-w-[90%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 text-sm text-white leading-relaxed shadow-sm space-y-2">
+            <p class="font-bold text-sky-400">مرحباً بك! أنا المساعد الذكي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) 🎓</p>
+            <p class="text-slate-200">
+              أنا جاهز للإجابة على جميع استفساراتك بدقة وسرعة: مواعيد وأماكن المحاضرات، دليل القاعات والمدرجات، شؤون الطلاب واستلام الكارنيهات، اللائحة ونظام الساعات المعتمدة، أو أي استفسار علمي وبرمجي في العالم. تفضل بطرح سؤالك!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Quick Questions -->
+      <div class="px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5" id="quickPromptsContainer">
+        <!-- Prompts injected via JS -->
+      </div>
+
+      <!-- Chat Input Form -->
+      <div class="p-3 sm:p-4 border-t border-[#1b2232] bg-[#0d1017]/80">
+        <form onsubmit="handleSend(event)" class="relative flex items-center gap-2">
+          <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="اكتب سؤالك هنا مباشرة..." 
+            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3.5 pr-4 pl-24 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+            autocomplete="off"
+          />
+          <button type="submit" class="absolute left-2 px-5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition shadow-md">
+            إرسال
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="aiModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-[#111622] border border-[#1f283b] rounded-2xl max-w-md w-full p-6 text-sm">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold text-white text-base">⚙️ إعدادات Google Gemini API</h3>
+        <button onclick="toggleModal('aiModal')" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      </div>
+      <p class="text-slate-300 mb-3 text-xs leading-relaxed">
+        المساعد يعمل تلقائياً بمفتاح الذكاء الاصطناعي المدمج. يمكنك إدخال مفتاح مخصص إذا رغبت:
+      </p>
+      <input type="password" id="geminiApiKey" placeholder="مفتاح API الخاص بك..." class="w-full bg-[#090b10] border border-[#1f283b] rounded-xl p-3 text-xs text-white mb-2 focus:outline-none focus:border-sky-500" />
+      <div class="flex gap-2 mt-4">
+        <button onclick="saveApiKey()" class="flex-1 py-2.5 bg-sky-600 hover:bg-sky-500 rounded-xl font-bold text-white transition text-xs">حفظ التغييرات</button>
+        <button onclick="resetApiKey()" class="px-3 py-2.5 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 rounded-xl text-xs border border-rose-900/50">استعادة الافتراضي</button>
+        <button onclick="toggleModal('aiModal')" class="px-4 py-2.5 bg-slate-800 text-slate-300 rounded-xl text-xs hover:text-white">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources Modal -->
+  <div id="sourcesModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-[#111622] border border-[#1f283b] rounded-2xl max-w-lg w-full p-6 text-sm">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-white text-base">مصادر ومنصات جامعة بنها وكلية الحاسبات الرسمية</h3>
+        <button onclick="toggleModal('sourcesModal')" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      </div>
+      <div class="space-y-3">
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">🌐 الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها</p>
+          <a href="https://fci.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://fci.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">🎓 نظام ابن الهيثم للخدمات الطلابية (MIS)</p>
+          <a href="https://mis.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://mis.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📘 الصفحة الرسمية على فيسبوك</p>
+          <a href="https://www.facebook.com/Official.BFCAI" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://www.facebook.com/Official.BFCAI ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">💬 قناة الواتساب الرسمية لتنبيهات الطلاب</p>
+          <a href="https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-[#1b2232] py-3 text-center text-[11px] text-slate-500">
+    كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026
+  </footer>
+
+  <script>
+    const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42SVZMalpoVWlBVUxndnVWa3VZUTN1TlpuYjA1bmxXTFF1OHo4WW56WUhBTEE=');
+    let currentYear = 'الفرقة الأولى';
+    let conversationHistory = [];
+
+    // Configure Marked.js for ChatGPT-style Markdown & Blue links
+    if (typeof marked !== 'undefined') {
+      marked.setOptions({ gfm: true, breaks: true });
+      const renderer = new marked.Renderer();
+      renderer.link = function({ href, text }) {
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 font-semibold underline underline-offset-4 transition">${text}</a>`;
+      };
+      marked.use({ renderer });
+    }
+
+    const QUICK_PROMPTS = {
+      'الفرقة الأولى': [
+        'جدول ومواعيد محاضرات الفرقة الأولى بالكامل',
+        'أين يقع مدرج 1 ومدرج 2 وخريطة الدور الأرضي؟',
+        'كيف استلم الكارنيه وأين مكتب شؤون الطلاب؟',
+        'ما هو رابط نظام ابن الهيثم للخدمات الطلابية؟'
+      ],
+      'الفرقة الثانية': [
+        'جدول ومواعيد محاضرات الفرقة الثانية',
+        'أين يقع مدرج 3 ومدرج 4 وخريطة الدور الأول؟',
+        'ما هي شروط التشعيب للأقسام بنهاية الفرقة الثانية؟',
+        'أين يقع معمل التصميم المنطقي وقاعة 6؟'
+      ],
+      'الفرقة الثالثة': [
+        'جدول ومواعيد محاضرات الفرقة الثالثة (حسب القسم)',
+        'أين يقع معمل 14 وقاعة 7 وخريطة الدور الثاني؟',
+        'ما هي ضوابط التدريب الصيفي الإجباري المعتمد للتخرج؟',
+        'ما هي مجالات عمل أقسام الكلية بعد التخرج؟'
+      ],
+      'الفرقة الرابعة': [
+        'جدول محاضرات الفرقة الرابعة بالتفصيل والمدرجات',
+        'أين يقع مدرج 5 وقاعات الدور السابع؟',
+        'ما هي ضوابط مشروع التخرج وتكوين الفريق؟',
+        'ما هي خطوات إخلاء الطرف واستخراج شهادة التخرج؟'
+      ],
+      'عام': [
+        'دليل أماكن وخريطة جميع مدرجات وقاعات ومعامل الكلية',
+        'ما هي روابط المنصات الرسمية للكلية وابن الهيثم؟',
+        'اشرح لي مفهوم الذكاء الاصطناعي ومجالاته ببساطة'
+      ]
+    };
+
+    function renderPrompts() {
+      const container = document.getElementById('quickPromptsContainer');
+      const prompts = QUICK_PROMPTS[currentYear] || QUICK_PROMPTS['الفرقة الأولى'];
+      container.innerHTML = prompts.map(p => `
+        <button onclick="askPrompt('${p}')" class="text-[11px] py-1 px-3 rounded-full bg-[#121622] hover:bg-[#1a2234] text-slate-300 hover:text-sky-400 border border-[#1f283b] hover:border-sky-500/40 transition">
+          ${p}
+        </button>
+      `).join('');
+    }
+
+    function setYear(year) {
+      currentYear = year;
+      document.querySelectorAll('.year-btn').forEach(btn => {
+        if (btn.getAttribute('data-year') === year) {
+          btn.className = "year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm";
+        } else {
+          btn.className = "year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+        }
+      });
+      renderPrompts();
+    }
+
+    function askPrompt(text) {
+      document.getElementById('chatInput').value = text;
+      handleSend(new Event('submit'));
+    }
+
+    function toggleModal(id) {
+      document.getElementById(id).classList.toggle('hidden');
+    }
+
+    function saveApiKey() {
+      const key = document.getElementById('geminiApiKey').value.trim();
+      if (key) {
+        localStorage.setItem('bfcai_user_gemini', key);
+        alert('تم حفظ المفتاح بنجاح!');
+      }
+      toggleModal('aiModal');
+    }
+
+    function resetApiKey() {
+      localStorage.removeItem('bfcai_user_gemini');
+      document.getElementById('geminiApiKey').value = '';
+      alert('تمت استعادة الإعدادات الافتراضية بنجاح!');
+      toggleModal('aiModal');
+    }
+
+    function clearChat() {
+      conversationHistory = [];
+      document.getElementById('chatThread').innerHTML = `
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">🤖</div>
+          <div class="flex-1 max-w-[90%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 text-sm text-white">
+            تم مسح المحادثة. تفضل بطرح أي سؤال جديد!
+          </div>
+        </div>
+      `;
+    }
+
+    function copyMessage(btn) {
+      const container = btn.closest('.chat-bubble-container');
+      const md = container ? container.querySelector('.markdown-content') : null;
+      if (md) {
+        const text = md.innerText || md.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const span = btn.querySelector('span');
+          if (span) {
+            const original = span.textContent;
+            span.textContent = 'تم النسخ ✓';
+            btn.classList.add('text-emerald-400');
+            setTimeout(() => {
+              span.textContent = original;
+              btn.classList.remove('text-emerald-400');
+            }, 2000);
+          }
+        });
+      }
+    }
+
+    // Convert raw URLs to clickable markdown if model output raw links
+    function autolinkRawUrls(text) {
+      return text.replace(/(^|[^\[(])(https?:\/\/[^\s\)\<\>]+)/g, '$1[$2]($2)');
+    }
+
+    async function queryGemini(userText, year) {
+      const activeKey = localStorage.getItem('bfcai_user_gemini') || DEFAULT_GEMINI_KEY;
+      // High-quota low-latency model order
+      const models = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-lite-latest', 'gemini-3.5-flash'];
+
+      // Extract dynamic schedule/venue facts if matching
+      const schedInfo = window.buildScheduleContext ? window.buildScheduleContext(userText, year) : { context: '', venue: null, lectures: [] };
+
+      const systemPrompt = `أنت المساعد الذكي الرسمي لطلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها (BFCAI).
+الطالب الحالي مسجل في: ${year}.
+
+قاعدة المعرفة الأساسية:
+${schedInfo.context ? schedInfo.context + '\n' : ''}
+دليل أدوار ومباني الكلية:
+- مدرج 1 و 2، قاعات 1 إلى 4، معامل 1 إلى 7، شؤون الطلاب، ومعمل هواوي: الدور الأرضي.
+- مدرج 3 و 4، قاعة 5: الدور الأول علوي.
+- قاعة 6 و 7، معامل 8 إلى 15، معامل المعالج الدقيق وIoT والفيزياء والشبكات واللوجيك والإلكترونيات: الدور الثاني علوي.
+- مدرج 5، قاعات 8 إلى 12: الدور السابع.
+
+الروابط الرسمية (استخدمها كروابط Markdown زرقاء تفاعلية [اسم الرابط](URL) عند الحاجة فقط):
+- نظام ابن الهيثم للخدمات الطلابية لشؤون الطلاب: https://mis.bu.edu.eg/
+- الموقع الرسمي للكلية: https://fci.bu.edu.eg/
+- الصفحة الرسمية على فيسبوك: https://www.facebook.com/Official.BFCAI
+- قناة الواتساب الرسمية: https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q
+
+قواعد وأسلوب الإجابة (مماثل لـ ChatGPT تماماً):
+1. أجب دائماً باللغة العربية بأسلوب راقٍ، مباشر، وذكي، ومقسم باحترافية إلى نقاط وعناوين واضحة.
+2. جاوب على سؤال الطالب تحديداً دون أي مقدمات طويلة أو نصوص تمهيدية مكررة.
+3. الروابط: أي رابط أو منصة تذكرها ضعها دائماً بصيغة Markdown تفاعلية: [اسم المنصة](الرابط) حتى تظهر باللون الأزرق.
+4. الجداول: إذا كان السؤال عن مواعيد المحاضرات أو المواد، نسقها في جدول Markdown أنيق ومفصل.
+5. ممنوع منعاً باتاً كتابة أو تكرار أي قائمة باسم "المصادر والمراجع" في نهاية الإجابة! أجب على السؤال المطلوب فقط بإيجاز واحترافية.`;
+
+      // Build contents payload with conversation history
+      const contentsPayload = [];
+      const recentHistory = conversationHistory.slice(-8);
+      for (const msg of recentHistory) {
+        contentsPayload.push({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: msg.text }]
+        });
+      }
+      contentsPayload.push({
+        role: 'user',
+        parts: [{ text: userText }]
+      });
+
+      for (const model of models) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${activeKey}`;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: systemPrompt }] },
+              contents: contentsPayload
+            })
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) {
+              return { success: true, text: reply, model, schedInfo };
+            }
+          }
+        } catch (e) {
+          console.warn(`Model ${model} error:`, e);
+        }
+      }
+
+      return { success: false, schedInfo };
+    }
+
+    async function handleSend(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      input.value = '';
+      const thread = document.getElementById('chatThread');
+
+      // User Bubble (Clean ChatGPT Style)
+      thread.innerHTML += `
+        <div class="flex gap-3 flex-row-reverse my-4 items-start">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">👤</div>
+          <div class="max-w-[85%] sm:max-w-[75%] bg-[#1c2333] border border-[#28344c] text-white rounded-2xl rounded-tr-none px-4 py-3 text-sm leading-relaxed shadow-sm">
+            ${query}
+          </div>
+        </div>
+      `;
+      thread.scrollTop = thread.scrollHeight;
+
+      // Loader Indicator
+      const loadingId = 'loader_' + Date.now();
+      thread.innerHTML += `
+        <div id="${loadingId}" class="flex gap-3 my-4 items-start">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-sm flex-shrink-0 animate-pulse mt-0.5">🤖</div>
+          <div class="bg-[#121622] border border-[#1c2333] px-4 py-3 rounded-2xl rounded-tl-none text-xs text-slate-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+            جاري التفكير وصياغة الإجابة...
+          </div>
+        </div>
+      `;
+      thread.scrollTop = thread.scrollHeight;
+
+      // Call Google Gemini
+      const geminiResult = await queryGemini(query, currentYear);
+
+      const loader = document.getElementById(loadingId);
+      if (loader) loader.remove();
+
+      let answerText = "";
+      let venueCardHtml = "";
+
+      if (geminiResult.success) {
+        answerText = geminiResult.text;
+        conversationHistory.push({ role: 'user', text: query });
+        conversationHistory.push({ role: 'assistant', text: answerText });
+
+        // Check if venue map is explicitly requested or found
+        const venue = geminiResult.schedInfo?.venue || (window.findVenueInfo ? window.findVenueInfo(query) : null);
+        if (venue) {
+          venueCardHtml = `
+            <div class="mt-3 p-3 bg-[#090b10] rounded-xl border border-sky-500/30">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>📍 موقع: ${venue.name}</span>
+                  <span class="text-[10px] text-slate-400 font-normal">(${venue.floor})</span>
+                </span>
+              </div>
+              <p class="text-xs text-slate-300 mb-2 leading-relaxed">${venue.directions}</p>
+              ${venue.map ? `
+                <div class="overflow-hidden rounded-lg border border-[#1e2638] bg-[#0c1018] mt-2">
+                  <img src="${venue.map}" alt="${venue.name}" class="max-h-72 w-full object-contain hover:scale-105 transition duration-300" />
+                  <div class="p-1.5 text-center text-[10px] text-slate-400 bg-[#07090e]">مخطط الدور التوضيحي بالكلية</div>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }
+      } else {
+        answerText = `أهلاً بك! تعذر الاتصال اللحظي بمحرك الذكاء الاصطناعي بسبب الشبكة. يُرجى المحاولة مرة أخرى أو التأكد من اتصال الإنترنت.`;
+      }
+
+      // Safe Markdown Rendering with autolinked URLs
+      const processedText = autolinkRawUrls(answerText);
+      const formattedHtml = typeof marked !== 'undefined' ? marked.parse(processedText) : processedText.replace(/\n/g, '<br/>');
+
+      // Bot Message Bubble (Pure ChatGPT Style - No source spam)
+      thread.innerHTML += `
+        <div class="flex gap-3 my-4 items-start chat-bubble-container">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">🤖</div>
+          <div class="flex-1 max-w-[92%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 sm:p-5 text-sm text-white leading-relaxed shadow-md space-y-3">
+            <div class="markdown-content">${formattedHtml}</div>
+            ${venueCardHtml}
+            <div class="flex items-center justify-between pt-2.5 border-t border-[#1b2232] text-[11px] text-slate-500">
+              <button onclick="copyMessage(this)" class="hover:text-sky-400 flex items-center gap-1 transition px-2 py-1 rounded hover:bg-slate-800/60">
+                <span>📋 نسخ الإجابة</span>
+              </button>
+              <span class="text-[10px] text-slate-500 font-mono">BFCAI AI • بنها</span>
+            </div>
+          </div>
+        </div>
+      `;
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    // Initialize Prompts
+    renderPrompts();
+  </script>
+</body>
+</html>
