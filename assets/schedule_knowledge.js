@@ -33,21 +33,25 @@
     return null;
   };
 
-  window.findLecturesInfo = function(query, yearName) {
+  window.findLecturesInfo = function(query, trackName) {
     if (!query) return [];
     const q = norm(query);
-    const lvlMap = { 'الفرقة الأولى': '1', 'الفرقة الثانية': '2', 'الفرقة الثالثة': '3', 'الفرقة الرابعة': '4' };
-    const targetLvl = lvlMap[yearName] || '';
 
     return LECTURES.filter(l => {
-      if (targetLvl && l.level !== targetLvl && !q.includes('الفرقة')) return false;
+      // Specialized exclusively for Level 1 (الفرقة الأولى)
+      if (l.level !== '1') return false;
+
+      // If track is معادلة, include or highlight تأهيلي رياضيات
+      if (trackName === 'معادلة' && norm(l.subject).includes('تاهيلي')) return true;
 
       const dayMatch = ['السبت', 'الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس'].some(d => q.includes(norm(d)) && norm(l.day) === norm(d));
       const subjMatch = norm(l.subject).split(' ').some(w => w.length > 2 && q.includes(w));
       const docMatch = norm(l.doctor).split(' ').some(w => w.length > 2 && q.includes(w));
       const roomMatch = norm(l.room).replace(/\s+/g, '').length > 3 && q.replace(/\s+/g, '').includes(norm(l.room).replace(/\s+/g, ''));
+      const groupMatch = l.group && (q.includes('مجموعة ' + l.group) || q.includes('جروب ' + l.group) || q.includes('سكشن ' + l.group) || q.includes('مجموعه ' + l.group));
+      const allLecMatch = q.includes('جدول') || q.includes('محاضرات') || q.includes('مواعيد') || q.includes('سنة اولى') || q.includes('سنه اولي') || q.includes('الفرقة الاولى');
 
-      return dayMatch || subjMatch || docMatch || roomMatch;
+      return dayMatch || subjMatch || docMatch || roomMatch || groupMatch || allLecMatch;
     });
   };
 
@@ -102,17 +106,17 @@
     return OFFICIAL_RESOURCES.filter(r => r.keywords.some(k => q.includes(norm(k))));
   };
 
-  window.buildScheduleContext = function(query, yearName) {
+  window.buildScheduleContext = function(query, trackName) {
     let ctx = '';
     const venue = window.findVenueInfo(query);
     if (venue) {
       ctx += `\n[معلومات المكان والموقع الدقيق]: ${venue.name} يقع في الدور: ${venue.floor}. طريقة الوصول: ${venue.directions}. ${venue.map ? 'الخريطة المرفقة: ' + venue.map : ''}`;
     }
 
-    const lecs = window.findLecturesInfo(query, yearName);
+    const lecs = window.findLecturesInfo(query, trackName);
     if (lecs.length > 0) {
-      ctx += `\n[جدول المحاضرات المطابقة من الكلية]:\n` + lecs.slice(0, 8).map(l => 
-        `- يوم ${l.day} من ${l.start} إلى ${l.end}: ${l.subject} (${l.doctor}) في ${l.room} (المستوى ${l.level} ${l.track !== 'عام' ? l.track : ''} ${l.group ? 'مجموعة ' + l.group : ''})`
+      ctx += `\n[محاضرات الفرقة الأولى المطابقة من جداول الكلية]:\n` + lecs.slice(0, 10).map(l => 
+        `- يوم ${l.day} من ${l.start} إلى ${l.end}: ${l.subject} (${l.doctor}) في ${l.room} (${l.group ? 'مجموعة ' + l.group : 'الكل'})`
       ).join('\n');
     }
 

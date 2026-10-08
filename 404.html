@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>المساعد الذكي | كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI)</title>
+  <title>مساعد الفرقة الأولى | كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI Year 1)</title>
   <!-- Google Cairo Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -171,10 +171,10 @@
         </div>
         <div>
           <h1 class="text-sm sm:text-lg font-bold text-white flex items-center gap-2">
-            <span>المساعد الذكي لطلاب BFCAI</span>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 hidden sm:inline-block">v2.5 AI</span>
+            <span>مساعد الفرقة الأولى | BFCAI First Year</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 hidden sm:inline-block">سنة أولى حصرياً 🎓</span>
           </h1>
-          <p class="text-[10px] sm:text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها (إعدادي وحاسبات)</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -191,15 +191,17 @@
   <!-- Main Viewport Container (Fills exact remaining viewport without window scrolling) -->
   <main class="flex-1 min-h-0 max-w-5xl w-full mx-auto px-2 sm:px-4 py-2 sm:py-3 flex flex-col overflow-hidden">
     
-    <!-- Academic Year Selector Pills (Compact) -->
+    <!-- Year 1 Track Selector Pills (عام / خاص / كانتربري / معادلة) -->
     <div class="flex-shrink-0 flex items-center justify-between gap-2 mb-2 bg-[#0d1017] p-1.5 sm:p-2 rounded-xl border border-[#1b2232]">
-      <span class="text-xs font-bold text-slate-400 px-1">الفرقة:</span>
+      <div class="flex items-center gap-1.5 px-1">
+        <span class="text-xs font-bold text-sky-400">الفرقة الأولى:</span>
+        <span class="text-[11px] text-slate-400 hidden sm:inline">اختر مسارك:</span>
+      </div>
       <div class="flex flex-wrap gap-1.5">
-        <button onclick="setYear('الفرقة الأولى')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm" data-year="الفرقة الأولى">الفرقة الأولى</button>
-        <button onclick="setYear('الفرقة الثانية')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الثانية">الفرقة الثانية</button>
-        <button onclick="setYear('الفرقة الثالثة')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الثالثة">الفرقة الثالثة</button>
-        <button onclick="setYear('الفرقة الرابعة')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الرابعة">الفرقة الرابعة</button>
-        <button onclick="setYear('عام')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="عام">عام</button>
+        <button onclick="setTrack('عام')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm" data-track="عام">🏫 عام (البرنامج العام)</button>
+        <button onclick="setTrack('خاص')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="خاص">💎 خاص (البرامج المتميزة)</button>
+        <button onclick="setTrack('كانتربري')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="كانتربري">🇬🇧 كانتربري (CCCU UK)</button>
+        <button onclick="setTrack('معادلة')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="معادلة">📑 معادلة (دبلومات ومقاصة)</button>
       </div>
     </div>
 
@@ -210,7 +212,7 @@
       <div class="flex-shrink-0 px-4 py-2 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
         <span class="text-slate-300 font-semibold flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>المساعد الذكي نشط • متصل ببيانات الكلية وجداول المحاضرات</span>
+          <span>مساعد الفرقة الأولى نشط • جداول ومناهج ومصادر سنة أولى بنها</span>
         </span>
         <button onclick="clearChat()" class="text-slate-400 hover:text-rose-400 transition font-medium flex items-center gap-1">
           <span>🗑️ مسح المحادثة</span>
@@ -223,9 +225,12 @@
         <div class="flex gap-3 items-start">
           <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">🤖</div>
           <div class="flex-1 max-w-[90%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 text-sm text-white leading-relaxed shadow-sm space-y-2">
-            <p class="font-bold text-sky-400">مرحباً بك! أنا المساعد الذكي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) 🎓</p>
+            <p class="font-bold text-sky-400">مرحباً بك يا بطل! أنا المساعد الذكي الرسمي لطلاب الفرقة الأولى بكلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) 🎓</p>
             <p class="text-slate-200">
-              أنا جاهز للإجابة على جميع استفساراتك بدقة وسرعة: مواعيد وأماكن المحاضرات، دليل القاعات والمدرجات، شؤون الطلاب واستلام الكارنيهات، اللائحة ونظام الساعات المعتمدة، أو أي استفسار علمي وبرمجي في العالم. تفضل بطرح سؤالك!
+              أنا مخصص بالكامل لخدمة دفعة سنة أولى بجميع مساراتها: <b>البرنامج العام (مجموعات 1-7)</b>، <b>البرامج الخاصة (ساعات معتمدة)</b>، <b>برنامج كانتربري (الشهادة المزدوجة البريطانية)</b>، و<b>طلاب مسابقة المعادلة والدبلومات</b>.
+            </p>
+            <p class="text-slate-300 text-xs">
+              أنا جاهز لإجابتك عن: مواعيد المحاضرات والسكاشن، الماتريال والسلايدات بدرايف سنة 1، شؤون الطلاب واستلام الكارنيهات، مواد التأهيلي والمقاصة، منصة الكتب، منصة MyU، أو أي مسألة برمجية وعلمية. اختر مسارك الدراسي بالأعلى وتفضل بسؤالك!
             </p>
           </div>
         </div>
@@ -316,7 +321,7 @@
 
   <script>
     const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42SVZMalpoVWlBVUxndnVWa3VZUTN1TlpuYjA1bmxXTFF1OHo4WW56WUhBTEE=');
-    let currentYear = 'الفرقة الأولى';
+    let currentTrack = 'عام';
     let conversationHistory = [];
 
     // Configure Marked.js for ChatGPT-style Markdown & Blue links
@@ -330,41 +335,39 @@
     }
 
     const QUICK_PROMPTS = {
-      'الفرقة الأولى': [
-        'جدول ومواعيد محاضرات الفرقة الأولى بالكامل',
-        'رابط درايف سنة 1 لتحميل الماتريال والسلايدات والشيتات',
-        'أين يقع مدرج 1 ومدرج 2 وخريطة الدور الأرضي؟',
-        'كيف استلم الكارنيه وأين مكتب شؤون الطلاب؟',
-        'ما هو رابط منصة MyU للخدمات الطلابية والنتائج؟'
-      ],
-      'الفرقة الثانية': [
-        'جدول ومواعيد محاضرات الفرقة الثانية',
-        'أين يقع مدرج 3 ومدرج 4 وخريطة الدور الأول؟',
-        'ما هي شروط التشعيب للأقسام بنهاية الفرقة الثانية؟',
-        'أين يقع معمل التصميم المنطقي وقاعة 6؟'
-      ],
-      'الفرقة الثالثة': [
-        'جدول ومواعيد محاضرات الفرقة الثالثة (حسب القسم)',
-        'أين يقع معمل 14 وقاعة 7 وخريطة الدور الثاني؟',
-        'ما هي ضوابط التدريب الصيفي الإجباري المعتمد للتخرج؟',
-        'ما هي مجالات عمل أقسام الكلية بعد التخرج؟'
-      ],
-      'الفرقة الرابعة': [
-        'جدول محاضرات الفرقة الرابعة بالتفصيل والمدرجات',
-        'أين يقع مدرج 5 وقاعات الدور السابع؟',
-        'ما هي ضوابط مشروع التخرج وتكوين الفريق؟',
-        'ما هي خطوات إخلاء الطرف واستخراج شهادة التخرج؟'
-      ],
       'عام': [
-        'دليل أماكن وخريطة جميع مدرجات وقاعات ومعامل الكلية',
-        'ما هي روابط المنصات الرسمية للكلية والدرايف ومنصة MyU؟',
-        'اشرح لي مفهوم الذكاء الاصطناعي ومجالاته ببساطة'
+        'جدول ومواعيد محاضرات الفرقة الأولى عام بالكامل لجميع المجموعات',
+        'رابط جوجل درايف سنة 1 لتحميل الماتريال والسلايدات والشيتات',
+        'أين يقع مدرج 1 ومدرج 2 ومدرج 3 وخريطة الدور الأرضي والأول؟',
+        'ما هي مقررات ومواد الترم الأول للفرقة الأولى عام؟',
+        'كيف استلم الكارنيه ورابط منصة MyU للخدمات الطلابية؟'
+      ],
+      'خاص': [
+        'نظام الساعات المعتمدة وحساب المعدل التراكمي GPA في البرامج الخاصة',
+        'ما هي تخصصات البرامج المتميزة (ذكاء اصطناعي، أمن سيبراني، معلوماتية طبية)؟',
+        'كيف يتم تسجيل المواد والإرشاد الأكاديمي للبرامج الخاصة على MyU؟',
+        'هل الدراسة والمحاضرات باللغة الإنجليزية في البرامج الخاصة؟',
+        'أين تقع قاعات ومدرجات ومعامل البرامج الخاصة بالكلية؟'
+      ],
+      'كانتربري': [
+        'تفاصيل برنامج الشهادة المزدوجة مع جامعة كانتربري البريطانية (CCCU)',
+        'ما هي شروط التخرج والحصول على البكالوريوس البريطاني من CCCU؟',
+        'طبيعة المناهج والتدريس والتقييم واللغة الإنجليزية في كانتربري',
+        'كيفية التواصل مع منسق برنامج كانتربري وشؤون الطلاب بالكلية؟',
+        'مزايا وفرص العمل لخريجي الشهادة المزدوجة في مصر وإنجلترا'
+      ],
+      'معادلة': [
+        'مواعيد وقاعات محاضرات التأهيلي (تأهيلي رياضيات مع د. أحمد مصطفى)',
+        'أين يقع مدرج 4 وموعد محاضرة تأهيلي رياضة يوم الأربعاء؟',
+        'إجراءات المقاصة العلمية لطلاب الدبلومات والمعاهد الفنية بشؤون الطلاب',
+        'ما هي المواد المطالب بها طالب المعادلة بجانب مواد الفرقة الأولى؟',
+        'رابط درايف سنة 1 لتحميل مذكرات وشيتات الرياضة ومواد التأهيلي'
       ]
     };
 
     function renderPrompts() {
       const container = document.getElementById('quickPromptsContainer');
-      const prompts = QUICK_PROMPTS[currentYear] || QUICK_PROMPTS['الفرقة الأولى'];
+      const prompts = QUICK_PROMPTS[currentTrack] || QUICK_PROMPTS['عام'];
       container.innerHTML = prompts.map(p => `
         <button onclick="askPrompt('${p}')" class="text-[11px] py-1 px-3 rounded-full bg-[#121622] hover:bg-[#1a2234] text-slate-300 hover:text-sky-400 border border-[#1f283b] hover:border-sky-500/40 transition">
           ${p}
@@ -372,13 +375,13 @@
       `).join('');
     }
 
-    function setYear(year) {
-      currentYear = year;
-      document.querySelectorAll('.year-btn').forEach(btn => {
-        if (btn.getAttribute('data-year') === year) {
-          btn.className = "year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm";
+    function setTrack(track) {
+      currentTrack = track;
+      document.querySelectorAll('.track-btn').forEach(btn => {
+        if (btn.getAttribute('data-track') === track) {
+          btn.className = "track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm";
         } else {
-          btn.className = "year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+          btn.className = "track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
         }
       });
       renderPrompts();
@@ -446,39 +449,45 @@
       return text.replace(/(^|[^\[(])(https?:\/\/[^\s\)\<\>]+)/g, '$1[$2]($2)');
     }
 
-    async function queryGemini(userText, year) {
+    async function queryGemini(userText, track) {
       const activeKey = localStorage.getItem('bfcai_user_gemini') || DEFAULT_GEMINI_KEY;
       // High-quota low-latency model order
       const models = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-lite-latest', 'gemini-3.5-flash'];
 
       // Extract dynamic schedule/venue facts if matching
-      const schedInfo = window.buildScheduleContext ? window.buildScheduleContext(userText, year) : { context: '', venue: null, lectures: [] };
+      const schedInfo = window.buildScheduleContext ? window.buildScheduleContext(userText, track) : { context: '', venue: null, lectures: [] };
 
-      const systemPrompt = `أنت المساعد الذكي والمستشار الأكاديمي الرسمي لطلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها (BFCAI).
-الطالب الحالي مسجل في: ${year}.
+      const systemPrompt = `أنت المساعد الذكي والمستشار الأكاديمي الحصري لطلاب الفرقة الأولى بكلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI).
+أنت مخصص بنسبة 100% لخدمة طلاب سنة أولى بجميع مساراتهم الأكاديمية الأربعة:
+1. "عام" (البرنامج العام - المجموعات من 1 إلى 7): مقرراتهم الأساسية: برمجة هيكلية (C++)، أساسيات علوم الحاسب، فيزياء، رياضيات متقطعة (Discrete Math)، لغة إنجليزية، وقضايا مجتمعية.
+2. "خاص" (البرامج المتميزة / الساعات المعتمدة): برامج الذكاء الاصطناعي (AI)، الأمن السيبراني (Cybersecurity)، المعلوماتية الطبية (Medical Informatics)، وهندسة البرمجيات (Software Engineering)، بنظام الساعات المعتمدة باللغة الإنجليزية.
+3. "كانتربري" (الشهادة المزدوجة Dual Degree مع جامعة Canterbury Christ Church University - CCCU البريطانية): يحصل الطالب على شهادتين (مصرية وبريطانية)، مناهج متطورة باللغة الإنجليزية ومعتمدة دولياً.
+4. "معادلة" (طلاب المعادلة والدبلومات الفنية والمعاهد والمقاصة): يشمل مقررات التأهيلي التكميلية (مثل مقرر "تأهيلى رياضيات" يوم الأربعاء بمدرج 4 مع د. أحمد مصطفى)، وإجراءات المقاصة العلمية وحساب الساعات بشؤون الطلاب.
 
-قاعدة المعرفة الحصرية والحقائق المعتمدة للكلية:
+المسار الحالي للطالب: الفرقة الأولى - مسار [${track}].
+
+قاعدة المعرفة الحصرية والحقائق المعتمدة لجدول ومقررات الفرقة الأولى:
 ${schedInfo.context ? schedInfo.context + '\n' : ''}
-دليل أدوار ومباني الكلية:
+دليل أدوار ومباني كلية الحاسبات بنها:
 - مدرج 1 و 2، قاعات 1 إلى 4، معامل 1 إلى 7، شؤون الطلاب، ومعمل هواوي: الدور الأرضي.
 - مدرج 3 و 4، قاعة 5: الدور الأول علوي.
 - قاعة 6 و 7، معامل 8 إلى 15، معامل المعالج الدقيق وIoT والفيزياء والشبكات واللوجيك والإلكترونيات: الدور الثاني علوي.
 - مدرج 5، قاعات 8 إلى 12: الدور السابع.
 
 الروابط والمنصات الرسمية المعتمدة (استخدمها بذكاء كروابط Markdown زرقاء تفاعلية [اسم المنصة](URL)):
-- جوجل درايف الفرقة الأولى (شامل سلايدات المحاضرات، شيتات السكاشن، بنوك الامتحانات السابقة، والماتريال): https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l
-- منصة الكتاب الجامعي الإلكتروني بجامعة بنها (لتحميل وتصفح الكتب الدراسية والمقررات الإلكترونية): https://ebook.bu.edu.eg/
+- جوجل درايف الفرقة الأولى المعتمد (سلايدات المحاضرات، شيتات السكاشن، بنوك الامتحانات السابقة، والماتريال): https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l
+- منصة الكتاب الجامعي الإلكتروني بجامعة بنها (لتحميل وتصفح المقررات والكتب الإلكترونية): https://ebook.bu.edu.eg/
 - منصة MyU للخدمات الطلابية لجامعة بنها (تسجيل المقررات، إعلان النتائج والـ GPA، الكارنيهات، كشوف السكاشن، ومتابعة شؤون الطلاب): https://myu.bu.edu.eg/
 - قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥 (للإعلانات اللحظية وتنبيهات الجداول وتعديلاتها واستلام الكارنيهات): https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q
 - الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها: https://fci.bu.edu.eg/
 - الصفحة الرسمية لكلية الحاسبات والذكاء الاصطناعي على فيسبوك: https://www.facebook.com/Official.BFCAI
 
 تعليمات التفكير والتحليل الذكي والتعمق (Think Deeply & Reason - لا تكن مجرد أداة نسخ ولصق):
-1. التحليل والفهم العميق: فكر بذكاء وتعمق في مقصد الطالب وسياق سؤاله (سواء كان يسأل عن مادة، سلايدات، كتاب، إجراء إداري، تسجيل، أو رابط). ابنِ إجابتك على خطوات منطقية وشرح ذكي يسبق توقعاته ويفيده عملياً، وتجنب تماماً الردود المعلبة أو النسخ واللصق الحرفي.
-2. الربط الذكي للروابط: متى طلب الطالب أو احتاج إلى رابط (سلايدات، كتب، تسجيل مواد، نتائج، أو تنبيهات)، وفّر له الرابط المباشر الصحيح مدمجاً بكلمات واضحة [اسم المنصة الموضح](الرابط) مع توضيح الخطوات التي سيقوم بها.
-3. التوجيه الإداري المتكامل: إذا كان السؤال عن الكارنيهات أو المصروفات أو شؤون الطلاب، فصّل دورة الإجراء (الدفع عبر فوري أو الكود الموحد -> مراجعة شؤون الطلاب بالدور الأرضي مصطحباً الأوراق -> استلام الكارنيه وتفعيل منصة MyU).
-4. الجداول والأماكن: اعرض المحاضرات في جداول Markdown منسقة جداً، وإذا سأل عن مكان مدرج أو قاعة أو معمل، اذكر الدور والاتجاه بالتفصيل.
-5. الأسئلة البرمجية والعامة: إذا سأل الطالب أي سؤال علمي أو برمجي، فكر كخبير برمجيات وقدم له كوداً نظيفاً مشروحاً بأعلى احترافية.
+1. التحليل والفهم العميق لمسار الطالب: فكر بذكاء في احتياجات طالب سنة أولى حسب مساره (${track})، سواء كان في البرنامج العام، الساعات المعتمدة الخاصة، الشراكة البريطانية كانتربري، أو المقاصة ومواد التأهيلي لطلاب المعادلة.
+2. الربط الذكي للروابط الرسمية: متى سأل الطالب عن محاضرات، مذكرات، تسجيل، كتب، أو تنبيهات، اربط له الرابط الرسمي المباشر بكلمات أنيقة مثل [درايف سنة أولى الرسمي](رابط) أو [منصة MyU للخدمات الطلابية](رابط).
+3. التوجيه الإداري الدقيق: وضح له الإجراءات في الكلية (دفع المصروفات بفوري، التوجه لشؤون الطلاب بالدور الأرضي، استلام الكارنيه، وتفعيل حساب MyU وحساب البريد الجامعي).
+4. الجداول والأماكن: اعرض جداول المحاضرات بدقة في جداول Markdown منسقة مع ذكر اسم الدكتور واليوم والوقت والمدرج بدقة. وإذا سأل عن مكان مدرج أو معمل، اذكر الدور والاتجاه بوضوح.
+5. الأسئلة البرمجية والعلمية: لمقررات سنة أولى (C++ البرمجة الهيكلية، Discrete Math، الحاسب الآلي، الفيزياء)، قدم شروحات ذكية وأكواداً نظيفة جداً واحترافية تفيد الطالب وتبسط له المعلومة.
 6. قواعد المظهر والتنسيق (ChatGPT Dark UI):
    - صياغة عربية بليغة وأنيقة مقسمة إلى نقاط وعناوين واضحة.
    - الخط أبيض ناصع، الروابط زرقاء سماوية تفاعلية.
@@ -569,7 +578,7 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       scrollToBottom();
 
       // Call Google Gemini
-      const geminiResult = await queryGemini(query, currentYear);
+      const geminiResult = await queryGemini(query, currentTrack);
 
       const loader = document.getElementById(loadingId);
       if (loader) loader.remove();
