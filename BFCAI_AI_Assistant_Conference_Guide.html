@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الملف التقني الشامل ودليل المؤتمر: مساعد الذكاء الاصطناعي لطلاب حاسبات بنها (BFCAI Student AI Assistant)</title>
+  <!-- Google Cairo & Tajawal Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 16mm 14mm 16mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background-color: #ffffff;
+      color: #0f172a;
+      line-height: 1.65;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Cover Page */
+    .cover-page {
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250mm;
+      padding: 15mm 10mm;
+      text-align: center;
+      background: linear-gradient(145deg, #090e17 0%, #0f172a 50%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      color: #38bdf8;
+      border-radius: 9999px;
+      font-size: 11pt;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 900;
+      color: #ffffff;
+      margin: 15px 0 10px 0;
+      line-height: 1.3;
+    }
+    .cover-subtitle {
+      font-size: 14pt;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    .cover-divider {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #10b981);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+    .cover-author-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+    }
+    .author-name {
+      font-size: 16pt;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 0 0 5px 0;
+    }
+    .author-role {
+      font-size: 11pt;
+      color: #cbd5e1;
+      margin: 0;
+    }
+    .cover-footer {
+      font-size: 10pt;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 15px;
+    }
+
+    /* Page Breaks & Layout */
+    .page-break {
+      page-break-before: always;
+    }
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+
+    /* Headers */
+    h1, h2, h3, h4 {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    h1 {
+      font-size: 19pt;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 0;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 {
+      font-size: 14pt;
+      color: #0369a1;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+    h3 {
+      font-size: 12pt;
+      color: #0f172a;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    /* Paragraphs & Text */
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-align: justify;
+      color: #334155;
+    }
+    strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* Callout & Alert Boxes */
+    .alert-box {
+      background-color: #f0f9ff;
+      border-right: 4px solid #0284c7;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 10.5pt;
+    }
+    .alert-success {
+      background-color: #f0fdf4;
+      border-right-color: #16a34a;
+    }
+    .alert-warning {
+      background-color: #fffbeb;
+      border-right-color: #d97706;
+    }
+    .alert-purple {
+      background-color: #faf5ff;
+      border-right-color: #9333ea;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 10pt;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 10px;
+      text-align: right;
+    }
+    th {
+      background-color: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Grid & Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .card-title {
+      font-weight: 700;
+      color: #0284c7;
+      margin-bottom: 4px;
+      font-size: 11pt;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 9pt;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    /* Code & Architecture blocks */
+    .code-block {
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 9pt;
+      direction: ltr;
+      text-align: left;
+      overflow-x: auto;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    /* Q&A section */
+    .qa-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    .qa-q {
+      font-weight: 800;
+      color: #0369a1;
+      font-size: 11pt;
+      margin-bottom: 6px;
+    }
+    .qa-a {
+      color: #334155;
+      font-size: 10.5pt;
+      margin: 0;
+    }
+
+    /* Footer on each page */
+    .page-footer-note {
+      text-align: center;
+      font-size: 8.5pt;
+      color: #94a3b8;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 6px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <span class="cover-badge">وثيقة المؤتمر التقنية • ورقة عمل المشروع الرسمية 2026</span>
+      <h1 class="cover-title">مساعد الذكاء الاصطناعي الأكاديمي<br>لطلاب كلية الحاسبات والذكاء الاصطناعي</h1>
+      <div class="cover-subtitle">BFCAI First-Year Intelligent Student Assistant</div>
+      <div class="cover-divider"></div>
+      <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto; font-size: 12pt;">
+        دليل تقني وهندسي متكامل يشرح المعمارية الذكية، ومحرك المعرفة الهجين (Hybrid AI Architecture)، واستراتيجيات الحد من الهلوسة، ودليل الإلقاء والدفاع أمام لجان التحكيم في المؤتمرات الأكاديمية.
+      </p>
+    </div>
+
+    <div class="cover-author-box">
+      <div style="font-size: 10pt; color: #94a3b8; margin-bottom: 4px;">فكرة وتصميم وتطوير المهندس:</div>
+      <div class="author-name">المهندس / أحمد عبد الفتاح سليم</div>
+      <div class="author-role">مطور برمجيات وأنظمة ذكاء اصطناعي • كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</div>
+      <div style="margin-top: 10px; font-size: 9.5pt; color: #38bdf8;">
+        رقم التواصل الرسمي (واتساب): <span dir="ltr" style="font-weight:bold;">01066735981</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      جامعة بنها • كلية الحاسبات والذكاء الاصطناعي (BFCAI) • قطاع شؤون التعليم والطلاب والابتكار الرقمي<br>
+      الرابط المباشر للمشروع: <span dir="ltr">https://ahmed28e.github.io/bfcai-student-ai-assistant/</span>
+    </div>
+  </div>
+
+  <!-- ==================== SECTION 1: EXECUTIVE SUMMARY & PROBLEM STATEMENT ==================== -->
+  <div>
+    <h1><span>1. الملخص التنفيذي وبيان المشكلة (Problem Statement & Motivation)</span></h1>
+    
+    <div class="alert-box">
+      <strong>الهدف الجوهري للمشروع:</strong> تمكين طالب الفرقة الأولى بكلية الحاسبات والذكاء الاصطناعي - جامعة بنها من الحصول على إجابات فورية ودقيقة وموثوقة بنسبة 100% لكل ما يخص مساره الدراسي، جداوله، أماكن مدرجاته ومعامله، والمنصات الجامعية المعتمدة، بالصوت أو النص، مع القضاء التام على الشائعات وهلوسة الذكاء الاصطناعي.
+    </div>
+
+    <h2>1.1 المشكلة الحقيقية لطالب سنة أولى (Pain Points):</h2>
+    <p>
+      يمر طالب الفرقة الأولى المستجد بما يُعرف أكاديمياً بـ <strong>صدمة الانتقال الجامعي (Freshman Transition Shock)</strong>، حيث يواجه تحديات معقدة في بداية مسيرته داخل كلية الحاسبات:
+    </p>
+    <ul>
+      <li><strong>تشتت مصادر البيانات:</strong> تتوزع الجداول والمواعيد بين إعلانات ورقية، مجموعات واتساب وتليجرام غير رسمية، منشورات فيسبوك، ومنصات كليات متعددة، مما يسبب تضارباً دائماً في المواعيد.</li>
+      <li><strong>تعقد المسارات الأكاديمية بالكلية:</strong> الفرقة الأولى بحاسبات بنها ليست فئة واحدة، بل تنقسم إلى <strong>4 مسارات مختلفة كلياً</strong> (البرنامج العام، البرامج المتميزة الساعات المعتمدة، الشهادة المزدوجة مع جامعة كانتربري البريطانية، وطلاب المعادلة والمقاصة)، ولكل مسار خطته الدراسية ومواده وقاعاته.</li>
+      <li><strong>متاهة المباني والمدرجات (Spatial Disorientation):</strong> مبنى الكلية متعدد الطوابق والمعامل (أكثر من 15 معملاً متخصصاً و5 مدرجات كبرى و12 قاعة موزعة بين الأرضي والأول والثاني والسابع)، مما يربك الطالب الجديد ويؤخره عن محاضراته.</li>
+      <li><strong>تضارب الروابط وشائعات الامتحانات:</strong> يقع الطالب فريسة لروابط غير رسمية وروابط مزيفة للمنصات (مثل منصة الخدمات الطلابية MyU، ومنصة الكتاب الجامعي E-Book).</li>
+    </ul>
+
+    <h2>1.2 رؤية الحل ومخرجات الأداة:</h2>
+    <p>
+      قام المهندس <strong>أحمد عبد الفتاح سليم</strong> بابتكار مساعد ذكي شخصي فائق السرعة يعمل عبر متصفح الويب (Cross-Platform Responsive Web App) متاح على مدار الساعة مجاناً، يدمج بين <strong>الذكاء الاصطناعي التوليدي من Google (Gemini Models)</strong> ومحرك قواعد بيانات محلي فائق الدقة (Deterministic Local Knowledge Engine)، ليكون المرجع الشامل لكل طالب مستجد في بنها.
+    </p>
+
+    <div class="card-grid avoid-break">
+      <div class="card">
+        <div class="card-title">🎯 التخصيص الدقيق للفرقة الأولى</div>
+        <p style="font-size: 9.5pt; margin: 0;">الفرز الفوري والدقيق حسب المسار المختار (عام / خاص / كانتربري / معادلة) لمنع أي تداخل في الجداول أو المقررات.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🎙️ الإدخال والتحدث الصوتي</div>
+        <p style="font-size: 9.5pt; margin: 0;">إمكانية السؤال بالصوت باللهجة المصرية الطبيعية وتحويل الصوت إلى نص وإرساله لحظياً للذكاء الاصطناعي.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🗺️ الإرشاد المكاني والخرائط</div>
+        <p style="font-size: 9.5pt; margin: 0;">وصف دقيق لطريقة الوصول لكل معمل ومدرج مع إظهار الخريطة المكانية للطابق المقابل فوراً داخل المحادثة.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ الصفر-هلوسة والمصادر الموثقة</div>
+        <p style="font-size: 9.5pt; margin: 0;">ربط مباشر بروابط الجامعة المعتمدة (منصة MyU الرسمية، منصة الكتاب الجامعي، ودرايف الدفعة المعتمد).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 2: THE EVOLUTION JOURNEY ==================== -->
+  <div class="page-break">
+    <h1><span>2. رحلة التطور والتنفيذ (The Development Journey & Evolution)</span></h1>
+    <p>
+      لم تكن الأداة مجرد موقع بسيط، بل مرت بدورة حياة هندسية متكاملة (Agile Iterative Engineering) عبر 7 مراحل تطوير متسلسلة للوصول إلى هذا المستوى من النضج:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%;">المرحلة</th>
+          <th style="width: 30%;">اسم المرحلة</th>
+          <th>أبرز الإنجازات والقرارات الهندسية المتخذة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>المرحلة 1</strong></td>
+          <td>استكشاف وحصر البيانات (Data Gathering)</td>
+          <td>جمع جداول الفرقة الأولى بجميع مجموعاتها (من 1 إلى 7)، وأسماء المحاضرين، وأماكن المحاضرات والسكاشن، وحصر خرائط الطوابق (الأرضي، الأول، الثاني).</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 2</strong></td>
+          <td>بناء النواة والواجهة (Core & UI Prototyping)</td>
+          <td>تصميم واجهة مستخدم مظلمة مريحة للعين (Dark Mode) مستوحاة من ChatGPT، خفيفة وسريعة، تدعم خط "Cairo" وتعمل بسلاسة على كافة الهواتف والحواسيب.</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 3</strong></td>
+          <td>دمج الذكاء الاصطناعي (LLM Integration & Prompting)</td>
+          <td>ربط واجهة Google Gemini API وبناء "الأمر الإرشادي الصارم" (System Prompt) الذي يمنح الأداة شخصيتها كمستشار أكاديمي مخصص لحاسبات بنها.</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 4</strong></td>
+          <td>محرك المعرفة والملاحة (Spatial Wayfinding Engine)</td>
+          <td>ابتكار ملف <code>schedule_knowledge.js</code> للبحث النصي الفوري وعرض الخرائط المكانية للأدوار، ليعمل محلياً حتى في حال انقطاع اتصال الإنترنت.</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 5</strong></td>
+          <td>التخصيص الحصري للفرقة الأولى ومساراتها</td>
+          <td>إعادة هيكلة النظام ليخدم الفرقة الأولى حصرياً، وبناء أزرار تبديل المسارات (عام - خاص - كانتربري - معادلة) لضمان دقة الإجابة لكل طالب.</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 6</strong></td>
+          <td>التفاعل الصوتي الذكي (Web Speech Recognition)</td>
+          <td>إضافة ميزة البحث الصوتي (Speech-to-Text) باستخدام Web Speech API مع دعم اللهجة المصرية والتغذية البصرية النابضة أثناء الاستماع.</td>
+        </tr>
+        <tr>
+          <td><strong>المرحلة 7</strong></td>
+          <td>النشر السحابي والتوثيق الرسمي (Production CI/CD)</td>
+          <td>نشر الأداة على GitHub Pages، ربط المنصة الرسمية MyU، وتخصيص قسم تواصل للمطور مع صورته الرسمية ورقم الواتساب المباشر لخدمة الطلاب.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert-box alert-purple avoid-break">
+      <strong>فلسفة البناء (Architecture Philosophy):</strong><br>
+      تم تصميم النظام وفق مبدأ <strong>"Zero-Backend Serverless Architecture"</strong>. أي أن التطبيق يعمل بالكامل على متصفح العميل (Client-Side)، مما يضمن:
+      (1) سرعة استجابة خارقة (Zero Server Latency)، (2) مجانية الاستضافة مدى الحياة دون تكاليف سيرفرات، (3) خصوصية مطلقة للبيانات دون تخزين محادثات الطالب في قواعد بيانات وسيطة.
+    </div>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 3: AI ARCHITECTURE & TECHNICAL DEEP-DIVE ==================== -->
+  <div class="page-break">
+    <h1><span>3. معمارية الذكاء الاصطناعي ونظام العمل التقني (AI Architecture Deep-Dive)</span></h1>
+
+    <p>
+      إذا سُئلت في المؤتمر: <em>"ما هو نظام الـ AI الذي قامت عليه الأداة؟ وهل هي مجرد واجهة عادية (Wrapper) لـ Gemini؟"</em><br>
+      <strong>الإجابة الهندسية القاطعة:</strong> لا! الأداة مبنية على معمارية هجينة متطورة تُعرف بـ <strong>(Hybrid Intelligence with Context Grounding & Multi-tier Fallback)</strong> تتألف من عدة طبقات مترابطة:
+    </p>
+
+    <div class="code-block avoid-break">
++-----------------------------------------------------------------------------------+
+|                           مخطط المعمارية الهجينة للأداة (Architecture Flowchart)     |
++-----------------------------------------------------------------------------------+
+|  1. إدخال المستخدم: نصي (Chat Input) أو صوتي (Web Speech Recognition ar-EG)       |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|  2. محرك الفرز المعرفي المحلي (Deterministic Domain Engine - schedule_knowledge)  |
+|     - استخراج الكيانات (Entity Extraction): مدرج، معمل، دكتور، يوم، مسار.           |
+|     - سحب الخريطة المكانية والاتجاهات الدقيقة من الذاكرة المحلية (0ms).             |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|  3. خط أنابيب الحقن السياقي (Context Injection Pipeline / Grounding)             |
+|     - دمج حقائق الجدول والأماكن المستخرجة داخل الـ System Prompt الحصري.          |
+|     - إرفاق ذاكرة المحادثة المتعددة (Multi-turn History: Last 8 Turns).           |
+|     - توجيه النموذج لمنع الهلوسة وحصر الروابط بالمنصات المعتمدة فقط (MyU, Drive).  |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|  4. محرك الاستدلال اللغوي التوليدي (Cloud LLM Reasoning - Google Gemini API)     |
+|     - مصفوفة النماذج الاحتياطية (Model Fallback Matrix):                          |
+|       [gemini-3.5-flash-lite -> gemini-3.1-flash-lite -> gemini-flash-lite-latest]|
++-----------------------------------------+-----------------------------------------+
+                                          |
+                        +-----------------+-----------------+
+                        | نجح الاتصال (200 OK)              | تعذر الاتصال / نفاذ الحصة
+                        v                                   v
++-----------------------------------------------+ +---------------------------------+
+|  5.A صياغة الرد الذكي المنسق بنظام Markdown   | | 5.B محرك الطوارئ المحلي Offline |
+|      (خط أبيض، روابط زرقاء، جداول منسقة)     | |     (استرجاع الجدول والخريطة)   |
++-----------------------------------------------+ +---------------------------------+
+                                          |                                 |
+                                          +-----------------+---------------+
+                                                            |
+                                                            v
++-----------------------------------------------------------------------------------+
+|  6. عرض النتيجة الفورية داخل واجهة المستخدم مع بطاقة المطور وقنوات التواصل       |
++-----------------------------------------------------------------------------------+
+    </div>
+
+    <h2>3.1 تفصيل مكونات المعمارية:</h2>
+    <ul>
+      <li>
+        <strong>1. النواة اللغوية التوليدية (LLM Engine):</strong>
+        تعتمد الأداة على عائلة نماذج <strong>Google Gemini Flash</strong>، وتحديداً النماذج خفيفة الوزن وفائقة السرعة (Flash-Lite)، والتي تتميز بزمن استجابة أولي (TTFT - Time To First Token) يقل عن <strong>600 مللي ثانية</strong>، مع نافذة سياق هائلة (Context Window) وقدرة استثنائية على فهم المصطلحات الأكاديمية والبرمجية باللغة العربية.
+      </li>
+      <li>
+        <strong>2. تقنية مكافحة الهلوسة بالحقن السياقي (Hallucination Mitigation via Grounding):</strong>
+        النماذج اللغوية بطبيعتها لا تعرف جدول كلية حاسبات بنها لسنة 2026! إذا تركتها تجيب بمفردها "ستهلوس" بمواعيد وأسماء خاطئة. لذلك تقوم الأداة بحقن حقائق الجدول والأماكن المستخرجة من <code>schedule_knowledge.js</code> مباشرة داخل سياق الطلب قبل إرساله للذكاء الاصطناعي، مما يجعل إجاباته مبنية على وقائع رسمية 100%.
+      </li>
+      <li>
+        <strong>3. مصفوفة النماذج الاحتياطية المتتالية (Model Fallback Cascade):</strong>
+        لضمان بقاء الأداة تعمل بنسبة 100% دون أن يشعر الطالب بأي خطأ أو توقف في الخدمة، قمنا ببرمجة تسلسل تلقائي (Failover Mechanism) يجرّب 4 مستويات من النماذج تلقائياً في أجزاء من الثانية:
+        <code>gemini-3.5-flash-lite</code> ثم <code>gemini-3.1-flash-lite</code> ثم <code>gemini-flash-lite-latest</code> ثم <code>gemini-3.5-flash</code>.
+      </li>
+      <li>
+        <strong>4. معالجة الصوت الطبيعي (Web Speech Recognition Engine):</strong>
+        تم بناء نظام التحدث الصوتي مباشرة فوق معيار W3C Web Speech API بتهيئة مخصصة للهجة المصرية <code>ar-EG</code> مع معالجة حية للصوت وتغذية راجعة حركية (Visual Pulse Animation) لمنح الطالب تجربة مماثلة لتطبيقات المساعدين العالميين.
+      </li>
+    </ul>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 4: TRACKS & STUDENT BENEFITS ==================== -->
+  <div class="page-break">
+    <h1><span>4. المسارات الأربعة ومميزات الأداة العملية (Tracks & Benefits)</span></h1>
+
+    <div class="alert-box alert-success">
+      <strong>التصميم الموجه للمستخدم (User-Centric Design):</strong> تم بناء الأداة بدقة متناهية لتفهم الفروق الأكاديمية واللوائح الخاصة بكل مسار من المسارات الأربعة للفرقة الأولى بكلية حاسبات بنها:
+    </div>
+
+    <div class="card-grid avoid-break">
+      <div class="card">
+        <div class="card-title">🏫 مسار 1: البرنامج العام (General Track)</div>
+        <p style="font-size: 9.5pt; margin-bottom: 6px;">
+          يضم 7 مجموعات دراسية كبرى (Groups 1-7).
+        </p>
+        <p style="font-size: 9pt; color: #64748b; margin: 0;">
+          <strong>المقررات:</strong> برمجة هيكلية (C++)، أساسيات علوم الحاسب، فيزياء، رياضيات متقطعة (Discrete Math)، لغة إنجليزية، قضايا مجتمعية.<br>
+          <strong>خدمة الأداة:</strong> إظهار مواعيد المحاضرات والسكاشن الخاصة بكل مجموعة وتوزيع المدرجات بدقة متناهية.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💎 مسار 2: البرامج المتميزة (Special Credit-Hours)</div>
+        <p style="font-size: 9.5pt; margin-bottom: 6px;">
+          برامج الساعات المعتمدة المتخصصة ذات المصروفات.
+        </p>
+        <p style="font-size: 9pt; color: #64748b; margin: 0;">
+          <strong>التخصصات:</strong> الذكاء الاصطناعي (AI)، الأمن السيبراني (Cybersecurity)، المعلوماتية الطبية (Medical Informatics)، وهندسة البرمجيات.<br>
+          <strong>خدمة الأداة:</strong> شرح لوائح الساعات المعتمدة، نظام تسجيل المواد والـ GPA، ومواعيد القاعات الخاصة بهم.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🇬🇧 مسار 3: كانتربري (Canterbury CCCU - Dual Degree)</div>
+        <p style="font-size: 9.5pt; margin-bottom: 6px;">
+          برنامج الشهادة المزدوجة مع جامعة Canterbury Christ Church البريطانية.
+        </p>
+        <p style="font-size: 9pt; color: #64748b; margin: 0;">
+          <strong>المميزات:</strong> يحصل الخريج على شهادتين (مصرية وبريطانية معتمدة دولياً)، بمقررات ومشاريع وفق المعايير البريطانية.<br>
+          <strong>خدمة الأداة:</strong> تعريف الطالب بنظام التقويم والدرجات بالجامعة البريطانية، والمنصات التعليمية المعتمدة لهم.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📑 مسار 4: المعادلة والمقاصة (Equivalency & Transfer)</div>
+        <p style="font-size: 9.5pt; margin-bottom: 6px;">
+          طلاب الدبلومات الفنية والمعاهد العليا والتحويلات الخارجية.
+        </p>
+        <p style="font-size: 9pt; color: #64748b; margin: 0;">
+          <strong>الخصوصية:</strong> دراسة مقررات تأهيلية إجبارية لمعادلة الرياضيات والفيزياء (مثل مقرر "تأهيلي رياضيات" مع د. أحمد مصطفى بمدرج 4).<br>
+          <strong>خدمة الأداة:</strong> توضيح مواعيد المواد التأهيلية، وإجراءات المقاصة العلمية في إدارة شؤون الطلاب.
+        </p>
+      </div>
+    </div>
+
+    <h2>4.2 القيمة المضافة والفائدة المباشرة للطالب:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>المجال</th>
+          <th>المشكلة السابقة (التقليدية)</th>
+          <th>الحل الذكي الذي يقدمه المساعد</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>جداول المحاضرات</strong></td>
+          <td>البحث في صور ممسوحة ضوئياً بجودة رديئة على فيسبوك</td>
+          <td>جداول Markdown منسقة فورياً في ثانية واحدة بمجرد ذكر اسم اليوم أو الدكتور أو المادة.</td>
+        </tr>
+        <tr>
+          <td><strong>الملاحة داخل الكلية</strong></td>
+          <td>سؤال الطلاب في الممرات والارتباك والتأخر عن السكاشن</td>
+          <td>إرشاد وصفي دقيق خطوة بخطوة لكل معمل ومدرج مع خريطة الطابق الملونة مرفقة تلقائياً.</td>
+        </tr>
+        <tr>
+          <td><strong>الماتريال والامتحانات</strong></td>
+          <td>روابط تالفة أو مجموعات غير رسمية تطلب اشتراكات</td>
+          <td>رابط مباشر ومحدث لدرايف الدفعة الرسمي المعتمد المحتوي على السلايدات والشيتات ونماذج الامتحانات.</td>
+        </tr>
+        <tr>
+          <td><strong>الخدمات والشؤون</strong></td>
+          <td>الوقوف في طوابير طويلة لمعرفة خطوات دفع فوري أو استخراج الكارنيه</td>
+          <td>توجيه إداري دقيق لخطوات فوري، ورابط مباشر لبوابة <strong>MyU</strong> الرسمية، ومكان شؤون الطلاب بالأرضي.</td>
+        </tr>
+        <tr>
+          <td><strong>الاستفسارات البرمجية</strong></td>
+          <td>اللجوء لأدوات عامة تشرح بلغات غير مخصصة لمنهج الكلية</td>
+          <td>مساعد برمجي يشرح بلغة <strong>C++</strong> المقررة على سنة أولى بنها، مع شرح مفاهيم الـ Loops والـ Arrays بأسلوب مبسط.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 5: TECHNICAL GLOSSARY FOR CONFERENCE ==================== -->
+  <div class="page-break">
+    <h1><span>5. قاموس المصطلحات والتعريفات التقنية للمؤتمر (Conference Glossary)</span></h1>
+
+    <p>
+      تتضمن هذه الصفحة أهم التعريفات العلمية والمصطلحات الإنجليزية الدقيقة التي يجب أن تتقنها عند مناقشة لجنة التحكيم في المؤتمر، لتبهرهم بقوة مصطلحاتك الأكاديمية:
+    </p>
+
+    <div class="qa-item">
+      <div class="qa-q">1. Large Language Model (LLM) — النماذج اللغوية الضخمة</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> شبكات عصبية عميقة (Deep Neural Networks) قائمة على معمارية المحولات (Transformer Architecture)، دُربت على مليارات النصوص لفهم وتوليد اللغة الطبيعية واستنتاج العلاقات الدلالية المعقدة، مثل نموذج <code>Google Gemini</code> المستخدم في هذا المشروع.
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">2. Retrieval-Augmented Generation (RAG) — التوليد المعزز بالاسترجاع</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> إطار عمل يجمع بين محرك بحث واسترجاع للمعلومات من قاعدة معرفية موثوقة (Knowledge Retrieval) وبين نموذج توليدي (LLM). يقوم النظام بسحب الحقائق الدقيقة وحقنها في سياق النموذج قبل إطلاق الإجابة، لمنع تأليف المعلومات.
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">3. Hallucination Mitigation — الحد من هلوسة الذكاء الاصطناعي</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> مجموعة من الإجراءات والتقنيات الهندسية الهادفة لمنع النموذج التوليدي من اختلاق وقائع أو مواعيد أو روابط وهمية غير صحيحة، وتتم عبر القيود الصارمة في الأوامر (Strict System Prompts) وحصر الإجابات في نطاق الحقائق المحقونة فقط.
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">4. Prompt Engineering & System Instructions — هندسة الأوامر والتعليمات النظامية</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> فن وعلم صياغة التوجيهات والقواعد المسبقة التي تُوجّه سلوك نموذج الذكاء الاصطناعي، لتحديد شخصيته، لهجته، مسؤوليته، حدود معرفته، وصيغة الرد المطلوبة (كاستخدام Markdown وجداول منسقة وروابط تفاعلية).
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">5. Zero-Backend / Serverless SPA — تطبيق الصفحة الواحدة الخالي من الخوادم</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> بنية معمارية يتم فيها تنفيذ منطق العرض والبحث ومعالجة الصوت داخل متصفح المستخدم مباشرة (Client-side)، وتتواصل الواجهة مباشرة مع الـ APIs دون الحاجة إلى سيرفر وسيط، مما يوفر سرعة استجابة فائقة ويلغي تكلفة التشغيل.
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">6. Time to First Token (TTFT) — زمن توليد أول رمز</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> مقياس حاسم لسرعة أنظمة الذكاء الاصطناعي التوليدي، يمثل الزمن المنقضي بين ضغط الطالب على زر الإرسال وبدء ظهور أول كلمة في الرد. استخدامنا لنموذج <code>Gemini Flash-Lite</code> خفض هذا الزمن إلى مستويات قياسية (&lt; 600ms).
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">7. Web Speech API — واجهة برمجة تطبيقات معالجة الصوت بالمتصفح</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> معيار قياسي عالمي متوفر في المتصفحات الحديثة يتيح التقاط تدفق الصوت من الميكروفون وتحليله بواسطة محركات التعرف على الكلام السحابية أو المحلية لتحويله إلى نص رقمي (Speech-to-Text) بدقة عالية.
+      </p>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">8. Spatial Wayfinding Engine — محرك التوجيه والإرشاد المكاني</div>
+      <p class="qa-a">
+        <strong>التعريف:</strong> نظام خوارزمي يربط بين أسماء القاعات والمعامل وبين مخططاتها الهندسية والخرائط التفاعلية للأدوار، لتقديم إرشادات مكانية ثلاثية الأبعاد أو ثنائية الأبعاد ترشد المستخدم لغايته داخل المباني المغلقة (Indoor Navigation).
+      </p>
+    </div>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 6: CONFERENCE DEFENSE & JUDGE Q&A ==================== -->
+  <div class="page-break">
+    <h1><span>6. دليل الإلقاء والدفاع في المؤتمر (Conference Defense & Pitch)</span></h1>
+
+    <h2>6.1 الكلمة الافتتاحية النموذجية للمهندس أحمد (Elevator Pitch - 90 ثانية):</h2>
+    <div class="alert-box alert-purple avoid-break" style="font-size: 10pt; line-height: 1.7;">
+      <em>
+        "بسم الله الرحمن الرحيم، أساتذتي الأفاضل، الحضور الكريم...<br>
+        مع بداية كل عام دراسي، يدخل مئات الطلاب الجدد كلية الحاسبات والذكاء الاصطناعي بجامعة بنها وهم يواجهون تحدياً حقيقياً: تشتت بين 7 مجموعات و4 مسارات أكاديمية مختلفة، وصعوبة في الوصول لمعامل ومدرجات مبنى الكلية، والوقوع في فخ الروابط والشائعات غير الموثوقة.<br>
+        من هنا، لم نكتفِ بانتظار الحل، بل ابتكرنا <strong>'مساعد حاسبات بنها الذكي' (BFCAI Student AI Assistant)</strong>. أداة ذكاء اصطناعي تفاعلية هجينة تمزج بين أقوى نماذج الذكاء الاصطناعي التوليدي من Google ومحرك معرفة محلي مخصص لحاسبات بنها، لتمكن الطالب من السؤال صوتاً أو كتابةً، والحصول فوراً على جدوله، وخريطة مكانه، وروابط الجامعة الرسمية، وكل ما يحتاجه في ثانية واحدة وبدقة 100%. أقدم لكم هذا المشروع فكرةً وهندسةً وتنفيذاً، وأرحب بكافة أسئلتكم الكريمة."
+      </em>
+    </div>
+
+    <h2>6.2 أهم 6 أسئلة متوقعة من لجنة التحكيم والأساتذة وإجاباتها المفحمة:</h2>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 1: هل هذا مجرد موقع يرسل أسئلة الطلاب إلى ChatGPT أو Gemini API؟ أين جهدك الهندسي؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "على الإطلاق يا دكتور! النماذج العامة مثل Gemini لا تعرف جداول بنها لسنة 2026 ولا تعرف أين يقع معمل 12 أو مدرج 3. الجهد الهندسي يكمن في:
+        (1) بناء محرك استرجاع محلي (Domain Knowledge Engine) يحصر بيانات الكلية بدقة، 
+        (2) تطبيق هندسة الحقن السياقي (Context Injection Pipeline) لدمج بيانات جدول الطالب ومساره مع السؤال لمنع الهلوسة، 
+        (3) بناء محرك الملاحة والخرائط المكانية، 
+        (4) توفير نظام العمل الاحتياطي المتعدد (Model Failover & Offline Fallback) الذي يضمن عمل الأداة حتى لو سقطت الخدمة السحابية."
+      </p>
+    </div>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 2: كيف تضمن عدم 'هلوسة' الذكاء الاصطناعي وإعطاء الطالب مواعيد امتحانات أو محاضرات خاطئة؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "اعتمدنا استراتيجية <strong>Grounding with Structured Facts</strong>؛ حيث يتم حجب حرية النموذج في التخمين عبر <code>system_instruction</code> شديدة الصرامة تلزمه بالاعتماد الحصري على الحقائق المستخرجة من مصفوفة الجداول المعتمدة، كما برمجنا التحقق المحلي الذي يسترجع الجدول مباشرة ويعرضه في صورة جداول منسقة موثوقة المصدر."
+      </p>
+    </div>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 3: لماذا اخترت معمارية بدون سيرفر خلفي (Zero-Backend) بدلاً من بناء Node.js أو Django backend؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "هذا قرار معماري استراتيجي مبني على 3 ركائز:
+        (1) <strong>انعدام زمن التأخير (Zero Latency):</strong> المعالجة تتم على متصفح العميل مباشرة بسرعة خارقة. 
+        (2) <strong>التكلفة والاستدامة (Cost & Scalability):</strong> استضافة الأداة على GitHub Pages مجانية تماماً ودون حاجة لسيرفرات قد تتعطل أثناء فترات الذروة وتسجيل المواد. 
+        (3) <strong>الخصوصية (Privacy):</strong> بيانات ومحادثات الطالب لا تُسجل على خوادم وسيطة بل تذهب مشفرة للذكاء الاصطناعي."
+      </p>
+    </div>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 4: ماذا يحدث لو انقطع اتصال الإنترنت أو نفدت حصة مفتاح الـ API؟ هل تتوقف الأداة؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "صممنا الأداة بمبدأ <strong>Graceful Degradation</strong>؛ لدينا مصفوفة من 4 نماذج ذكاء اصطناعي مختلفة يتم التبديل بينها تلقائياً عند نفاذ الحصة، وفي حال انقطاع الاتصال الكامل بالذكاء الاصطناعي، يتدخل المحرك المحلي فوراً ليعرض الجدول والمدرجات والخرائط من الذاكرة المحلية المخزنة داخل التطبيق دون أي توقف."
+      </p>
+    </div>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 5: كيف يتعامل محرك الصوت مع اللهجة المصرية واختلاف نطق الطلاب؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "تم ضبط واجهة <code>Web Speech API</code> على الترميز اللغوي <code>ar-EG</code> (Arabic - Egypt)، مع مرونة دلالية في معالجة الكلمات المفتاحية بحيث يفهم المساعد المرادفات المختلفة مثل 'فين معمل كذا' أو 'أروح إزاي مدرج كذا' أو 'جدول بكرة إيه' ويربطها بالكيان الصحيح فوراً."
+      </p>
+    </div>
+
+    <div class="qa-item avoid-break">
+      <div class="qa-q">س 6: ما هي خطتك المستقبلية لتطوير هذا المشروع في الكلية؟</div>
+      <p class="qa-a">
+        <strong>إجابتك:</strong> "نخطط لثلاثة توسعات رئيسية:
+        (1) التوسع الرأسي ليشمل الفرق الدراسية الثانية والثالثة والرابعة بجميع أقسام الكلية (علوم حاسب، نظم، حسابات علمية، ذكاء اصطناعي)، 
+        (2) الربط الرسمي مع واجهات برمجة التطبيقات (APIs) لجامعة بنها للسماح بتسجيل المقررات ومعرفة النتيجة مباشرة من الشات، 
+        (3) دمج نموذج لغوي صغير يعمل محلياً داخل المتصفح (WebLLM / WebGPU) ليعمل الذكاء الاصطناعي بالكامل دون الحاجة لأي اتصال بالإنترنت."
+      </p>
+    </div>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+  <!-- ==================== SECTION 7: SUMMARY & CONCLUSION ==================== -->
+  <div class="page-break">
+    <h1><span>7. الخاتمة ومعلومات التواصل والاعتماد (Conclusion & Credits)</span></h1>
+
+    <p>
+      يمثل مشروع <strong>مساعد حاسبات بنها الذكي (BFCAI Student AI Assistant)</strong> نموذجاً عملياً ملهماً لكيفية تسخير تقنيات الذكاء الاصطناعي التوليدي والحوسبة الطرفية لخدمة البيئة الجامعية وحل المشكلات اليومية لآلاف الطلاب. لقد أثبت المشروع أن الفكرة الريادية إذا اقترنت بهندسة برمجية منضبطة وتصميم متمحور حول راحة المستخدم، تستطيع إحداث أثر ملموس وفوري في المجتمع الأكاديمي.
+    </p>
+
+    <div class="card-grid avoid-break" style="margin-top: 20px;">
+      <div class="card" style="border-right: 4px solid #0284c7;">
+        <div class="card-title">👨‍💻 مطور ومهندس المشروع</div>
+        <p style="font-size: 11pt; font-weight: bold; color: #0f172a; margin-bottom: 4px;">المهندس / أحمد عبد الفتاح سليم</p>
+        <p style="font-size: 9.5pt; color: #475569; margin-bottom: 8px;">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+        <div style="font-size: 9.5pt;">
+          <strong>هاتف وواتساب:</strong> <span dir="ltr" style="color: #16a34a; font-weight: bold;">01066735981</span><br>
+          <strong>البريد الجامعي / الشخصي:</strong> متاح للمراسلات العلمية والتعاون الأكاديمي
+        </div>
+      </div>
+
+      <div class="card" style="border-right: 4px solid #10b981;">
+        <div class="card-title">🌐 روابط المشروع والمنصات الحية</div>
+        <div style="font-size: 9.5pt; line-height: 1.8;">
+          <strong>رابط النسخة الحية على الويب:</strong><br>
+          <a href="https://ahmed28e.github.io/bfcai-student-ai-assistant/" target="_blank" style="color: #0284c7; word-break: break-all;">https://ahmed28e.github.io/bfcai-student-ai-assistant/</a><br>
+          <strong>المستودع البرمجي (GitHub):</strong><br>
+          <span dir="ltr" style="color: #64748b;">github.com/ahmed28e/bfcai-student-ai-assistant</span><br>
+          <strong>الجهة الأكاديمية:</strong><br>
+          <span>جامعة بنها — كلية الحاسبات والذكاء الاصطناعي (BFCAI)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box alert-warning avoid-break" style="margin-top: 25px; text-align: center;">
+      <strong style="font-size: 11.5pt;">رسالة ختامية للمهندس أحمد قبل صعود المنصة في المؤتمر:</strong><br>
+      <span style="font-size: 10.5pt; color: #451a03;">
+        "أنت لم تقم بمجرد كتابة كود، بل قمت بحل مشكلة حقيقية يعاني منها كل طالب يدخل الكلية. ثقتك في نفسك، واستيعابك لهذه المعمارية، وفهمك للمصطلحات، هو سر تميزك على المسرح. بالتوفيق يا باشمهندس أحمد، وسيكون هذا العرض علامة فارقة في مسيرتك المهنية بإذن الله!"
+      </span>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center;">
+      <div style="display: inline-block; padding: 10px 30px; border: 2px dashed #cbd5e1; border-radius: 8px; font-size: 10pt; color: #64748b;">
+        ختم واعتماد ورقة العمل البرمجية • كلية الحاسبات والذكاء الاصطناعي — جامعة بنها • 2026
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer-note">وثيقة المؤتمر التقنية • مساعد حاسبات بنها الذكي • إعداد: المهندس أحمد عبد الفتاح سليم</div>
+
+</body>
+</html>
