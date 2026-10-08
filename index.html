@@ -162,10 +162,10 @@
     }
   </style>
 </head>
-<body class="bg-[#090b10] text-white h-[100dvh] flex flex-col overflow-hidden selection:bg-sky-500 selection:text-white">
+<body class="bg-[#090b10] text-white min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
 
-  <!-- Navbar (Fixed Top) -->
-  <header class="flex-shrink-0 z-40 w-full bg-[#0d1017]/95 backdrop-blur-md border-b border-[#1b2232]">
+  <!-- Navbar (Sticky Top) -->
+  <header class="sticky top-0 z-40 w-full bg-[#0d1017]/95 backdrop-blur-md border-b border-[#1b2232]">
     <div class="max-w-5xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-sky-500 via-cyan-400 to-indigo-600 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/25 flex-shrink-0">
@@ -190,11 +190,11 @@
     </div>
   </header>
 
-  <!-- Main Viewport Container (Fills exact remaining viewport without window scrolling) -->
-  <main class="flex-1 min-h-0 max-w-5xl w-full mx-auto px-2 sm:px-4 py-2 sm:py-3 flex flex-col overflow-hidden">
+  <!-- Main Viewport Container (Naturally Scrollable) -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-2 sm:px-4 py-2 sm:py-3 flex flex-col gap-3">
     
     <!-- Year 1 Track Selector Pills (عام / خاص / كانتربري / معادلة) -->
-    <div class="flex-shrink-0 flex items-center justify-between gap-2 mb-2 bg-[#0d1017] p-1.5 sm:p-2 rounded-xl border border-[#1b2232]">
+    <div class="flex-shrink-0 flex items-center justify-between gap-2 mb-1 bg-[#0d1017] p-1.5 sm:p-2 rounded-xl border border-[#1b2232]">
       <div class="flex items-center gap-1.5 px-1">
         <span class="text-xs font-bold text-sky-400">الفرقة الأولى:</span>
         <span class="text-[11px] text-slate-400 hidden sm:inline">اختر مسارك:</span>
@@ -207,8 +207,8 @@
       </div>
     </div>
 
-    <!-- Chat Area (GPT-style Fixed Box with Internal Scroll) -->
-    <div class="bg-[#0b0e14] rounded-2xl flex-1 min-h-0 flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden">
+    <!-- Chat Area (GPT-style Box with Internal Scroll) -->
+    <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden h-[68vh] sm:h-[72vh] min-h-[460px]">
       
       <!-- Chat Header -->
       <div class="flex-shrink-0 px-4 py-2 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
@@ -237,7 +237,10 @@
               اختر مسارك بالأعلى وتفضل بسؤالك!
             </p>
             <div class="pt-2 border-t border-[#1b2232] text-xs text-sky-400 font-medium flex flex-wrap items-center justify-between gap-2">
-              <span>(تطوير: المطور. أحمد عبد الفتاح سليم)</span>
+              <div class="flex items-center gap-2">
+                <img src="assets/developer.jpg" alt="المهندس أحمد" class="w-6 h-6 rounded-full object-cover border border-cyan-400 shadow-sm" />
+                <span>(تطوير: المهندس أحمد عبد الفتاح سليم)</span>
+              </div>
               <a 
                 href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
                 target="_blank" 
@@ -293,25 +296,64 @@
             </button>
           </div>
         </form>
-        <div class="text-center text-[10px] sm:text-[11px] text-slate-400 mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-          <span>كلية الحاسبات والذكاء الاصطناعي - بنها © 2026</span>
-          <span class="text-slate-600 hidden sm:inline">•</span>
-          <span>تطوير: <strong class="text-slate-200 font-semibold">المطور. أحمد عبد الفتاح سليم</strong></span>
-          <span class="text-slate-600">•</span>
+        <p class="text-center text-[10px] text-slate-500 mt-1">كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي</p>
+      </div>
+
+    </div>
+
+    <!-- Dedicated Developer Profile & WhatsApp Section (At the bottom of the page) -->
+    <section id="developerSection" class="bg-gradient-to-b from-[#0d1017] to-[#07090e] border border-[#1b2232] rounded-2xl p-4 sm:p-5 shadow-2xl transition hover:border-emerald-500/30">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        
+        <!-- Developer Profile (Photo & Title) -->
+        <div class="flex items-center gap-3.5 sm:gap-4 text-center sm:text-right w-full sm:w-auto justify-center sm:justify-start">
+          <div class="relative group flex-shrink-0">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-0.5 bg-gradient-to-tr from-cyan-400 via-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25 overflow-hidden">
+              <img 
+                src="assets/developer.jpg" 
+                alt="المهندس أحمد عبد الفتاح سليم" 
+                class="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#090b10] shadow" title="متاح للتواصل"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-center sm:justify-start gap-1.5 mb-1">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">مطور الأداة 👨‍💻</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">BFCAI</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-white">
+              المهندس أحمد عبد الفتاح سليم
+            </h3>
+            <p class="text-[11px] text-slate-400">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+          </div>
+        </div>
+
+        <!-- WhatsApp Direct Contact Button -->
+        <div class="w-full sm:w-auto">
           <a 
             href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-bold hover:underline transition"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-emerald-600/25 transition transform hover:-translate-y-0.5 active:translate-y-0 group border border-emerald-400/30"
           >
-            <span>واتساب المطور:</span>
-            <span dir="ltr" class="font-mono">01066735981</span>
-            <span>💬</span>
+            <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+              <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-10.416c-5.522 0-10 4.477-10 10 0 1.761.459 3.417 1.261 4.861l-1.261 4.606 4.71-1.236c1.398.763 2.996 1.199 4.69 1.199 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
+              </svg>
+            </div>
+            <span>تواصل وشكر المهندس أحمد: <span dir="ltr" class="font-mono">01066735981</span> 💬</span>
           </a>
         </div>
+
       </div>
 
-    </div>
+      <!-- Bottom mini copyright -->
+      <div class="mt-3 pt-2.5 border-t border-[#1b2232] text-center text-[10px] text-slate-500">
+        كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي • فكرة وتطوير المهندس أحمد عبد الفتاح سليم
+      </div>
+    </section>
 
   </main>
 
@@ -372,9 +414,14 @@
           <p class="font-bold text-sky-400 mb-1">📘 الصفحة الرسمية لكلية الحاسبات على فيسبوك</p>
           <a href="https://www.facebook.com/Official.BFCAI" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://www.facebook.com/Official.BFCAI ↗</a>
         </div>
-        <div class="p-3 bg-gradient-to-r from-emerald-950/30 to-[#0d1017] rounded-xl border border-emerald-500/30">
-          <p class="font-bold text-emerald-400 mb-1">👨‍💻 تواصل وشكر مطور الأداة (المطور. أحمد عبد الفتاح سليم)</p>
-          <a href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline font-mono">مراسلة عبر واتساب: 01066735981 ↗</a>
+        <div class="p-3 bg-gradient-to-r from-emerald-950/30 to-[#0d1017] rounded-xl border border-emerald-500/30 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="assets/developer.jpg" alt="المهندس أحمد عبد الفتاح سليم" class="w-10 h-10 rounded-full object-cover border-2 border-emerald-400 shadow-md flex-shrink-0" />
+            <div>
+              <p class="font-bold text-emerald-400 text-xs sm:text-sm">👨‍💻 تواصل وشكر مطور الأداة (المهندس أحمد عبد الفتاح سليم)</p>
+              <a href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline font-mono">مراسلة عبر واتساب: 01066735981 ↗</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -491,7 +538,10 @@
               اختر مسارك بالأعلى وتفضل بسؤالك!
             </p>
             <div class="pt-2 border-t border-[#1b2232] text-xs text-sky-400 font-medium flex flex-wrap items-center justify-between gap-2">
-              <span>(تطوير: المطور. أحمد عبد الفتاح سليم)</span>
+              <div class="flex items-center gap-2">
+                <img src="assets/developer.jpg" alt="المهندس أحمد" class="w-6 h-6 rounded-full object-cover border border-cyan-400 shadow-sm" />
+                <span>(تطوير: المهندس أحمد عبد الفتاح سليم)</span>
+              </div>
               <a 
                 href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
                 target="_blank" 
@@ -878,30 +928,5 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
     renderPrompts();
   </script>
 
-  <!-- Floating WhatsApp Contact Developer Button -->
-  <a 
-    href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    id="whatsappFloatBtn"
-    class="fixed bottom-[84px] right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2.5 transition-all duration-300"
-    title="شكر المطور عبر واتساب"
-  >
-    <!-- Tooltip badge on hover -->
-    <span class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl bg-[#111622]/95 border border-[#1f283b] text-white text-xs font-semibold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap backdrop-blur-md">
-      شكر المطور عبر واتساب 💬
-    </span>
-
-    <!-- WhatsApp Icon Circle -->
-    <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-xl shadow-emerald-500/30 group-hover:scale-110 active:scale-95 transition-transform duration-300 border-2 border-white/20">
-      <!-- Pulsing ring effect -->
-      <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25 pointer-events-none"></span>
-
-      <!-- Official WhatsApp SVG icon -->
-      <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-white relative z-10" viewBox="0 0 24 24">
-        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-10.416c-5.522 0-10 4.477-10 10 0 1.761.459 3.417 1.261 4.861l-1.261 4.606 4.71-1.236c1.398.763 2.996 1.199 4.69 1.199 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
-      </svg>
-    </div>
-  </a>
 </body>
 </html>
