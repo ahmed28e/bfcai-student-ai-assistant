@@ -1,25 +1,16 @@
 app:
-  description: المساعد الذكي التفاعلي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI)
-  icon: 🎓
+  description: 'المساعد الذكي التفاعلي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI)'
+  icon: '🎓'
   icon_background: '#0284c7'
   mode: chat
   name: BFCAI Student AI Assistant
+kind: app
 model_config:
   agent_mode:
-    enabled: true
+    enabled: false
     max_iteration: 5
     strategy: function_call
-    tools:
-      - enabled: true
-        provider_id: google
-        provider_name: google
-        tool_label: Google Search
-        tool_name: google_search
-      - enabled: true
-        provider_id: duckduckgo
-        provider_name: duckduckgo
-        tool_label: DuckDuckGo Search
-        tool_name: ddgo_search
+    tools: []
   annotation_reply:
     enabled: false
   chat_prompt_config: {}
@@ -43,12 +34,13 @@ model_config:
       transfer_methods:
         - local_file
         - remote_url
-    number_limits: 3
+    number_limits: 5
   model:
     model: gemini-1.5-flash
     provider: google
-  more_like_this:
-    enabled: false
+    mode: chat
+    completion_params:
+      temperature: 0.3
   opening_statement: |
     أهلاً بك يا بطل في المساعد الذكي لطلاب كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) 🎓!
     أنا هنا لمساعدتك في كل ما يخص لوائح الكلية، المواد الدراسية، الساعات المعتمدة، حساب الـ GPA، شروط التشعيب للأقسام، التدريب الصيفي، ومشاريع التخرج.
@@ -58,8 +50,8 @@ model_config:
     مهمتك:
     1. الإجابة بدقة باللغة العربية الفصحى المبسطة على استفسارات الطلاب.
     2. الاستناد أولاً إلى وثائق الكلية واللائحة المرفقة بقاعدة المعرفة (Knowledge Base).
-    3. إذا كان الاستفسار عن موضوع حديث أو جداول غير موجودة في المستندات، استخدم أداة البحث في الإنترنت (Google / DuckDuckGo Search) لتأكيد الإجابة مع ذكر المصدر.
-    4. كن ودوداً ومشجعاً دائماً.
+    3. إذا كان الاستفسار عن موضوع حديث أو جداول غير موجودة في المستندات، استخدم أداة البحث في الإنترنت لتأكيد الإجابة مع ذكر المصدر.
+    4. كن ودوداً ومشجعاً دائماً ومحفزاً للطلاب.
   retriever_resource:
     enabled: true
   sensitive_word_avoidance:
