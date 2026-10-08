@@ -160,40 +160,40 @@
     }
   </style>
 </head>
-<body class="bg-[#090b10] text-white min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+<body class="bg-[#090b10] text-white h-[100dvh] flex flex-col overflow-hidden selection:bg-sky-500 selection:text-white">
 
-  <!-- Navbar -->
-  <header class="sticky top-0 z-40 w-full bg-[#0d1017]/90 backdrop-blur-md border-b border-[#1b2232]">
-    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+  <!-- Navbar (Fixed Top) -->
+  <header class="flex-shrink-0 z-40 w-full bg-[#0d1017]/95 backdrop-blur-md border-b border-[#1b2232]">
+    <div class="max-w-5xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/20">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/20">
           <div class="w-full h-full bg-[#090b10] rounded-[10px] flex items-center justify-center text-lg">🎓</div>
         </div>
         <div>
-          <h1 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+          <h1 class="text-sm sm:text-lg font-bold text-white flex items-center gap-2">
             <span>المساعد الذكي لطلاب BFCAI</span>
             <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 hidden sm:inline-block">v2.5 AI</span>
           </h1>
-          <p class="text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <button onclick="toggleModal('sourcesModal')" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+        <button onclick="toggleModal('sourcesModal')" class="text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
           <span>🛡️ المصادر الرسمية</span>
         </button>
-        <button onclick="toggleModal('aiModal')" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+        <button onclick="toggleModal('aiModal')" class="text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
           <span>⚙️ الإعدادات</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-4 flex flex-col">
+  <!-- Main Viewport Container (Fills exact remaining viewport without window scrolling) -->
+  <main class="flex-1 min-h-0 max-w-5xl w-full mx-auto px-2 sm:px-4 py-2 sm:py-3 flex flex-col overflow-hidden">
     
-    <!-- Academic Year Selector Pills -->
-    <div class="flex items-center justify-between gap-2 mb-3 bg-[#0d1017] p-2 rounded-xl border border-[#1b2232]">
-      <span class="text-xs font-bold text-slate-400 px-1">الفرقة الدراسية:</span>
+    <!-- Academic Year Selector Pills (Compact) -->
+    <div class="flex-shrink-0 flex items-center justify-between gap-2 mb-2 bg-[#0d1017] p-1.5 sm:p-2 rounded-xl border border-[#1b2232]">
+      <span class="text-xs font-bold text-slate-400 px-1">الفرقة:</span>
       <div class="flex flex-wrap gap-1.5">
         <button onclick="setYear('الفرقة الأولى')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm" data-year="الفرقة الأولى">الفرقة الأولى</button>
         <button onclick="setYear('الفرقة الثانية')" class="year-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-year="الفرقة الثانية">الفرقة الثانية</button>
@@ -203,11 +203,11 @@
       </div>
     </div>
 
-    <!-- Chat Area (ChatGPT Style) -->
-    <div class="bg-[#0b0e14] rounded-2xl flex-1 flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden min-h-[550px]">
+    <!-- Chat Area (GPT-style Fixed Box with Internal Scroll) -->
+    <div class="bg-[#0b0e14] rounded-2xl flex-1 min-h-0 flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden">
       
       <!-- Chat Header -->
-      <div class="px-4 py-2.5 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
+      <div class="flex-shrink-0 px-4 py-2 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
         <span class="text-slate-300 font-semibold flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>المساعد الذكي نشط • متصل ببيانات الكلية وجداول المحاضرات</span>
@@ -217,8 +217,8 @@
         </button>
       </div>
 
-      <!-- Messages Thread -->
-      <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5" id="chatThread">
+      <!-- Messages Thread (The only scrollable section) -->
+      <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4 scroll-smooth" id="chatThread">
         <!-- Initial Welcome Message -->
         <div class="flex gap-3 items-start">
           <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">🤖</div>
@@ -231,25 +231,26 @@
         </div>
       </div>
 
-      <!-- Suggested Quick Questions -->
-      <div class="px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5" id="quickPromptsContainer">
+      <!-- Suggested Quick Questions (Pinned above input) -->
+      <div class="flex-shrink-0 px-3 sm:px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5 max-h-24 overflow-y-auto" id="quickPromptsContainer">
         <!-- Prompts injected via JS -->
       </div>
 
-      <!-- Chat Input Form -->
-      <div class="p-3 sm:p-4 border-t border-[#1b2232] bg-[#0d1017]/80">
+      <!-- Chat Input Form (Permanently Fixed at bottom - never pushes off-screen) -->
+      <div class="flex-shrink-0 p-3 sm:p-3.5 border-t border-[#1b2232] bg-[#0d1017]/95 backdrop-blur-md">
         <form onsubmit="handleSend(event)" class="relative flex items-center gap-2">
           <input 
             type="text" 
             id="chatInput" 
             placeholder="اكتب سؤالك هنا مباشرة..." 
-            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3.5 pr-4 pl-24 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3 sm:py-3.5 pr-4 pl-24 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
             autocomplete="off"
           />
           <button type="submit" class="absolute left-2 px-5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition shadow-md">
             إرسال
           </button>
         </form>
+        <p class="text-center text-[10px] text-slate-500 mt-1.5 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي</p>
       </div>
 
     </div>
@@ -311,9 +312,7 @@
     </div>
   </div>
 
-  <footer class="border-t border-[#1b2232] py-3 text-center text-[11px] text-slate-500">
-    كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026
-  </footer>
+
 
   <script>
     const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42SVZMalpoVWlBVUxndnVWa3VZUTN1TlpuYjA1bmxXTFF1OHo4WW56WUhBTEE=');
@@ -333,9 +332,10 @@
     const QUICK_PROMPTS = {
       'الفرقة الأولى': [
         'جدول ومواعيد محاضرات الفرقة الأولى بالكامل',
+        'رابط درايف سنة 1 لتحميل الماتريال والسلايدات والشيتات',
         'أين يقع مدرج 1 ومدرج 2 وخريطة الدور الأرضي؟',
         'كيف استلم الكارنيه وأين مكتب شؤون الطلاب؟',
-        'ما هو رابط نظام ابن الهيثم للخدمات الطلابية؟'
+        'ما هو رابط منصة MyU للخدمات الطلابية والنتائج؟'
       ],
       'الفرقة الثانية': [
         'جدول ومواعيد محاضرات الفرقة الثانية',
@@ -357,7 +357,7 @@
       ],
       'عام': [
         'دليل أماكن وخريطة جميع مدرجات وقاعات ومعامل الكلية',
-        'ما هي روابط المنصات الرسمية للكلية وابن الهيثم؟',
+        'ما هي روابط المنصات الرسمية للكلية والدرايف ومنصة MyU؟',
         'اشرح لي مفهوم الذكاء الاصطناعي ومجالاته ببساطة'
       ]
     };
@@ -525,6 +525,16 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       return { success: false, schedInfo };
     }
 
+    function scrollToBottom(smooth = true) {
+      const thread = document.getElementById('chatThread');
+      if (!thread) return;
+      if (smooth) {
+        thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
+      } else {
+        thread.scrollTop = thread.scrollHeight;
+      }
+    }
+
     async function handleSend(e) {
       if (e) e.preventDefault();
       const input = document.getElementById('chatInput');
@@ -543,7 +553,7 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
           </div>
         </div>
       `;
-      thread.scrollTop = thread.scrollHeight;
+      scrollToBottom();
 
       // Loader Indicator
       const loadingId = 'loader_' + Date.now();
@@ -556,7 +566,7 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
           </div>
         </div>
       `;
-      thread.scrollTop = thread.scrollHeight;
+      scrollToBottom();
 
       // Call Google Gemini
       const geminiResult = await queryGemini(query, currentYear);
@@ -617,7 +627,7 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
           </div>
         </div>
       `;
-      thread.scrollTop = thread.scrollHeight;
+      scrollToBottom();
     }
 
     // Initialize Prompts
