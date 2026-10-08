@@ -243,17 +243,38 @@
 
       <!-- Chat Input Form (Permanently Fixed at bottom - never pushes off-screen) -->
       <div class="flex-shrink-0 p-3 sm:p-3.5 border-t border-[#1b2232] bg-[#0d1017]/95 backdrop-blur-md">
+        <!-- Voice Status Bar (Shown when listening) -->
+        <div id="voiceStatus" class="hidden mb-2 px-3 py-1.5 bg-rose-500/15 border border-rose-500/30 rounded-xl flex items-center justify-between text-xs text-rose-300 animate-pulse">
+          <span class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+            <span id="voiceStatusText">🎙️ جاري الاستماع إليك... تحدث الآن وسأكتب ما تقول</span>
+          </span>
+          <button type="button" onclick="stopVoiceInput(false)" class="text-[11px] underline hover:text-white transition">إلغاء</button>
+        </div>
+
         <form onsubmit="handleSend(event)" class="relative flex items-center gap-2">
           <input 
             type="text" 
             id="chatInput" 
-            placeholder="اكتب سؤالك هنا مباشرة..." 
-            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3 sm:py-3.5 pr-4 pl-24 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+            placeholder="اكتب سؤالك أو تحدث عبر الميكروفون 🎙️..." 
+            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3 sm:py-3.5 pr-4 pl-32 sm:pl-36 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
             autocomplete="off"
           />
-          <button type="submit" class="absolute left-2 px-5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition shadow-md">
-            إرسال
-          </button>
+          <div class="absolute left-2 flex items-center gap-1.5">
+            <button 
+              type="button" 
+              id="voiceBtn" 
+              onclick="toggleVoiceInput()" 
+              title="البحث الصوتي (اضغط وتحدث)" 
+              class="w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-[#182030] hover:bg-[#222e44] text-slate-300 hover:text-sky-400 border border-[#26354f] flex items-center justify-center transition text-base relative"
+            >
+              <span id="voiceIcon">🎙️</span>
+              <span id="voicePulse" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full animate-ping"></span>
+            </button>
+            <button type="submit" class="px-3.5 sm:px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition shadow-md">
+              إرسال
+            </button>
+          </div>
         </form>
         <p class="text-center text-[10px] text-slate-500 mt-1.5 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي</p>
       </div>
@@ -637,6 +658,153 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
         </div>
       `;
       scrollToBottom();
+    }
+
+    // ==========================================
+    // Voice Input Engine (Web Speech API)
+    // ==========================================
+    let recognition = null;
+    let isListening = false;
+    let voiceAutoSendTimer = null;
+
+    function checkSpeechSupport() {
+      return ('SpeechRecognition' in window) || ('webkitSpeechRecognition' in window);
+    }
+
+    function toggleVoiceInput() {
+      if (isListening) {
+        stopVoiceInput(true); // Stop and send immediately
+      } else {
+        startVoiceInput();
+      }
+    }
+
+    function startVoiceInput() {
+      if (!checkSpeechSupport()) {
+        alert('عذراً، متصفحك الحالي لا يدعم ميزة الإدخال الصوتي المباشر. يُرجى تجربة Google Chrome أو Microsoft Edge أو Safari للحصول على أفضل تجربة.');
+        return;
+      }
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      try {
+        if (!recognition) {
+          recognition = new SpeechRecognition();
+          recognition.lang = 'ar-EG'; // اللهجة المصرية والعربية الفصحى
+          recognition.continuous = false; // التوقف التلقائي عند اكتمال الكلام
+          recognition.interimResults = true; // كتابة الكلمات لحظياً أثناء الكلام
+          recognition.maxAlternatives = 1;
+
+          recognition.onstart = function() {
+            isListening = true;
+            updateVoiceUI(true);
+          };
+
+          recognition.onresult = function(event) {
+            let interimTranscript = '';
+            let finalTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+              } else {
+                interimTranscript += event.results[i][0].transcript;
+              }
+            }
+
+            const input = document.getElementById('chatInput');
+            if (input) {
+              const fullText = (finalTranscript || interimTranscript).trim();
+              if (fullText) {
+                input.value = fullText;
+              }
+            }
+          };
+
+          recognition.onerror = function(event) {
+            console.warn('Voice recognition error:', event.error);
+            isListening = false;
+            updateVoiceUI(false);
+            if (event.error === 'not-allowed') {
+              alert('يرجى السماح بصلاحية الميكروفون في المتصفح لتفعيل البحث الصوتي 🎙️');
+            }
+          };
+
+          recognition.onend = function() {
+            isListening = false;
+            updateVoiceUI(false);
+
+            // إرسال السؤال تلقائياً للشات بمجرد اكتمال الصوت كما طلب المستخدم
+            const input = document.getElementById('chatInput');
+            const spokenText = input ? input.value.trim() : '';
+            if (spokenText) {
+              clearTimeout(voiceAutoSendTimer);
+              voiceAutoSendTimer = setTimeout(() => {
+                handleSend(new Event('submit'));
+              }, 400);
+            }
+          };
+        }
+
+        // تفريغ الحقل قبل بدء التسجيل الجديد
+        const input = document.getElementById('chatInput');
+        if (input) input.value = '';
+
+        recognition.start();
+      } catch (err) {
+        console.warn('Error starting speech recognition:', err);
+        isListening = false;
+        updateVoiceUI(false);
+      }
+    }
+
+    function stopVoiceInput(shouldSend = false) {
+      if (recognition && isListening) {
+        try {
+          recognition.stop();
+        } catch(e) {}
+      }
+      isListening = false;
+      updateVoiceUI(false);
+
+      if (shouldSend) {
+        const input = document.getElementById('chatInput');
+        if (input && input.value.trim()) {
+          clearTimeout(voiceAutoSendTimer);
+          handleSend(new Event('submit'));
+        }
+      }
+    }
+
+    function updateVoiceUI(active) {
+      const voiceBtn = document.getElementById('voiceBtn');
+      const voiceIcon = document.getElementById('voiceIcon');
+      const voicePulse = document.getElementById('voicePulse');
+      const voiceStatus = document.getElementById('voiceStatus');
+      const chatInput = document.getElementById('chatInput');
+
+      if (active) {
+        if (voiceBtn) {
+          voiceBtn.className = "w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-rose-600 hover:bg-rose-500 text-white border border-rose-400 flex items-center justify-center transition text-base relative shadow-lg shadow-rose-600/30 animate-pulse";
+        }
+        if (voiceIcon) voiceIcon.textContent = '⏹️';
+        if (voicePulse) voicePulse.classList.remove('hidden');
+        if (voiceStatus) voiceStatus.classList.remove('hidden');
+        if (chatInput) {
+          chatInput.placeholder = "🎙️ جاري الاستماع إليك... تحدث الآن وسأكتب ما تقول";
+          chatInput.focus();
+        }
+      } else {
+        if (voiceBtn) {
+          voiceBtn.className = "w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-[#182030] hover:bg-[#222e44] text-slate-300 hover:text-sky-400 border border-[#26354f] flex items-center justify-center transition text-base relative";
+        }
+        if (voiceIcon) voiceIcon.textContent = '🎙️';
+        if (voicePulse) voicePulse.classList.add('hidden');
+        if (voiceStatus) voiceStatus.classList.add('hidden');
+        if (chatInput) {
+          chatInput.placeholder = "اكتب سؤالك أو تحدث عبر الميكروفون 🎙️...";
+        }
+      }
     }
 
     // Initialize Prompts
