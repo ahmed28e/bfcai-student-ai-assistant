@@ -16,7 +16,13 @@
   <b>منصة ذكاء اصطناعي تفاعلية متكاملة وشات بوت متخصص مبني بتقنية الـ RAG المتقدمة لخدمة طلاب كلية الحاسبات والذكاء الاصطناعي بجامعة بنها بفرقها الأربعة.</b>
 </p>
 
-[📚 دليل تخطي عقبات السحب](docs/SCRAPING_GUIDE.md) • [🏛️ بنية وتصميم النظام](docs/ARCHITECTURE.md) • [🚀 دليل التشغيل والنشر](docs/DEPLOYMENT.md)
+<p align="center">
+  <a href="https://ahmed28e.github.io/bfcai-student-ai-assistant/">
+    <img src="https://img.shields.io/badge/🌐%20Live%20Demo-رابط%20التطبيق%20المباشر-success?style=for-the-badge" alt="Live Demo" />
+  </a>
+</p>
+
+[🌐 تجربة التطبيق مباشرة على الويب](https://ahmed28e.github.io/bfcai-student-ai-assistant/) • [📚 دليل تخطي عقبات السحب](docs/SCRAPING_GUIDE.md) • [🏛️ بنية وتصميم النظام](docs/ARCHITECTURE.md) • [🚀 دليل التشغيل والنشر](docs/DEPLOYMENT.md)
 
 </div>
 
