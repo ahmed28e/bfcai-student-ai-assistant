@@ -249,11 +249,11 @@
             <select id="hubGroupSelect" onchange="onHubGroupChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
               <option value="1">المجموعة 1 (علمي رياضة • سكاشن 1 - 7)</option>
               <option value="2">المجموعة 2 (علمي رياضة • سكاشن 8 - 14)</option>
-              <option value="3">المجموعة 3 (علمي رياضة • سكاشن 15 - 24)</option>
-              <option value="4">المجموعة 4 (علمي رياضة • سكاشن 25 - 28)</option>
-              <option value="5">المجموعة 5 (علمي علوم • سكاشن 29 - 36)</option>
-              <option value="6">المجموعة 6 (علمي علوم • سكاشن 37 - 43)</option>
-              <option value="7">المجموعة 7 (علمي علوم • سكاشن 44 - 50)</option>
+              <option value="3">المجموعة 3 (علمي رياضة • سكاشن 15 - 21)</option>
+              <option value="4">المجموعة 4 (علمي رياضة • سكاشن 22 - 29)</option>
+              <option value="5">المجموعة 5 (علمي علوم • سكاشن 30 - 37)</option>
+              <option value="6">المجموعة 6 (علمي علوم • سكاشن 38 - 44)</option>
+              <option value="7">المجموعة 7 (علمي علوم • سكاشن 45 - 52)</option>
             </select>
           </div>
 
@@ -261,7 +261,7 @@
           <div>
             <label for="hubSectionSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
               <span>🔢 السكشن:</span>
-              <span id="hubSecRange" class="text-[10px] text-slate-400 font-normal">من سكشن 1 إلى 50</span>
+              <span id="hubSecRange" class="text-[10px] text-slate-400 font-normal">من سكشن 1 إلى 52</span>
             </label>
             <select id="hubSectionSelect" onchange="onHubSectionChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
             </select>
@@ -293,11 +293,11 @@
       </div>
     </section>
 
-    <!-- Chat Area (GPT-style Box with Internal Scroll) -->
-    <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden h-[68vh] sm:h-[72vh] min-h-[460px]">
+    <!-- Chat Area (Natural Flowing) -->
+    <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden">
       
       <!-- Chat Header -->
-      <div class="flex-shrink-0 px-4 py-2 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
+      <div class="px-4 py-2.5 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
         <span class="text-slate-300 font-semibold flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>مساعد الفرقة الأولى نشط • جداول ومناهج ومصادر سنة أولى بنها</span>
@@ -307,8 +307,8 @@
         </button>
       </div>
 
-      <!-- Messages Thread (The only scrollable section) -->
-      <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4 scroll-smooth" id="chatThread">
+      <!-- Messages Thread -->
+      <div class="p-4 sm:p-5 space-y-4" id="chatThread">
         <!-- Initial Welcome Message -->
         <div class="flex gap-3 items-start">
           <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow mt-0.5">
@@ -326,13 +326,13 @@
         </div>
       </div>
 
-      <!-- Suggested Quick Questions (Pinned above input) -->
-      <div class="flex-shrink-0 px-3 sm:px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5 max-h-24 overflow-y-auto" id="quickPromptsContainer">
+      <!-- Suggested Quick Questions -->
+      <div class="px-3 sm:px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5" id="quickPromptsContainer">
         <!-- Prompts injected via JS -->
       </div>
 
-      <!-- Chat Input Form (Permanently Fixed at bottom - never pushes off-screen) -->
-      <div class="flex-shrink-0 p-3 sm:p-3.5 border-t border-[#1b2232] bg-[#0d1017]/95 backdrop-blur-md">
+      <!-- Chat Input Form -->
+      <div id="chatInputArea" class="p-3 sm:p-3.5 border-t border-[#1b2232] bg-[#0d1017]">
         <!-- Voice Status Bar (Shown when listening) -->
         <div id="voiceStatus" class="hidden mb-2 px-3 py-1.5 bg-rose-500/15 border border-rose-500/30 rounded-xl flex items-center justify-between text-xs text-rose-300 animate-pulse">
           <span class="flex items-center gap-2">
@@ -760,13 +760,44 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
     }
 
     function scrollToBottom(smooth = true) {
-      const thread = document.getElementById('chatThread');
-      if (!thread) return;
-      if (smooth) {
-        thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
-      } else {
-        thread.scrollTop = thread.scrollHeight;
-      }
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }, 50);
+    }
+
+    function scrollToLatestAnswer(bubbleId) {
+      setTimeout(() => {
+        const bubble = document.getElementById(bubbleId);
+        if (!bubble) {
+          scrollToBottom(true);
+          return;
+        }
+
+        const rect = bubble.getBoundingClientRect();
+        const headerOffset = 76; // Sticky header offset
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        // If the answer bubble fits comfortably within the viewport
+        if (rect.height < (window.innerHeight - 140)) {
+          // Scroll so the entire bubble is comfortably in view
+          const target = currentScroll + rect.bottom - window.innerHeight + 100;
+          window.scrollTo({
+            top: Math.min(target, document.documentElement.scrollHeight),
+            behavior: 'smooth'
+          });
+        } else {
+          // For longer answers or tables, scroll smoothly to the beginning of the answer
+          // so the student can read from the top
+          const target = currentScroll + rect.top - headerOffset - 15;
+          window.scrollTo({
+            top: Math.max(0, target),
+            behavior: 'smooth'
+          });
+        }
+      }, 70);
     }
 
     async function handleSend(e) {
@@ -873,8 +904,9 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       const formattedHtml = typeof marked !== 'undefined' ? marked.parse(processedText) : processedText.replace(/\n/g, '<br/>');
 
       // Bot Message Bubble (Pure ChatGPT Style - No source spam)
+      const answerBubbleId = 'answer_' + Date.now();
       thread.innerHTML += `
-        <div class="flex gap-3 my-4 items-start chat-bubble-container">
+        <div id="${answerBubbleId}" class="flex gap-3 my-4 items-start chat-bubble-container">
           <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow mt-0.5">
             <img src="assets/logo.jpg" alt="AI" class="w-full h-full object-cover rounded-[10px]" />
           </div>
@@ -890,7 +922,7 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
           </div>
         </div>
       `;
-      scrollToBottom();
+      scrollToLatestAnswer(answerBubbleId);
     }
 
     // ==========================================
