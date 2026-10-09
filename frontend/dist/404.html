@@ -210,6 +210,89 @@
       </div>
     </div>
 
+    <!-- Interactive Quick Schedule & Venue Mechanism (Floot.app Style Hub) -->
+    <section class="flex-shrink-0 bg-[#0d1017] border border-[#1b2232] rounded-2xl p-3 sm:p-4 mb-1 shadow-lg transition-all" id="scheduleHubCard">
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#1b2232]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-emerald-500 flex items-center justify-center text-sm shadow">
+            📅
+          </div>
+          <div>
+            <h2 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+              <span>استعلام المواعيد والأماكن اللحظي</span>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">نظام Floot التفاعلي</span>
+            </h2>
+            <p class="text-[10px] text-slate-400">اختر مجموعتك وسكشنك لعرض جدول اليوم والأسبوع والقاعات والمعامل مع خرائط الأدوار</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="toggleModal('venueModal')" class="text-[11px] font-semibold px-2.5 py-1.5 rounded-xl bg-sky-950/50 hover:bg-sky-900/60 text-sky-400 border border-sky-500/30 transition flex items-center gap-1 shadow-sm">
+            <span>🗺️ دليل الأماكن والمعامل</span>
+          </button>
+          <button onclick="toggleHubCollapse()" id="hubToggleBtn" class="text-[11px] font-semibold px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition flex items-center gap-1">
+            <span id="hubToggleIcon">▲</span>
+            <span id="hubToggleText">تصغير</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Body -->
+      <div id="hubBody" class="mt-3 space-y-3">
+        <!-- Selectors Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+          <!-- Group Select -->
+          <div>
+            <label for="hubGroupSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+              <span>👥 المجموعة:</span>
+              <span id="hubTrackBadge" class="text-[10px] text-sky-400 font-normal">علمي رياضة</span>
+            </label>
+            <select id="hubGroupSelect" onchange="onHubGroupChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+              <option value="1">المجموعة 1 (علمي رياضة • سكاشن 1 - 7)</option>
+              <option value="2">المجموعة 2 (علمي رياضة • سكاشن 8 - 14)</option>
+              <option value="3">المجموعة 3 (علمي رياضة • سكاشن 15 - 24)</option>
+              <option value="4">المجموعة 4 (علمي رياضة • سكاشن 25 - 28)</option>
+              <option value="5">المجموعة 5 (علمي علوم • سكاشن 29 - 36)</option>
+              <option value="6">المجموعة 6 (علمي علوم • سكاشن 37 - 43)</option>
+              <option value="7">المجموعة 7 (علمي علوم • سكاشن 44 - 50)</option>
+            </select>
+          </div>
+
+          <!-- Section Select -->
+          <div>
+            <label for="hubSectionSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+              <span>🔢 السكشن:</span>
+              <span id="hubSecRange" class="text-[10px] text-slate-400 font-normal">من سكشن 1 إلى 50</span>
+            </label>
+            <select id="hubSectionSelect" onchange="onHubSectionChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+            </select>
+          </div>
+
+          <!-- Day View Mode -->
+          <div>
+            <label for="hubDaySelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+              <span>🗓️ عرض المواعيد:</span>
+              <span id="hubTodayDayLabel" class="text-[10px] text-emerald-400 font-normal">اليوم الحالي</span>
+            </label>
+            <select id="hubDaySelect" onchange="renderHubSchedule()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+              <option value="today">⚡ مواعيد اليوم تلقائياً</option>
+              <option value="all">📅 الأسبوع كاملاً (كل الأيام)</option>
+              <option value="السبت">السبت</option>
+              <option value="الأحد">الأحد</option>
+              <option value="الإثنين">الإثنين</option>
+              <option value="الثلاثاء">الثلاثاء</option>
+              <option value="الأربعاء">الأربعاء</option>
+              <option value="الخميس">الخميس</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Schedule Results Container -->
+        <div id="hubResultsContainer" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
+          <!-- Dynamically injected schedule cards -->
+        </div>
+      </div>
+    </section>
+
     <!-- Chat Area (GPT-style Box with Internal Scroll) -->
     <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden h-[68vh] sm:h-[72vh] min-h-[460px]">
       
@@ -410,6 +493,40 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Venue Guide Modal (Floot Guide Mechanism) -->
+  <div id="venueModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-[#111622] border border-[#1f283b] rounded-2xl max-w-2xl w-full p-4 sm:p-6 text-sm my-8 shadow-2xl">
+      <div class="flex justify-between items-center mb-3 pb-2.5 border-b border-[#1b2232]">
+        <div class="flex items-center gap-2.5">
+          <span class="text-xl">🗺️</span>
+          <div>
+            <h3 class="font-bold text-white text-base">دليل أماكن القاعات والمدرجات والمعامل بالكلية</h3>
+            <p class="text-[11px] text-slate-400">تعرف على الأدوار وطرق الوصول ومخططات الطوابق بدقة</p>
+          </div>
+        </div>
+        <button onclick="toggleModal('venueModal')" class="text-slate-400 hover:text-white text-2xl font-bold px-2">&times;</button>
+      </div>
+
+      <!-- Type Filter Tabs -->
+      <div class="flex gap-2 mb-3">
+        <button onclick="setVenueTypeFilter('auditorium')" id="btnVenueAuditorium" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-sky-600 text-white border-sky-400 shadow-sm">🏛️ المدرجات (1 - 5)</button>
+        <button onclick="setVenueTypeFilter('hall')" id="btnVenueHall" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white">🚪 القاعات (1 - 12)</button>
+        <button onclick="setVenueTypeFilter('lab')" id="btnVenueLab" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white">🧪 المعامل المتخصصة</button>
+      </div>
+
+      <!-- Venue Picker Dropdown -->
+      <div class="mb-3">
+        <label for="venuePickerSelect" class="block text-xs font-bold text-slate-300 mb-1">اختر المكان:</label>
+        <select id="venuePickerSelect" onchange="renderSelectedVenueDetails()" class="w-full h-10 bg-[#090b10] border border-[#222b3e] rounded-xl px-3 text-xs text-white focus:outline-none focus:border-sky-500">
+        </select>
+      </div>
+
+      <!-- Venue Details Card -->
+      <div id="venueDetailDisplay" class="p-3 sm:p-4 bg-[#080a0f] rounded-xl border border-[#1b2232]">
       </div>
     </div>
   </div>
@@ -925,6 +1042,376 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
 
     // Initialize Prompts
     renderPrompts();
+
+    // ==========================================
+    // FLOOT.APP STYLE INTERACTIVE SCHEDULE & VENUE MECHANISM
+    // ==========================================
+    let currentHubVenueType = 'auditorium';
+    let isHubCollapsed = false;
+
+    function getArabicDayName(date = new Date()) {
+      const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+      return days[date.getDay()];
+    }
+
+    function getGroupForSection(sec) {
+      sec = parseInt(sec, 10);
+      if (sec >= 1 && sec <= 7) return 1;
+      if (sec >= 8 && sec <= 14) return 2;
+      if (sec >= 15 && sec <= 24) return 3;
+      if (sec >= 25 && sec <= 28) return 4;
+      if (sec >= 29 && sec <= 36) return 5;
+      if (sec >= 37 && sec <= 43) return 6;
+      if (sec >= 44 && sec <= 50) return 7;
+      return 1;
+    }
+
+    function getGroupTrack(grp) {
+      grp = parseInt(grp, 10);
+      return grp <= 4 ? 'علمي رياضة' : 'علمي علوم';
+    }
+
+    function initScheduleHub() {
+      const grpSelect = document.getElementById('hubGroupSelect');
+      const secSelect = document.getElementById('hubSectionSelect');
+      if (!grpSelect || !secSelect) return;
+
+      populateHubSections();
+
+      const savedSec = localStorage.getItem('bfcai_hub_section') || '1';
+      secSelect.value = savedSec;
+      const grp = getGroupForSection(savedSec);
+      grpSelect.value = grp.toString();
+      updateHubBadges(grp, savedSec);
+
+      renderHubSchedule();
+      initVenueGuideModal();
+    }
+
+    function populateHubSections(filterGroup = null) {
+      const secSelect = document.getElementById('hubSectionSelect');
+      if (!secSelect) return;
+      const currentVal = secSelect.value;
+      secSelect.innerHTML = '';
+
+      let start = 1, end = 50;
+      if (filterGroup) {
+        const grp = parseInt(filterGroup, 10);
+        if (grp === 1) { start = 1; end = 7; }
+        else if (grp === 2) { start = 8; end = 14; }
+        else if (grp === 3) { start = 15; end = 24; }
+        else if (grp === 4) { start = 25; end = 28; }
+        else if (grp === 5) { start = 29; end = 36; }
+        else if (grp === 6) { start = 37; end = 43; }
+        else if (grp === 7) { start = 44; end = 50; }
+      }
+
+      for (let s = start; s <= end; s++) {
+        const opt = document.createElement('option');
+        opt.value = s.toString();
+        const g = getGroupForSection(s);
+        const trk = getGroupTrack(g);
+        opt.textContent = `سكشن ${s} (مجموعة ${g} • ${trk})`;
+        secSelect.appendChild(opt);
+      }
+
+      if (currentVal && parseInt(currentVal, 10) >= start && parseInt(currentVal, 10) <= end) {
+        secSelect.value = currentVal;
+      } else {
+        secSelect.value = start.toString();
+      }
+    }
+
+    function onHubGroupChange() {
+      const grpSelect = document.getElementById('hubGroupSelect');
+      const grp = grpSelect.value;
+      populateHubSections(grp);
+      const secSelect = document.getElementById('hubSectionSelect');
+      const sec = secSelect.value;
+      localStorage.setItem('bfcai_hub_section', sec);
+      updateHubBadges(grp, sec);
+      renderHubSchedule();
+    }
+
+    function onHubSectionChange() {
+      const secSelect = document.getElementById('hubSectionSelect');
+      const sec = secSelect.value;
+      const grp = getGroupForSection(sec);
+      const grpSelect = document.getElementById('hubGroupSelect');
+      if (grpSelect) grpSelect.value = grp.toString();
+      localStorage.setItem('bfcai_hub_section', sec);
+      updateHubBadges(grp, sec);
+      renderHubSchedule();
+    }
+
+    function updateHubBadges(grp, sec) {
+      const trkBadge = document.getElementById('hubTrackBadge');
+      if (trkBadge) {
+        trkBadge.textContent = getGroupTrack(grp);
+      }
+      const rangeBadge = document.getElementById('hubSecRange');
+      if (rangeBadge) {
+        rangeBadge.textContent = `المجموعة ${grp} (سكشن ${sec})`;
+      }
+      const dayLabel = document.getElementById('hubTodayDayLabel');
+      if (dayLabel) {
+        dayLabel.textContent = `اليوم: ${getArabicDayName()}`;
+      }
+    }
+
+    function toggleHubCollapse() {
+      isHubCollapsed = !isHubCollapsed;
+      const body = document.getElementById('hubBody');
+      const icon = document.getElementById('hubToggleIcon');
+      const text = document.getElementById('hubToggleText');
+      if (body) {
+        body.classList.toggle('hidden', isHubCollapsed);
+      }
+      if (icon) icon.textContent = isHubCollapsed ? '▼' : '▲';
+      if (text) text.textContent = isHubCollapsed ? 'فتح' : 'تصغير';
+    }
+
+    function renderHubSchedule() {
+      const secSelect = document.getElementById('hubSectionSelect');
+      const daySelect = document.getElementById('hubDaySelect');
+      const container = document.getElementById('hubResultsContainer');
+      if (!secSelect || !daySelect || !container) return;
+
+      const secNum = parseInt(secSelect.value, 10) || 1;
+      const dayChoice = daySelect.value;
+      const todayArabic = getArabicDayName();
+
+      if (!window.findSectionSchedule) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-2">جاري تحميل قاعدة بيانات الجدول...</p>`;
+        return;
+      }
+
+      const sData = window.findSectionSchedule(secNum);
+      if (!sData) {
+        container.innerHTML = `<p class="text-rose-400 text-center py-2">لم يتم العثور على بيانات لسكشن ${secNum}.</p>`;
+        return;
+      }
+
+      const isTodayMode = (dayChoice === 'today');
+      const isAllMode = (dayChoice === 'all');
+      const targetDay = isTodayMode ? todayArabic : (isAllMode ? null : dayChoice);
+
+      let html = '';
+
+      // Header summary banner
+      html += `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-[#1f283b]">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-sky-500/20 text-sky-400 font-bold font-mono">سكشن ${secNum}</span>
+            <span class="text-slate-300 font-medium">المجموعة ${sData.group} (${sData.track})</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="askChatAboutSection(${secNum})" class="px-2.5 py-1 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/30 transition flex items-center gap-1 text-[11px] font-semibold">
+              <span>💬 اسأل الشات عن سكشن ${secNum}</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      if (isTodayMode && targetDay === 'الجمعة') {
+        html += `
+          <div class="p-2.5 bg-amber-950/20 border border-amber-500/30 rounded-xl text-amber-300 text-xs mb-3 flex items-center gap-2">
+            <span>🌴</span>
+            <span>اليوم <strong>الجمعة</strong> عطلة رسمية بالجامعة. إليك جدول الأسبوع الدراسي لسكشن ${secNum}:</span>
+          </div>
+        `;
+      }
+
+      // Collect days to display
+      const daysToDisplay = (isAllMode || (isTodayMode && targetDay === 'الجمعة')) 
+        ? ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس']
+        : [targetDay];
+
+      let totalClasses = 0;
+
+      daysToDisplay.forEach(day => {
+        const classes = sData.days[day] || [];
+        totalClasses += classes.length;
+
+        if (classes.length > 0 || !isAllMode) {
+          const isCurrentToday = (day === todayArabic);
+          html += `
+            <div class="mb-3 last:mb-0 bg-[#0d1017] border ${isCurrentToday ? 'border-sky-500/40 ring-1 ring-sky-500/20' : 'border-[#1b2232]'} rounded-xl p-2.5 sm:p-3">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2 font-bold text-slate-200">
+                  <span class="w-2 h-2 rounded-full ${isCurrentToday ? 'bg-sky-400 animate-pulse' : 'bg-slate-500'}"></span>
+                  <span>جدول يوم ${day}</span>
+                  ${isCurrentToday ? '<span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full font-normal">اليوم الحالي</span>' : ''}
+                </div>
+                <span class="text-[10px] text-slate-400 font-mono">${classes.length} حصص/محاضرات</span>
+              </div>
+          `;
+
+          if (classes.length === 0) {
+            html += `<p class="text-slate-400 text-xs py-2 italic">✨ لا توجد محاضرات أو سكاشن مسجلة لسكشن ${secNum} في يوم ${day}.</p>`;
+          } else {
+            html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
+            classes.forEach((c, idx) => {
+              const typeIsLecture = c.type && c.type.includes('محاضرة');
+              const typeIsLab = c.type && (c.type.includes('عملي') || c.type.includes('معمل'));
+              const badgeClass = typeIsLecture 
+                ? 'bg-sky-500/15 text-sky-400 border-sky-500/30' 
+                : (typeIsLab ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30');
+
+              const mapId = `map_s${secNum}_${day}_${idx}`;
+
+              html += `
+                <div class="bg-[#121622] border border-[#1e2638] rounded-xl p-2.5 flex flex-col justify-between hover:border-slate-700 transition">
+                  <div>
+                    <div class="flex items-center justify-between gap-1 mb-1.5">
+                      <span class="text-[11px] font-bold font-mono px-2 py-0.5 rounded-md bg-[#182030] text-sky-300 border border-[#222e44]">
+                        ⏰ ${c.time}
+                      </span>
+                      <span class="text-[10px] px-2 py-0.5 rounded-md border font-semibold ${badgeClass}">
+                        ${c.type || 'حصة'}
+                      </span>
+                    </div>
+                    <h4 class="font-bold text-white text-xs mb-1">${c.subject}</h4>
+                    <p class="text-[11px] text-slate-300 mb-1 flex items-center gap-1">
+                      <span>👨‍🏫</span>
+                      <span>${c.instructor || 'أستاذ المادة'}</span>
+                    </p>
+                    <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+                      <span>📍</span>
+                      <span>${c.location || c.room || 'المكان غير محدد'}</span>
+                    </p>
+                  </div>
+                  ${c.map ? `
+                    <div class="mt-2 pt-2 border-t border-[#1b2232] flex items-center justify-between">
+                      <button onclick="toggleClassMap('${mapId}')" class="text-[10px] text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 underline underline-offset-2">
+                        <span>🗺️ مخطط الدور (${c.floor || 'الكلية'})</span>
+                      </button>
+                    </div>
+                    <div id="${mapId}" class="hidden mt-2 p-1.5 bg-[#080a0f] rounded-lg border border-[#1b2232]">
+                      <img src="${c.map}" alt="${c.room}" class="max-h-48 w-full object-contain rounded hover:scale-105 transition duration-300" />
+                      <div class="text-[9px] text-center text-slate-400 mt-1">مخطط الدور التوضيحي بالكلية</div>
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            });
+            html += `</div>`;
+          }
+
+          html += `</div>`;
+        }
+      });
+
+      if (totalClasses === 0 && !isAllMode) {
+        html += `<div class="text-center py-6 text-slate-400">لا توجد محاضرات أو سكاشن مجدولة لهذا السكشن في هذا اليوم. اختر "الأسبوع كاملاً" لرؤية الأيام الأخرى.</div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function toggleClassMap(mapId) {
+      const el = document.getElementById(mapId);
+      if (el) el.classList.toggle('hidden');
+    }
+
+    function askChatAboutSection(secNum) {
+      const input = document.getElementById('chatInput');
+      if (input) {
+        input.value = `ما هو جدول سكشن ${secNum} بالكامل ومواقع القاعات والمعامل؟`;
+        handleSend(new Event('submit'));
+        const chatBox = document.getElementById('chatThread');
+        if (chatBox) chatBox.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // ==========================================
+    // VENUE GUIDE MODAL (FLOOT STYLE GUIDE)
+    // ==========================================
+    function initVenueGuideModal() {
+      setVenueTypeFilter('auditorium');
+    }
+
+    function setVenueTypeFilter(type) {
+      currentHubVenueType = type;
+      const btnAud = document.getElementById('btnVenueAuditorium');
+      const btnHall = document.getElementById('btnVenueHall');
+      const btnLab = document.getElementById('btnVenueLab');
+
+      const activeClass = "flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-sky-600 text-white border-sky-400 shadow-sm";
+      const inactiveClass = "flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+
+      if (btnAud) btnAud.className = (type === 'auditorium' ? activeClass : inactiveClass);
+      if (btnHall) btnHall.className = (type === 'hall' ? activeClass : inactiveClass);
+      if (btnLab) btnLab.className = (type === 'lab' ? activeClass : inactiveClass);
+
+      const select = document.getElementById('venuePickerSelect');
+      if (!select || !window.BFCAI_VENUES) return;
+      select.innerHTML = '';
+
+      const venues = window.BFCAI_VENUES[type] || [];
+      venues.forEach((v, i) => {
+        const opt = document.createElement('option');
+        opt.value = i.toString();
+        opt.textContent = `${v.name} (${v.floor})`;
+        select.appendChild(opt);
+      });
+
+      renderSelectedVenueDetails();
+    }
+
+    function renderSelectedVenueDetails() {
+      const select = document.getElementById('venuePickerSelect');
+      const display = document.getElementById('venueDetailDisplay');
+      if (!select || !display || !window.BFCAI_VENUES) return;
+
+      const venues = window.BFCAI_VENUES[currentHubVenueType] || [];
+      const idx = parseInt(select.value, 10) || 0;
+      const v = venues[idx];
+
+      if (!v) {
+        display.innerHTML = `<p class="text-slate-400 text-center">اختر المكان لعرض التفاصيل.</p>`;
+        return;
+      }
+
+      display.innerHTML = `
+        <div class="space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#1b2232]">
+            <div>
+              <h4 class="text-base font-bold text-white flex items-center gap-2">
+                <span>📍 ${v.name}</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">${v.floor}</span>
+              </h4>
+            </div>
+          </div>
+          <div>
+            <h5 class="text-xs font-bold text-slate-300 mb-1">🚶 طريقة الوصول والاتجاهات:</h5>
+            <p class="text-xs text-slate-200 leading-relaxed bg-[#121622] p-2.5 rounded-xl border border-[#1e2638]">${v.directions || 'غير محدد'}</p>
+          </div>
+          ${v.map ? `
+            <div>
+              <h5 class="text-xs font-bold text-slate-300 mb-1.5">🗺️ مخطط الدور وموقع المكان:</h5>
+              <div class="overflow-hidden rounded-xl border border-[#1e2638] bg-[#0c1018]">
+                <img src="${v.map}" alt="${v.name}" class="w-full max-h-80 object-contain hover:scale-105 transition duration-300" />
+                <div class="p-1.5 text-center text-[10px] text-slate-400 bg-[#07090e]">مخطط الطابق بالكلية</div>
+              </div>
+            </div>
+          ` : `
+            <div class="p-2.5 bg-amber-950/20 border border-amber-500/30 rounded-xl text-amber-300 text-xs">
+              ℹ️ خريطة هذا الدور في الطوابق العليا، يمكنك الاستدلال بالدور الموضح أعلاه وطريقة الوصول.
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    // Initialize Schedule Hub
+    document.addEventListener('DOMContentLoaded', () => {
+      initScheduleHub();
+    });
+    // Fallback if already loaded
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(initScheduleHub, 100);
+    }
   </script>
 
 </body>
