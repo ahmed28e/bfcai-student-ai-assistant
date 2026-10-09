@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مساعد الفرقة الأولى | كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI Year 1)</title>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  <link rel="apple-touch-icon" href="assets/logo.jpg">
+  <!-- Google Cairo Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Marked.js for Clean Markdown Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Schedule & Venues Knowledge Engine -->
+  <script src="assets/schedule_knowledge.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { 
+      font-family: 'Cairo', sans-serif; 
+      background-color: #090b10;
+      color: #ffffff;
+    }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0e14; }
+    ::-webkit-scrollbar-thumb { background: #1e2638; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+    /* Markdown styling - ChatGPT Dark Mode */
+    .markdown-content {
+      color: #ffffff;
+      font-size: 0.925rem;
+      line-height: 1.8;
+      letter-spacing: -0.01em;
+    }
+    .markdown-content p {
+      margin-bottom: 0.85rem;
+      color: #f8fafc;
+    }
+    .markdown-content p:last-child {
+      margin-bottom: 0;
+    }
+    .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+      color: #ffffff;
+      font-weight: 700;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .markdown-content h3 {
+      font-size: 1.05rem;
+      color: #38bdf8;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 0.35rem;
+    }
+    .markdown-content h4 {
+      font-size: 0.95rem;
+      color: #818cf8;
+      font-weight: 700;
+      margin-top: 0.75rem;
+      margin-bottom: 0.35rem;
+    }
+    .markdown-content strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .markdown-content ul {
+      list-style-type: disc;
+      margin-right: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-content ol {
+      list-style-type: decimal;
+      margin-right: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .markdown-content li {
+      margin-bottom: 0.4rem;
+      color: #f8fafc;
+      line-height: 1.7;
+    }
+
+    /* VIBRANT BLUE CLICKABLE LINKS */
+    .markdown-content a {
+      color: #38bdf8 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .markdown-content a:hover {
+      color: #93c5fd !important;
+      text-decoration-color: #93c5fd !important;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    /* TABLES (Schedules / Timetables) */
+    .markdown-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #0d111a;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid #1e2638;
+      font-size: 0.85rem;
+    }
+    .markdown-content th {
+      background: #182030;
+      color: #38bdf8;
+      padding: 0.65rem 0.85rem;
+      text-align: right;
+      font-weight: 700;
+      border-bottom: 1px solid #2b374e;
+    }
+    .markdown-content td {
+      padding: 0.6rem 0.85rem;
+      border-top: 1px solid #1e2638;
+      color: #ffffff;
+    }
+    .markdown-content tr:nth-child(even) {
+      background: #111622;
+    }
+
+    /* CODE BLOCKS */
+    .markdown-content code {
+      background: #1b2232;
+      color: #38bdf8;
+      padding: 0.2rem 0.45rem;
+      border-radius: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85em;
+    }
+    .markdown-content pre {
+      background: #05070a;
+      border: 1px solid #1e2638;
+      padding: 0.85rem 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin: 0.85rem 0;
+      direction: ltr;
+      text-align: left;
+    }
+    .markdown-content pre code {
+      background: transparent;
+      padding: 0;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-[#090b10] text-white min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- Navbar (Sticky Top) -->
+  <header class="sticky top-0 z-40 w-full bg-[#0d1017]/95 backdrop-blur-md border-b border-[#1b2232]">
+    <div class="max-w-5xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-sky-500 via-cyan-400 to-indigo-600 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/25 flex-shrink-0">
+          <img src="assets/logo.jpg" alt="BFCAI Logo" class="w-full h-full object-cover rounded-[10px]" />
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-lg font-bold text-white flex items-center gap-2">
+            <span>مساعد الفرقة الأولى | BFCAI First Year</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 hidden sm:inline-block">سنة أولى حصرياً 🎓</span>
+          </h1>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 hidden sm:block">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها (إعدادي وحاسبات)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleModal('sourcesModal')" class="text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+          <span>🛡️ المصادر الرسمية</span>
+        </button>
+        <button onclick="toggleModal('aiModal')" class="text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 hover:border-slate-700 transition flex items-center gap-1.5">
+          <span>⚙️ الإعدادات</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewport Container (Naturally Scrollable) -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-2 sm:px-4 py-2 sm:py-3 flex flex-col gap-3">
+    
+    <!-- Year 1 Track Selector Pills (عام / خاص / كانتربري / معادلة) -->
+    <div class="flex-shrink-0 flex items-center justify-between gap-2 mb-1 bg-[#0d1017] p-1.5 sm:p-2 rounded-xl border border-[#1b2232]">
+      <div class="flex items-center gap-1.5 px-1">
+        <span class="text-xs font-bold text-sky-400">الفرقة الأولى:</span>
+        <span class="text-[11px] text-slate-400 hidden sm:inline">اختر مسارك:</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="setTrack('عام')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm" data-track="عام">🏫 عام (البرنامج العام)</button>
+        <button onclick="setTrack('خاص')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="خاص">💎 خاص (البرامج المتميزة)</button>
+        <button onclick="setTrack('كانتربري')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="كانتربري">🇬🇧 كانتربري (CCCU UK)</button>
+        <button onclick="setTrack('معادلة')" class="track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white" data-track="معادلة">📑 معادلة (دبلومات ومقاصة)</button>
+      </div>
+    </div>
+
+    <!-- Chat Area (GPT-style Box with Internal Scroll) -->
+    <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden h-[68vh] sm:h-[72vh] min-h-[460px]">
+      
+      <!-- Chat Header -->
+      <div class="flex-shrink-0 px-4 py-2 border-b border-[#1b2232] bg-[#0d1017]/70 flex items-center justify-between text-xs">
+        <span class="text-slate-300 font-semibold flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>مساعد الفرقة الأولى نشط • جداول ومناهج ومصادر سنة أولى بنها</span>
+        </span>
+        <button onclick="clearChat()" class="text-slate-400 hover:text-rose-400 transition font-medium flex items-center gap-1">
+          <span>🗑️ مسح المحادثة</span>
+        </button>
+      </div>
+
+      <!-- Messages Thread (The only scrollable section) -->
+      <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4 scroll-smooth" id="chatThread">
+        <!-- Initial Welcome Message -->
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow mt-0.5">
+            <img src="assets/logo.jpg" alt="AI" class="w-full h-full object-cover rounded-[10px]" />
+          </div>
+          <div class="flex-1 max-w-[90%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 text-sm text-white leading-relaxed shadow-sm space-y-2.5">
+            <p class="font-bold text-sky-400">مرحباً يا بطل! 🎓 أنا المساعد الذكي لطلاب الفرقة الأولى بحاسبات بنها (BFCAI) بجميع مساراتها.</p>
+            <p class="text-slate-200">
+              جاهز لمساعدتك في كل ما يخص: الجداول والماتريال، شؤون الطلاب والمنصات الجامعية، وأي استفسار علمي أو برمجي.
+            </p>
+            <p class="text-slate-300">
+              اختر مسارك بالأعلى وتفضل بسؤالك!
+            </p>
+            <div class="pt-2 border-t border-[#1b2232] text-xs text-sky-400 font-medium flex items-center gap-2">
+              <img src="assets/developer.jpg" alt="المهندس أحمد" class="w-6 h-6 rounded-full object-cover border border-cyan-400 shadow-sm" />
+              <span>(تطوير: المهندس أحمد عبد الفتاح سليم)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Quick Questions (Pinned above input) -->
+      <div class="flex-shrink-0 px-3 sm:px-4 py-2 border-t border-[#1b2232] bg-[#0d1017]/40 flex flex-wrap gap-1.5 max-h-24 overflow-y-auto" id="quickPromptsContainer">
+        <!-- Prompts injected via JS -->
+      </div>
+
+      <!-- Chat Input Form (Permanently Fixed at bottom - never pushes off-screen) -->
+      <div class="flex-shrink-0 p-3 sm:p-3.5 border-t border-[#1b2232] bg-[#0d1017]/95 backdrop-blur-md">
+        <!-- Voice Status Bar (Shown when listening) -->
+        <div id="voiceStatus" class="hidden mb-2 px-3 py-1.5 bg-rose-500/15 border border-rose-500/30 rounded-xl flex items-center justify-between text-xs text-rose-300 animate-pulse">
+          <span class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+            <span id="voiceStatusText">🎙️ جاري الاستماع إليك... تحدث الآن وسأكتب ما تقول</span>
+          </span>
+          <button type="button" onclick="stopVoiceInput(false)" class="text-[11px] underline hover:text-white transition">إلغاء</button>
+        </div>
+
+        <form onsubmit="handleSend(event)" class="relative flex items-center gap-2">
+          <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="اكتب سؤالك أو تحدث عبر الميكروفون 🎙️..." 
+            class="w-full bg-[#121622] border border-[#1f283b] focus:border-sky-500 rounded-xl py-3 sm:py-3.5 pr-4 pl-32 sm:pl-36 text-sm text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+            autocomplete="off"
+          />
+          <div class="absolute left-2 flex items-center gap-1.5">
+            <button 
+              type="button" 
+              id="voiceBtn" 
+              onclick="toggleVoiceInput()" 
+              title="البحث الصوتي (اضغط وتحدث)" 
+              class="w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-[#182030] hover:bg-[#222e44] text-slate-300 hover:text-sky-400 border border-[#26354f] flex items-center justify-center transition text-base relative"
+            >
+              <span id="voiceIcon">🎙️</span>
+              <span id="voicePulse" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full animate-ping"></span>
+            </button>
+            <button type="submit" class="px-3.5 sm:px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition shadow-md">
+              إرسال
+            </button>
+          </div>
+        </form>
+        <p class="text-center text-[10px] text-slate-500 mt-1">كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي</p>
+      </div>
+
+    </div>
+
+    <!-- Dedicated Developer Profile & WhatsApp Section (At the bottom of the page) -->
+    <section id="developerSection" class="bg-gradient-to-b from-[#0d1017] to-[#07090e] border border-[#1b2232] rounded-2xl p-4 sm:p-5 shadow-2xl transition hover:border-emerald-500/30">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        
+        <!-- Developer Profile (Photo & Title) -->
+        <div class="flex items-center gap-3.5 sm:gap-4 text-center sm:text-right w-full sm:w-auto justify-center sm:justify-start">
+          <div class="relative group flex-shrink-0">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-0.5 bg-gradient-to-tr from-cyan-400 via-sky-500 to-indigo-600 shadow-lg shadow-sky-500/25 overflow-hidden">
+              <img 
+                src="assets/developer.jpg" 
+                alt="المهندس أحمد عبد الفتاح سليم" 
+                class="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#090b10] shadow" title="متاح للتواصل"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-center sm:justify-start gap-1.5 mb-1">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">مطور الأداة 👨‍💻</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">BFCAI</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-white">
+              المهندس أحمد عبد الفتاح سليم
+            </h3>
+            <p class="text-[11px] text-slate-400">كلية الحاسبات والذكاء الاصطناعي — جامعة بنها</p>
+          </div>
+        </div>
+
+        <!-- WhatsApp Direct Contact Button -->
+        <div class="w-full sm:w-auto">
+          <a 
+            href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm shadow-xl shadow-emerald-600/25 transition transform hover:-translate-y-0.5 active:translate-y-0 group border border-emerald-400/30"
+          >
+            <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+              <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-10.416c-5.522 0-10 4.477-10 10 0 1.761.459 3.417 1.261 4.861l-1.261 4.606 4.71-1.236c1.398.763 2.996 1.199 4.69 1.199 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
+              </svg>
+            </div>
+            <span>مطور الأداة المهندس أحمد: <span dir="ltr" class="font-mono">01066735981</span> 💬</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom mini copyright -->
+      <div class="mt-3 pt-2.5 border-t border-[#1b2232] text-center text-[10px] text-slate-500">
+        كلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI) © 2026 • المساعد الذكي الطلابي • فكرة وتطوير المهندس أحمد عبد الفتاح سليم
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="aiModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-[#111622] border border-[#1f283b] rounded-2xl max-w-md w-full p-6 text-sm">
+      <div class="flex justify-between items-center mb-3">
+        <div class="flex items-center gap-2.5">
+          <img src="assets/logo.jpg" alt="BFCAI Logo" class="w-8 h-8 rounded-lg object-cover border border-sky-500/30" />
+          <h3 class="font-bold text-white text-base">⚙️ إعدادات Google Gemini API</h3>
+        </div>
+        <button onclick="toggleModal('aiModal')" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      </div>
+      <p class="text-slate-300 mb-3 text-xs leading-relaxed">
+        المساعد يعمل تلقائياً بمفتاح الذكاء الاصطناعي المدمج. يمكنك إدخال مفتاح مخصص إذا رغبت:
+      </p>
+      <input type="password" id="geminiApiKey" placeholder="مفتاح API الخاص بك..." class="w-full bg-[#090b10] border border-[#1f283b] rounded-xl p-3 text-xs text-white mb-2 focus:outline-none focus:border-sky-500" />
+      <div class="flex gap-2 mt-4">
+        <button onclick="saveApiKey()" class="flex-1 py-2.5 bg-sky-600 hover:bg-sky-500 rounded-xl font-bold text-white transition text-xs">حفظ التغييرات</button>
+        <button onclick="resetApiKey()" class="px-3 py-2.5 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 rounded-xl text-xs border border-rose-900/50">استعادة الافتراضي</button>
+        <button onclick="toggleModal('aiModal')" class="px-4 py-2.5 bg-slate-800 text-slate-300 rounded-xl text-xs hover:text-white">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources Modal -->
+  <div id="sourcesModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="bg-[#111622] border border-[#1f283b] rounded-2xl max-w-lg w-full p-6 text-sm">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-3">
+          <img src="assets/logo.jpg" alt="BFCAI Logo" class="w-9 h-9 rounded-xl object-cover border border-sky-500/30" />
+          <h3 class="font-bold text-white text-base">مصادر ومنصات جامعة بنها والكلية الرسمية</h3>
+        </div>
+        <button onclick="toggleModal('sourcesModal')" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      </div>
+      <div class="space-y-3">
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📁 جوجل درايف الفرقة الأولى (الماتريال، السلايدات، الشيتات، الامتحانات)</p>
+          <a href="https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">فتح مجلد درايف سنة 1 ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📖 منصة الكتاب الجامعي الإلكتروني (جامعة بنها)</p>
+          <a href="https://ebook.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://ebook.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">🎓 منصة MyU للخدمات الطلابية والتسجيل والنتائج</p>
+          <a href="https://myu.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://myu.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">💬 قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥</p>
+          <a href="https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">🌐 الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها</p>
+          <a href="https://fci.bu.edu.eg/" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://fci.bu.edu.eg/ ↗</a>
+        </div>
+        <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
+          <p class="font-bold text-sky-400 mb-1">📘 الصفحة الرسمية لكلية الحاسبات على فيسبوك</p>
+          <a href="https://www.facebook.com/Official.BFCAI" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">https://www.facebook.com/Official.BFCAI ↗</a>
+        </div>
+        <div class="p-3 bg-gradient-to-r from-emerald-950/30 to-[#0d1017] rounded-xl border border-emerald-500/30 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="assets/developer.jpg" alt="المهندس أحمد عبد الفتاح سليم" class="w-10 h-10 rounded-full object-cover border-2 border-emerald-400 shadow-md flex-shrink-0" />
+            <div>
+              <p class="font-bold text-emerald-400 text-xs sm:text-sm">👨‍💻 مطور الأداة المهندس أحمد عبد الفتاح سليم</p>
+              <a href="https://wa.me/201066735981?text=%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D8%AC%D8%B2%D9%8A%D9%84%D8%A7%D9%8B%20%D9%8A%D8%A7%20%D8%A8%D8%A7%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%85%D8%AC%D9%87%D9%88%D8%AF%D9%83%20%D8%A7%D9%84%D8%B9%D8%B8%D9%8A%D9%85%20%D9%81%D9%8A%20%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%A9%D8%8C%20%D8%B9%D9%85%D9%84%20%D8%B1%D8%A7%D8%A1%D8%B9!" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:underline font-mono">مراسلة عبر واتساب: 01066735981 ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42SVZMalpoVWlBVUxndnVWa3VZUTN1TlpuYjA1bmxXTFF1OHo4WW56WUhBTEE=');
+    let currentTrack = 'عام';
+    let conversationHistory = [];
+
+    // Configure Marked.js for ChatGPT-style Markdown & Blue links
+    if (typeof marked !== 'undefined') {
+      marked.setOptions({ gfm: true, breaks: true });
+      const renderer = new marked.Renderer();
+      renderer.link = function({ href, text }) {
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 font-semibold underline underline-offset-4 transition">${text}</a>`;
+      };
+      marked.use({ renderer });
+    }
+
+    const QUICK_PROMPTS = {
+      'عام': [
+        'جدول سكشن 1 بالكامل (المحاضرات والسكاشن)',
+        'جدول سكشن 4 يوم الأحد بالتفصيل',
+        'مواعيد محاضرات المجموعة الأولى بالكامل',
+        'جدول ومواعيد محاضرات الفرقة الأولى عام لجميع المجموعات',
+        'رابط جوجل درايف سنة 1 لتحميل الماتريال والسلايدات والشيتات',
+        'أين يقع مدرج 1 ومدرج 2 ومعمل فيزياء وخريطة الأدوار؟',
+        'ما هي مقررات ومواد الترم الأول للفرقة الأولى عام؟',
+        'كيف استلم الكارنيه ورابط منصة MyU للخدمات الطلابية؟'
+      ],
+      'خاص': [
+        'نظام الساعات المعتمدة وحساب المعدل التراكمي GPA في البرامج الخاصة',
+        'ما هي تخصصات البرامج المتميزة (ذكاء اصطناعي، أمن سيبراني، معلوماتية طبية)؟',
+        'كيف يتم تسجيل المواد والإرشاد الأكاديمي للبرامج الخاصة على MyU؟',
+        'هل الدراسة والمحاضرات باللغة الإنجليزية في البرامج الخاصة؟',
+        'أين تقع قاعات ومدرجات ومعامل البرامج الخاصة بالكلية؟'
+      ],
+      'كانتربري': [
+        'تفاصيل برنامج الشهادة المزدوجة مع جامعة كانتربري البريطانية (CCCU)',
+        'ما هي شروط التخرج والحصول على البكالوريوس البريطاني من CCCU؟',
+        'طبيعة المناهج والتدريس والتقييم واللغة الإنجليزية في كانتربري',
+        'كيفية التواصل مع منسق برنامج كانتربري وشؤون الطلاب بالكلية؟',
+        'مزايا وفرص العمل لخريجي الشهادة المزدوجة في مصر وإنجلترا'
+      ],
+      'معادلة': [
+        'مواعيد وقاعات محاضرات التأهيلي (تأهيلي رياضيات مع د. أحمد مصطفى)',
+        'أين يقع مدرج 4 وموعد محاضرة تأهيلي رياضة يوم الأربعاء؟',
+        'إجراءات المقاصة العلمية لطلاب الدبلومات والمعاهد الفنية بشؤون الطلاب',
+        'ما هي المواد المطالب بها طالب المعادلة بجانب مواد الفرقة الأولى؟',
+        'رابط درايف سنة 1 لتحميل مذكرات وشيتات الرياضة ومواد التأهيلي'
+      ]
+    };
+
+    function renderPrompts() {
+      const container = document.getElementById('quickPromptsContainer');
+      const prompts = QUICK_PROMPTS[currentTrack] || QUICK_PROMPTS['عام'];
+      container.innerHTML = prompts.map(p => `
+        <button onclick="askPrompt('${p}')" class="text-[11px] py-1 px-3 rounded-full bg-[#121622] hover:bg-[#1a2234] text-slate-300 hover:text-sky-400 border border-[#1f283b] hover:border-sky-500/40 transition">
+          ${p}
+        </button>
+      `).join('');
+    }
+
+    function setTrack(track) {
+      currentTrack = track;
+      document.querySelectorAll('.track-btn').forEach(btn => {
+        if (btn.getAttribute('data-track') === track) {
+          btn.className = "track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-sky-600 text-white border-sky-400 shadow-sm";
+        } else {
+          btn.className = "track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+        }
+      });
+      renderPrompts();
+    }
+
+    function askPrompt(text) {
+      document.getElementById('chatInput').value = text;
+      handleSend(new Event('submit'));
+    }
+
+    function toggleModal(id) {
+      document.getElementById(id).classList.toggle('hidden');
+    }
+
+    function saveApiKey() {
+      const key = document.getElementById('geminiApiKey').value.trim();
+      if (key) {
+        localStorage.setItem('bfcai_user_gemini', key);
+        alert('تم حفظ المفتاح بنجاح!');
+      }
+      toggleModal('aiModal');
+    }
+
+    function resetApiKey() {
+      localStorage.removeItem('bfcai_user_gemini');
+      document.getElementById('geminiApiKey').value = '';
+      alert('تمت استعادة الإعدادات الافتراضية بنجاح!');
+      toggleModal('aiModal');
+    }
+
+    function clearChat() {
+      conversationHistory = [];
+      document.getElementById('chatThread').innerHTML = `
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow mt-0.5">
+            <img src="assets/logo.jpg" alt="AI" class="w-full h-full object-cover rounded-[10px]" />
+          </div>
+          <div class="flex-1 max-w-[90%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 text-sm text-white leading-relaxed shadow-sm space-y-2.5">
+            <p class="font-bold text-sky-400">مرحباً يا بطل! 🎓 أنا المساعد الذكي لطلاب الفرقة الأولى بحاسبات بنها (BFCAI) بجميع مساراتها.</p>
+            <p class="text-slate-200">
+              جاهز لمساعدتك في كل ما يخص: الجداول والماتريال، شؤون الطلاب والمنصات الجامعية، وأي استفسار علمي أو برمجي.
+            </p>
+            <p class="text-slate-300">
+              اختر مسارك بالأعلى وتفضل بسؤالك!
+            </p>
+            <div class="pt-2 border-t border-[#1b2232] text-xs text-sky-400 font-medium flex items-center gap-2">
+              <img src="assets/developer.jpg" alt="المهندس أحمد" class="w-6 h-6 rounded-full object-cover border border-cyan-400 shadow-sm" />
+              <span>(تطوير: المهندس أحمد عبد الفتاح سليم)</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function copyMessage(btn) {
+      const container = btn.closest('.chat-bubble-container');
+      const md = container ? container.querySelector('.markdown-content') : null;
+      if (md) {
+        const text = md.innerText || md.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const span = btn.querySelector('span');
+          if (span) {
+            const original = span.textContent;
+            span.textContent = 'تم النسخ ✓';
+            btn.classList.add('text-emerald-400');
+            setTimeout(() => {
+              span.textContent = original;
+              btn.classList.remove('text-emerald-400');
+            }, 2000);
+          }
+        });
+      }
+    }
+
+    // Convert raw URLs to clickable markdown if model output raw links
+    function autolinkRawUrls(text) {
+      return text.replace(/(^|[^\[(])(https?:\/\/[^\s\)\<\>]+)/g, '$1[$2]($2)');
+    }
+
+    async function queryGemini(userText, track) {
+      const activeKey = localStorage.getItem('bfcai_user_gemini') || DEFAULT_GEMINI_KEY;
+      // High-quota low-latency model order
+      const models = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-lite-latest', 'gemini-3.5-flash'];
+
+      // Extract dynamic schedule/venue facts if matching
+      const schedInfo = window.buildScheduleContext ? window.buildScheduleContext(userText, track) : { context: '', venue: null, lectures: [] };
+
+      const systemPrompt = `أنت المساعد الذكي والمستشار الأكاديمي الحصري لطلاب الفرقة الأولى بكلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI).
+أنت مخصص بنسبة 100% لخدمة طلاب سنة أولى بجميع مساراتهم الأكاديمية الأربعة:
+1. "عام" (البرنامج العام - المجموعات من 1 إلى 7): مقرراتهم الأساسية: برمجة هيكلية (C++)، أساسيات علوم الحاسب، فيزياء، رياضيات متقطعة (Discrete Math)، لغة إنجليزية، وقضايا مجتمعية.
+2. "خاص" (البرامج المتميزة / الساعات المعتمدة): برامج الذكاء الاصطناعي (AI)، الأمن السيبراني (Cybersecurity)، المعلوماتية الطبية (Medical Informatics)، وهندسة البرمجيات (Software Engineering)، بنظام الساعات المعتمدة باللغة الإنجليزية.
+3. "كانتربري" (الشهادة المزدوجة Dual Degree مع جامعة Canterbury Christ Church University - CCCU البريطانية): يحصل الطالب على شهادتين (مصرية وبريطانية)، مناهج متطورة باللغة الإنجليزية ومعتمدة دولياً.
+4. "معادلة" (طلاب المعادلة والدبلومات الفنية والمعاهد والمقاصة): يشمل مقررات التأهيلي التكميلية (مثل مقرر "تأهيلى رياضيات" يوم الأربعاء بمدرج 4 مع د. أحمد مصطفى)، وإجراءات المقاصة العلمية وحساب الساعات بشؤون الطلاب.
+
+المسار الحالي للطالب: الفرقة الأولى - مسار [${track}].
+
+قاعدة المعرفة الحصرية والحقائق المعتمدة لجدول ومقررات الفرقة الأولى:
+${schedInfo.context ? schedInfo.context + '\n' : ''}
+دليل أدوار ومباني كلية الحاسبات بنها:
+- مدرج 1 و 2، قاعات 1 إلى 4، معامل 1 إلى 7، شؤون الطلاب، ومعمل هواوي: الدور الأرضي.
+- مدرج 3 و 4، قاعة 5: الدور الأول علوي.
+- قاعة 6 و 7، معامل 8 إلى 15، معامل المعالج الدقيق وIoT والفيزياء والشبكات واللوجيك والإلكترونيات: الدور الثاني علوي.
+- مدرج 5، قاعات 8 إلى 12: الدور السابع.
+
+الروابط والمنصات الرسمية المعتمدة (استخدمها بذكاء كروابط Markdown زرقاء تفاعلية [اسم المنصة](URL)):
+- جوجل درايف الفرقة الأولى المعتمد (سلايدات المحاضرات، شيتات السكاشن، بنوك الامتحانات السابقة، والماتريال): https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l
+- منصة الكتاب الجامعي الإلكتروني بجامعة بنها (لتحميل وتصفح المقررات والكتب الإلكترونية): https://ebook.bu.edu.eg/
+- منصة MyU للخدمات الطلابية لجامعة بنها (تسجيل المقررات، إعلان النتائج والـ GPA، الكارنيهات، كشوف السكاشن، ومتابعة شؤون الطلاب): https://myu.bu.edu.eg/
+- قناة الواتساب الرسمية لتنبيهات طلاب حاسبات بنها 🔥 (للإعلانات اللحظية وتنبيهات الجداول وتعديلاتها واستلام الكارنيهات): https://whatsapp.com/channel/0029VbDCrkm0Qean90DDeQ1Q
+- الموقع الرسمي لكلية الحاسبات والذكاء الاصطناعي - بنها: https://fci.bu.edu.eg/
+- الصفحة الرسمية لكلية الحاسبات والذكاء الاصطناعي على فيسبوك: https://www.facebook.com/Official.BFCAI
+
+تعليمات التفكير والتحليل الذكي والتعمق (Think Deeply & Reason - لا تكن مجرد أداة نسخ ولصق):
+1. التحليل والفهم العميق لمسار الطالب: فكر بذكاء في احتياجات طالب سنة أولى حسب مساره (${track})، سواء كان في البرنامج العام، الساعات المعتمدة الخاصة، الشراكة البريطانية كانتربري، أو المقاصة ومواد التأهيلي لطلاب المعادلة.
+2. الربط الذكي للروابط الرسمية: متى سأل الطالب عن محاضرات، مذكرات، تسجيل، كتب، أو تنبيهات، اربط له الرابط الرسمي المباشر بكلمات أنيقة مثل [درايف سنة أولى الرسمي](رابط) أو [منصة MyU للخدمات الطلابية](رابط).
+3. التوجيه الإداري الدقيق: وضح له الإجراءات في الكلية (دفع المصروفات بفوري، التوجه لشؤون الطلاب بالدور الأرضي، استلام الكارنيه، وتفعيل حساب MyU وحساب البريد الجامعي).
+4. الجداول والأماكن: اعرض جداول المحاضرات بدقة في جداول Markdown منسقة مع ذكر اسم الدكتور واليوم والوقت والمدرج بدقة. وإذا سأل عن مكان مدرج أو معمل، اذكر الدور والاتجاه بوضوح.
+5. الأسئلة البرمجية والعلمية: لمقررات سنة أولى (C++ البرمجة الهيكلية، Discrete Math، الحاسب الآلي، الفيزياء)، قدم شروحات ذكية وأكواداً نظيفة جداً واحترافية تفيد الطالب وتبسط له المعلومة.
+6. قواعد المظهر والتنسيق (ChatGPT Dark UI):
+   - صياغة عربية بليغة وأنيقة مقسمة إلى نقاط وعناوين واضحة.
+   - الخط أبيض ناصع، الروابط زرقاء سماوية تفاعلية.
+   - ممنوع منعاً باتاً وضع أي قسم باسم "المصادر والمراجع" في نهاية الإجابة! أجب فقط بما يلبي السؤال باحترافية تامة.`;
+
+      // Build contents payload with conversation history
+      const contentsPayload = [];
+      const recentHistory = conversationHistory.slice(-8);
+      for (const msg of recentHistory) {
+        contentsPayload.push({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: msg.text }]
+        });
+      }
+      contentsPayload.push({
+        role: 'user',
+        parts: [{ text: userText }]
+      });
+
+      for (const model of models) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${activeKey}`;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: systemPrompt }] },
+              contents: contentsPayload
+            })
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) {
+              return { success: true, text: reply, model, schedInfo };
+            }
+          }
+        } catch (e) {
+          console.warn(`Model ${model} error:`, e);
+        }
+      }
+
+      return { success: false, schedInfo };
+    }
+
+    function scrollToBottom(smooth = true) {
+      const thread = document.getElementById('chatThread');
+      if (!thread) return;
+      if (smooth) {
+        thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
+      } else {
+        thread.scrollTop = thread.scrollHeight;
+      }
+    }
+
+    async function handleSend(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      input.value = '';
+      const thread = document.getElementById('chatThread');
+
+      // User Bubble (Clean ChatGPT Style)
+      thread.innerHTML += `
+        <div class="flex gap-3 flex-row-reverse my-4 items-start">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center text-sm flex-shrink-0 shadow mt-0.5">👤</div>
+          <div class="max-w-[85%] sm:max-w-[75%] bg-[#1c2333] border border-[#28344c] text-white rounded-2xl rounded-tr-none px-4 py-3 text-sm leading-relaxed shadow-sm">
+            ${query}
+          </div>
+        </div>
+      `;
+      scrollToBottom();
+
+      // Loader Indicator
+      const loadingId = 'loader_' + Date.now();
+      thread.innerHTML += `
+        <div id="${loadingId}" class="flex gap-3 my-4 items-start">
+          <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow animate-pulse mt-0.5">
+            <img src="assets/logo.jpg" alt="AI" class="w-full h-full object-cover rounded-[10px]" />
+          </div>
+          <div class="bg-[#121622] border border-[#1c2333] px-4 py-3 rounded-2xl rounded-tl-none text-xs text-slate-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+            جاري التفكير وصياغة الإجابة...
+          </div>
+        </div>
+      `;
+      scrollToBottom();
+
+      // Call Google Gemini
+      const geminiResult = await queryGemini(query, currentTrack);
+
+      const loader = document.getElementById(loadingId);
+      if (loader) loader.remove();
+
+      let answerText = "";
+      let venueCardHtml = "";
+
+      if (geminiResult.success) {
+        answerText = geminiResult.text;
+        conversationHistory.push({ role: 'user', text: query });
+        conversationHistory.push({ role: 'assistant', text: answerText });
+
+        // Check if venue map is explicitly requested or found
+        const venue = geminiResult.schedInfo?.venue || (window.findVenueInfo ? window.findVenueInfo(query) : null);
+        if (venue) {
+          venueCardHtml = `
+            <div class="mt-3 p-3 bg-[#090b10] rounded-xl border border-sky-500/30">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>📍 موقع: ${venue.name}</span>
+                  <span class="text-[10px] text-slate-400 font-normal">(${venue.floor})</span>
+                </span>
+              </div>
+              <p class="text-xs text-slate-300 mb-2 leading-relaxed">${venue.directions}</p>
+              ${venue.map ? `
+                <div class="overflow-hidden rounded-lg border border-[#1e2638] bg-[#0c1018] mt-2">
+                  <img src="${venue.map}" alt="${venue.name}" class="max-h-72 w-full object-contain hover:scale-105 transition duration-300" />
+                  <div class="p-1.5 text-center text-[10px] text-slate-400 bg-[#07090e]">مخطط الدور التوضيحي بالكلية</div>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }
+      } else {
+        const offlineReply = window.queryBFCAIKnowledge ? window.queryBFCAIKnowledge(query) : null;
+        if (offlineReply) {
+          answerText = offlineReply;
+          const venue = (window.findVenueInfo ? window.findVenueInfo(query) : null);
+          if (venue) {
+            venueCardHtml = `
+              <div class="mt-3 p-3 bg-[#090b10] rounded-xl border border-sky-500/30">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                    <span>📍 موقع: ${venue.name}</span>
+                    <span class="text-[10px] text-slate-400 font-normal">(${venue.floor})</span>
+                  </span>
+                </div>
+                <p class="text-xs text-slate-300 mb-2 leading-relaxed">${venue.directions}</p>
+                ${venue.map ? `
+                  <div class="overflow-hidden rounded-lg border border-[#1e2638] bg-[#0c1018] mt-2">
+                    <img src="${venue.map}" alt="${venue.name}" class="max-h-72 w-full object-contain hover:scale-105 transition duration-300" />
+                    <div class="p-1.5 text-center text-[10px] text-slate-400 bg-[#07090e]">مخطط الدور التوضيحي بالكلية</div>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }
+        } else {
+          answerText = `أهلاً بك! تعذر الاتصال اللحظي بمحرك الذكاء الاصطناعي بسبب الشبكة. يُرجى المحاولة مرة أخرى أو التأكد من اتصال الإنترنت.`;
+        }
+      }
+
+      // Safe Markdown Rendering with autolinked URLs
+      const processedText = autolinkRawUrls(answerText);
+      const formattedHtml = typeof marked !== 'undefined' ? marked.parse(processedText) : processedText.replace(/\n/g, '<br/>');
+
+      // Bot Message Bubble (Pure ChatGPT Style - No source spam)
+      thread.innerHTML += `
+        <div class="flex gap-3 my-4 items-start chat-bubble-container">
+          <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow mt-0.5">
+            <img src="assets/logo.jpg" alt="AI" class="w-full h-full object-cover rounded-[10px]" />
+          </div>
+          <div class="flex-1 max-w-[92%] sm:max-w-[85%] bg-[#121622] border border-[#1c2333] rounded-2xl rounded-tl-none p-4 sm:p-5 text-sm text-white leading-relaxed shadow-md space-y-3">
+            <div class="markdown-content">${formattedHtml}</div>
+            ${venueCardHtml}
+            <div class="flex items-center justify-between pt-2.5 border-t border-[#1b2232] text-[11px] text-slate-500">
+              <button onclick="copyMessage(this)" class="hover:text-sky-400 flex items-center gap-1 transition px-2 py-1 rounded hover:bg-slate-800/60">
+                <span>📋 نسخ الإجابة</span>
+              </button>
+              <span class="text-[10px] text-slate-500 font-mono">BFCAI AI • بنها</span>
+            </div>
+          </div>
+        </div>
+      `;
+      scrollToBottom();
+    }
+
+    // ==========================================
+    // Voice Input Engine (Web Speech API)
+    // ==========================================
+    let recognition = null;
+    let isListening = false;
+    let voiceAutoSendTimer = null;
+
+    function checkSpeechSupport() {
+      return ('SpeechRecognition' in window) || ('webkitSpeechRecognition' in window);
+    }
+
+    function toggleVoiceInput() {
+      if (isListening) {
+        stopVoiceInput(true); // Stop and send immediately
+      } else {
+        startVoiceInput();
+      }
+    }
+
+    function startVoiceInput() {
+      if (!checkSpeechSupport()) {
+        alert('عذراً، متصفحك الحالي لا يدعم ميزة الإدخال الصوتي المباشر. يُرجى تجربة Google Chrome أو Microsoft Edge أو Safari للحصول على أفضل تجربة.');
+        return;
+      }
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      try {
+        if (!recognition) {
+          recognition = new SpeechRecognition();
+          recognition.lang = 'ar-EG'; // اللهجة المصرية والعربية الفصحى
+          recognition.continuous = false; // التوقف التلقائي عند اكتمال الكلام
+          recognition.interimResults = true; // كتابة الكلمات لحظياً أثناء الكلام
+          recognition.maxAlternatives = 1;
+
+          recognition.onstart = function() {
+            isListening = true;
+            updateVoiceUI(true);
+          };
+
+          recognition.onresult = function(event) {
+            let interimTranscript = '';
+            let finalTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+              } else {
+                interimTranscript += event.results[i][0].transcript;
+              }
+            }
+
+            const input = document.getElementById('chatInput');
+            if (input) {
+              const fullText = (finalTranscript || interimTranscript).trim();
+              if (fullText) {
+                input.value = fullText;
+              }
+            }
+          };
+
+          recognition.onerror = function(event) {
+            console.warn('Voice recognition error:', event.error);
+            isListening = false;
+            updateVoiceUI(false);
+            if (event.error === 'not-allowed') {
+              alert('يرجى السماح بصلاحية الميكروفون في المتصفح لتفعيل البحث الصوتي 🎙️');
+            }
+          };
+
+          recognition.onend = function() {
+            isListening = false;
+            updateVoiceUI(false);
+
+            // إرسال السؤال تلقائياً للشات بمجرد اكتمال الصوت كما طلب المستخدم
+            const input = document.getElementById('chatInput');
+            const spokenText = input ? input.value.trim() : '';
+            if (spokenText) {
+              clearTimeout(voiceAutoSendTimer);
+              voiceAutoSendTimer = setTimeout(() => {
+                handleSend(new Event('submit'));
+              }, 400);
+            }
+          };
+        }
+
+        // تفريغ الحقل قبل بدء التسجيل الجديد
+        const input = document.getElementById('chatInput');
+        if (input) input.value = '';
+
+        recognition.start();
+      } catch (err) {
+        console.warn('Error starting speech recognition:', err);
+        isListening = false;
+        updateVoiceUI(false);
+      }
+    }
+
+    function stopVoiceInput(shouldSend = false) {
+      if (recognition && isListening) {
+        try {
+          recognition.stop();
+        } catch(e) {}
+      }
+      isListening = false;
+      updateVoiceUI(false);
+
+      if (shouldSend) {
+        const input = document.getElementById('chatInput');
+        if (input && input.value.trim()) {
+          clearTimeout(voiceAutoSendTimer);
+          handleSend(new Event('submit'));
+        }
+      }
+    }
+
+    function updateVoiceUI(active) {
+      const voiceBtn = document.getElementById('voiceBtn');
+      const voiceIcon = document.getElementById('voiceIcon');
+      const voicePulse = document.getElementById('voicePulse');
+      const voiceStatus = document.getElementById('voiceStatus');
+      const chatInput = document.getElementById('chatInput');
+
+      if (active) {
+        if (voiceBtn) {
+          voiceBtn.className = "w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-rose-600 hover:bg-rose-500 text-white border border-rose-400 flex items-center justify-center transition text-base relative shadow-lg shadow-rose-600/30 animate-pulse";
+        }
+        if (voiceIcon) voiceIcon.textContent = '⏹️';
+        if (voicePulse) voicePulse.classList.remove('hidden');
+        if (voiceStatus) voiceStatus.classList.remove('hidden');
+        if (chatInput) {
+          chatInput.placeholder = "🎙️ جاري الاستماع إليك... تحدث الآن وسأكتب ما تقول";
+          chatInput.focus();
+        }
+      } else {
+        if (voiceBtn) {
+          voiceBtn.className = "w-9 h-9 sm:w-9 sm:h-9 rounded-lg bg-[#182030] hover:bg-[#222e44] text-slate-300 hover:text-sky-400 border border-[#26354f] flex items-center justify-center transition text-base relative";
+        }
+        if (voiceIcon) voiceIcon.textContent = '🎙️';
+        if (voicePulse) voicePulse.classList.add('hidden');
+        if (voiceStatus) voiceStatus.classList.add('hidden');
+        if (chatInput) {
+          chatInput.placeholder = "اكتب سؤالك أو تحدث عبر الميكروفون 🎙️...";
+        }
+      }
+    }
+
+    // Initialize Prompts
+    renderPrompts();
+  </script>
+
+</body>
+</html>
