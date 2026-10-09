@@ -210,6 +210,28 @@
       </div>
     </div>
 
+    <!-- Active Track Official Schedule Banner (Updated 9-10-2026 for 2026-2027) -->
+    <div id="trackScheduleBanner" class="flex-shrink-0 p-2.5 sm:p-3 rounded-2xl border transition-all text-xs flex flex-wrap items-center justify-between gap-2.5 bg-gradient-to-r from-[#0e1422] to-[#0a0d14] border-sky-500/30 shadow-md">
+      <div class="flex items-center gap-2.5">
+        <span id="trackBannerIcon" class="text-xl sm:text-2xl p-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20">🏫</span>
+        <div>
+          <h3 id="trackBannerTitle" class="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
+            <span>جدول المحاضرات والسكاشن — المستوى العام</span>
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">معتمد 9-10-2026</span>
+          </h3>
+          <p id="trackBannerSubtitle" class="text-[11px] text-slate-400 mt-0.5">
+            الفصل الدراسي الأول للعام الجامعي 2026-2027 • كلية الحاسبات والذكاء الاصطناعي بنها
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a id="trackBannerLink" href="https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1.5 transition shadow shadow-sky-600/30">
+          <span id="trackBannerBtnText">📄 فتح ملف جدول المستوى العام (Google Drive)</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+      </div>
+    </div>
+
     <!-- Interactive Quick Schedule & Venue Mechanism (Floot.app Style Hub) -->
     <section class="flex-shrink-0 bg-[#0d1017] border border-[#1b2232] rounded-2xl p-3 sm:p-4 mb-1 shadow-lg transition-all" id="scheduleHubCard">
       <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[#1b2232]">
@@ -460,6 +482,31 @@
         <button onclick="toggleModal('sourcesModal')" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
       </div>
       <div class="space-y-3">
+        <!-- Official Schedule Documents (9-10-2026 for 2026-2027) -->
+        <div class="p-3.5 bg-gradient-to-r from-sky-950/40 via-[#0d1017] to-indigo-950/40 rounded-xl border border-sky-500/40 space-y-2">
+          <p class="font-bold text-sky-300 text-xs sm:text-sm flex items-center justify-between">
+            <span>📅 جداول المحاضرات والسكاشن الرسمية المعتمدة</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">بتاريخ 9-10-2026</span>
+          </p>
+          <p class="text-[11px] text-slate-300">
+            للفصل الدراسي الأول للعام الجامعي 2026-2027 — كلية الحاسبات والذكاء الاصطناعي بنها:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-0.5">
+            <a href="https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-[#121622] hover:bg-[#1a2234] border border-[#232d42] hover:border-sky-500/50 transition flex flex-col justify-between">
+              <span class="font-bold text-white text-xs">🏫 المستوى العام</span>
+              <span class="text-[10px] text-sky-400 mt-1">فتح ملف الجدول (PDF) ↗</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-[#121622] hover:bg-[#1a2234] border border-[#232d42] hover:border-sky-500/50 transition flex flex-col justify-between">
+              <span class="font-bold text-white text-xs">💎 المستوى الخاص</span>
+              <span class="text-[10px] text-sky-400 mt-1">فتح ملف الجدول (PDF) ↗</span>
+            </a>
+            <a href="https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-[#121622] hover:bg-[#1a2234] border border-[#232d42] hover:border-sky-500/50 transition flex flex-col justify-between">
+              <span class="font-bold text-white text-xs">🇬🇧 كانتربيرى (CCCU)</span>
+              <span class="text-[10px] text-sky-400 mt-1">فتح ملف الجدول (PDF) ↗</span>
+            </a>
+          </div>
+        </div>
+
         <div class="p-3 bg-[#0d1017] rounded-xl border border-[#1f283b]">
           <p class="font-bold text-sky-400 mb-1">📁 جوجل درايف الفرقة الأولى (الماتريال، السلايدات، الشيتات، الامتحانات)</p>
           <a href="https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l" target="_blank" rel="noopener noreferrer" class="text-xs text-sky-400 hover:underline">فتح مجلد درايف سنة 1 ↗</a>
@@ -553,13 +600,15 @@
         'جدول سكشن 1 بالكامل (المحاضرات والسكاشن)',
         'جدول سكشن 4 يوم الأحد بالتفصيل',
         'مواعيد محاضرات المجموعة الأولى بالكامل',
-        'جدول ومواعيد محاضرات الفرقة الأولى عام لجميع المجموعات',
+        'رابط جدول المحاضرات والسكاشن للمستوى العام (بتاريخ 9-10-2026)',
         'رابط جوجل درايف سنة 1 لتحميل الماتريال والسلايدات والشيتات',
         'أين يقع مدرج 1 ومدرج 2 ومعمل فيزياء وخريطة الأدوار؟',
         'ما هي مقررات ومواد الترم الأول للفرقة الأولى عام؟',
         'كيف استلم الكارنيه ورابط منصة MyU للخدمات الطلابية؟'
       ],
       'خاص': [
+        'رابط جدول المحاضرات والسكاشن للمستوى الخاص (بتاريخ 9-10-2026)',
+        'جدول المحاضرات النظرية والعملية للمستوى الخاص للعام الجامعي 2026-2027',
         'نظام الساعات المعتمدة وحساب المعدل التراكمي GPA في البرامج الخاصة',
         'ما هي تخصصات البرامج المتميزة (ذكاء اصطناعي، أمن سيبراني، معلوماتية طبية)؟',
         'كيف يتم تسجيل المواد والإرشاد الأكاديمي للبرامج الخاصة على MyU؟',
@@ -567,6 +616,8 @@
         'أين تقع قاعات ومدرجات ومعامل البرامج الخاصة بالكلية؟'
       ],
       'كانتربري': [
+        'رابط جدول المحاضرات والسكاشن لبرنامج كانتربيري (بتاريخ 9-10-2026)',
+        'جدول المحاضرات النظرية والعملية لبرنامج كانتربيري للعام الجامعي 2026-2027',
         'تفاصيل برنامج الشهادة المزدوجة مع جامعة كانتربري البريطانية (CCCU)',
         'ما هي شروط التخرج والحصول على البكالوريوس البريطاني من CCCU؟',
         'طبيعة المناهج والتدريس والتقييم واللغة الإنجليزية في كانتربري',
@@ -574,6 +625,7 @@
         'مزايا وفرص العمل لخريجي الشهادة المزدوجة في مصر وإنجلترا'
       ],
       'معادلة': [
+        'رابط جدول ومحاضرات التأهيلي والمقاصة العلمية (بتاريخ 9-10-2026)',
         'مواعيد وقاعات محاضرات التأهيلي (تأهيلي رياضيات مع د. أحمد مصطفى)',
         'أين يقع مدرج 4 وموعد محاضرة تأهيلي رياضة يوم الأربعاء؟',
         'إجراءات المقاصة العلمية لطلاب الدبلومات والمعاهد الفنية بشؤون الطلاب',
@@ -581,6 +633,61 @@
         'رابط درايف سنة 1 لتحميل مذكرات وشيتات الرياضة ومواد التأهيلي'
       ]
     };
+
+    const TRACK_SCHEDULE_CONFIG = {
+      'عام': {
+        icon: '🏫',
+        title: 'جدول المحاضرات والسكاشن — المستوى العام',
+        badge: 'معتمد 9-10-2026',
+        subtitle: 'الفصل الدراسي الأول للعام الجامعي 2026-2027 • 52 سكشن و7 مجموعات (علمي رياضة وعلمي علوم)',
+        url: 'https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk',
+        btnText: '📄 فتح ملف جدول المستوى العام (Google Drive)'
+      },
+      'خاص': {
+        icon: '💎',
+        title: 'جدول المحاضرات والسكاشن — المستوى الخاص (البرامج المتميزة)',
+        badge: 'معتمد 9-10-2026',
+        subtitle: 'الفصل الدراسي الأول للعام الجامعي 2026-2027 • برامج الساعات المعتمدة (AI, Cyber, Medical, Software)',
+        url: 'https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk',
+        btnText: '💎 فتح ملف جدول المستوى الخاص (Google Drive)'
+      },
+      'كانتربري': {
+        icon: '🇬🇧',
+        title: 'جدول المحاضرات والسكاشن — برنامج كانتربيري البريطاني (CCCU UK)',
+        badge: 'معتمد 9-10-2026',
+        subtitle: 'الفصل الدراسي الأول للعام الجامعي 2026-2027 • الشهادة المزدوجة بالتعاون مع Canterbury Christ Church University',
+        url: 'https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk',
+        btnText: '🇬🇧 فتح ملف جدول كانتربيري (Google Drive)'
+      },
+      'معادلة': {
+        icon: '📑',
+        title: 'جدول المحاضرات ومواد التأهيلي والمقاصة — طلاب المعادلة والدبلومات',
+        badge: 'معتمد 9-10-2026',
+        subtitle: 'الفصل الدراسي الأول للعام الجامعي 2026-2027 • يشمل مقرر تأهيلي رياضيات بمدرج 4 وجداول المستوى العام',
+        url: 'https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk',
+        btnText: '📄 فتح ملف الجدول والتأهيلي (Google Drive)'
+      }
+    };
+
+    function updateTrackBanner(track) {
+      const cfg = TRACK_SCHEDULE_CONFIG[track] || TRACK_SCHEDULE_CONFIG['عام'];
+      const iconEl = document.getElementById('trackBannerIcon');
+      const titleEl = document.getElementById('trackBannerTitle');
+      const subEl = document.getElementById('trackBannerSubtitle');
+      const linkEl = document.getElementById('trackBannerLink');
+      const btnTextEl = document.getElementById('trackBannerBtnText');
+
+      if (iconEl) iconEl.textContent = cfg.icon;
+      if (titleEl) {
+        titleEl.innerHTML = `
+          <span>${cfg.title}</span>
+          <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">${cfg.badge}</span>
+        `;
+      }
+      if (subEl) subEl.textContent = cfg.subtitle;
+      if (linkEl) linkEl.href = cfg.url;
+      if (btnTextEl) btnTextEl.textContent = cfg.btnText;
+    }
 
     function renderPrompts() {
       const container = document.getElementById('quickPromptsContainer');
@@ -601,6 +708,7 @@
           btn.className = "track-btn text-xs font-bold px-3 py-1.5 rounded-lg border transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
         }
       });
+      updateTrackBanner(track);
       renderPrompts();
     }
 
@@ -684,12 +792,26 @@
 
       const systemPrompt = `أنت المساعد الذكي والمستشار الأكاديمي الحصري لطلاب الفرقة الأولى بكلية الحاسبات والذكاء الاصطناعي - جامعة بنها (BFCAI).
 أنت مخصص بنسبة 100% لخدمة طلاب سنة أولى بجميع مساراتهم الأكاديمية الأربعة:
-1. "عام" (البرنامج العام - المجموعات من 1 إلى 7): مقرراتهم الأساسية: برمجة هيكلية (C++)، أساسيات علوم الحاسب، فيزياء، رياضيات متقطعة (Discrete Math)، لغة إنجليزية، وقضايا مجتمعية.
+1. "عام" (البرنامج العام - المجموعات من 1 إلى 7، السكاشن 1-52): مقرراتهم الأساسية: برمجة هيكلية (C++)، أساسيات علوم الحاسب، فيزياء، رياضيات متقطعة (Discrete Math)، لغة إنجليزية، وقضايا مجتمعية.
+رابط ملف الجدول الرسمي المعتمد للمستوى العام (بتاريخ 9-10-2026 للعام الجامعي 2026-2027):
+https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk
+
 2. "خاص" (البرامج المتميزة / الساعات المعتمدة): برامج الذكاء الاصطناعي (AI)، الأمن السيبراني (Cybersecurity)، المعلوماتية الطبية (Medical Informatics)، وهندسة البرمجيات (Software Engineering)، بنظام الساعات المعتمدة باللغة الإنجليزية.
+رابط ملف الجدول الرسمي المعتمد للمستوى الخاص والبرامج المتميزة (بتاريخ 9-10-2026 للعام الجامعي 2026-2027):
+https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk
+
 3. "كانتربري" (الشهادة المزدوجة Dual Degree مع جامعة Canterbury Christ Church University - CCCU البريطانية): يحصل الطالب على شهادتين (مصرية وبريطانية)، مناهج متطورة باللغة الإنجليزية ومعتمدة دولياً.
+رابط ملف الجدول الرسمي المعتمد لبرنامج كانتربيري (بتاريخ 9-10-2026 للعام الجامعي 2026-2027):
+https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk
+
 4. "معادلة" (طلاب المعادلة والدبلومات الفنية والمعاهد والمقاصة): يشمل مقررات التأهيلي التكميلية (مثل مقرر "تأهيلى رياضيات" يوم الأربعاء بمدرج 4 مع د. أحمد مصطفى)، وإجراءات المقاصة العلمية وحساب الساعات بشؤون الطلاب.
 
-المسار الحالي للطالب: الفرقة الأولى - مسار [${track}].
+المسار الأكاديمي الحالي للطالب: الفرقة الأولى - مسار [${track}].
+
+جداول المحاضرات والسكاشن الرسمية المعتمدة (بتاريخ 9-10-2026 للعام الجامعي 2026-2027):
+- المستوى العام: https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk
+- المستوى الخاص: https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk
+- كانتربيرى: https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk
 
 قاعدة المعرفة الحصرية والحقائق المعتمدة لجدول ومقررات الفرقة الأولى:
 ${schedInfo.context ? schedInfo.context + '\n' : ''}
@@ -700,6 +822,9 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
 - مدرج 5، قاعات 8 إلى 12: الدور السابع.
 
 الروابط والمنصات الرسمية المعتمدة (استخدمها بذكاء كروابط Markdown زرقاء تفاعلية [اسم المنصة](URL)):
+- جدول المستوى العام المعتمد (بتاريخ 9-10-2026): https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk
+- جدول المستوى الخاص المعتمد (بتاريخ 9-10-2026): https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk
+- جدول برنامج كانتربيري المعتمد (بتاريخ 9-10-2026): https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk
 - جوجل درايف الفرقة الأولى المعتمد (سلايدات المحاضرات، شيتات السكاشن، بنوك الامتحانات السابقة، والماتريال): https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l
 - منصة الكتاب الجامعي الإلكتروني بجامعة بنها (لتحميل وتصفح المقررات والكتب الإلكترونية): https://ebook.bu.edu.eg/
 - منصة MyU للخدمات الطلابية لجامعة بنها (تسجيل المقررات، إعلان النتائج والـ GPA، الكارنيهات، كشوف السكاشن، ومتابعة شؤون الطلاب): https://myu.bu.edu.eg/
@@ -708,7 +833,10 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
 - الصفحة الرسمية لكلية الحاسبات والذكاء الاصطناعي على فيسبوك: https://www.facebook.com/Official.BFCAI
 
 تعليمات التفكير والتحليل الذكي والتعمق (Think Deeply & Reason - لا تكن مجرد أداة نسخ ولصق):
-1. التحليل والفهم العميق لمسار الطالب: فكر بذكاء في احتياجات طالب سنة أولى حسب مساره (${track})، سواء كان في البرنامج العام، الساعات المعتمدة الخاصة، الشراكة البريطانية كانتربري، أو المقاصة ومواد التأهيلي لطلاب المعادلة.
+1. التحليل والفهم الدقيق والعميق لمسار الطالب:
+   - إذا كان مسار الطالب الحالي "خاص" أو سأل عن جدول المستوى الخاص أو الساعات المعتمدة، وفر له فوراً رابط جدول المستوى الخاص المعتمد بتاريخ 9-10-2026 للعام الجامعي 2026-2027: [جدول المستوى الخاص الرسمي 2026-2027](https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk) مع توضيح برامج الساعات المعتمدة (ذكاء اصطناعي، أمن سيبراني، معلوماتية طبية، هندسة برمجيات) وأماكن المحاضرات والمعامل.
+   - إذا كان مسار الطالب الحالي "كانتربري" أو سأل عن جدول كانتربري، وفر له فوراً رابط جدول كانتربيري المعتمد بتاريخ 9-10-2026 للعام الجامعي 2026-2027: [جدول برنامج كانتربيري البريطاني 2026-2027](https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk) واشرح له طبيعة الشهادة المزدوجة باللغة الإنجليزية مع CCCU.
+   - إذا كان مسار الطالب "عام" أو سأل عن رابط ملف جدول العام كامل، وفر له الرابط المعتمد بتاريخ 9-10-2026: [جدول المستوى العام الرسمي 2026-2027](https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk) بالإضافة إلى تفاصيل المواعيد من قاعدة البيانات المدمجة.
 2. الربط الذكي للروابط الرسمية: متى سأل الطالب عن محاضرات، مذكرات، تسجيل، كتب، أو تنبيهات، اربط له الرابط الرسمي المباشر بكلمات أنيقة مثل [درايف سنة أولى الرسمي](رابط) أو [منصة MyU للخدمات الطلابية](رابط).
 3. التوجيه الإداري الدقيق: وضح له الإجراءات في الكلية (دفع المصروفات بفوري، التوجه لشؤون الطلاب بالدور الأرضي، استلام الكارنيه، وتفعيل حساب MyU وحساب البريد الجامعي).
 4. الجداول والأماكن: اعرض جداول المحاضرات بدقة في جداول Markdown منسقة مع ذكر اسم الدكتور واليوم والوقت والمدرج بدقة. وإذا سأل عن مكان مدرج أو معمل، اذكر الدور والاتجاه بوضوح.

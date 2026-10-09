@@ -11799,5 +11799,25 @@
         ]
       }
     }
+  },
+  "official_schedules": {
+    "faculty": "كلية الحاسبات والذكاء الاصطناعي - جامعة بنها",
+    "academic_year": "2026-2027",
+    "semester": "الفصل الدراسي الأول",
+    "date": "9-10-2026",
+    "tracks": {
+      "general": {
+        "name": "المستوى العام",
+        "url": "https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk"
+      },
+      "special": {
+        "name": "المستوى الخاص",
+        "url": "https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk"
+      },
+      "canterbury": {
+        "name": "كانتربيرى",
+        "url": "https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk"
+      }
+    }
   }
 }

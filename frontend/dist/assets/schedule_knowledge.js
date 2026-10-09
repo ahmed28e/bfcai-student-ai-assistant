@@ -3,6 +3,36 @@
   const VENUES = {"hall":[{"id":"hall-1","name":"قاعة ١","floor":"الأرضي","directions":"موقع القاعة موضح على خريطة الدور الأرضي.","map":"assets/map-ground.jpeg"},{"id":"hall-2","name":"قاعة ٢","floor":"الأرضي","directions":"موقع القاعة موضح على خريطة الدور الأرضي.","map":"assets/map-ground.jpeg"},{"id":"hall-3","name":"قاعة ٣","floor":"الأرضي","directions":"جنب باب الدخول إلى شئون الطلاب.","map":"assets/map-ground.jpeg"},{"id":"hall-4","name":"قاعة ٤","floor":"الأرضي","directions":"قدام مدرج ١.","map":"assets/map-ground.jpeg"},{"id":"hall-5","name":"قاعة ٥","floor":"الأول","directions":"عند مدرج ٤.","map":"assets/map-floor-1.jpeg"},{"id":"hall-6","name":"قاعة ٦","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"اطلع السلم الصغير؛ هتلاقي القاعة على إيدك اليمين.","map":"assets/map-floor-2.jpeg"},{"id":"hall-7","name":"قاعة ٧","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"ادخل قاعة الدراسات العليا؛ هتلاقي قاعة ٧ ومعمل ١٢ جواها.","map":"assets/map-floor-2.jpeg"},{"id":"hall-8","name":"قاعة ٨","floor":"السابع","directions":"مكانها بالتفصيل داخل الدور لسه محتاج وصف."},{"id":"hall-9","name":"قاعة ٩","floor":"السابع","directions":"مكانها بالتفصيل داخل الدور لسه محتاج وصف."},{"id":"hall-10","name":"قاعة ١٠","floor":"السابع","directions":"مكانها بالتفصيل داخل الدور لسه محتاج وصف."},{"id":"hall-11","name":"قاعة ١١","floor":"السابع","directions":"مكانها بالتفصيل داخل الدور لسه محتاج وصف."},{"id":"hall-12","name":"قاعة ١٢","floor":"السابع","directions":"جنب السلم على إيدك اليمين."}],"auditorium":[{"id":"auditorium-1","name":"مدرج ١","floor":"الأرضي","directions":"بعد بوابة الكلية الرئيسية هتلاقيه على إيدك الشمال.","map":"assets/map-ground.jpeg"},{"id":"auditorium-2","name":"مدرج ٢","floor":"الأرضي","directions":"في ضهر مدرج ١ بعد بوابة الكلية الرئيسية.","map":"assets/map-ground.jpeg"},{"id":"auditorium-3","name":"مدرج ٣","floor":"الأول","directions":"اطلع السلم؛ أول ما توصل الدور هتلاقيه على إيدك اليمين.","map":"assets/map-floor-1.jpeg"},{"id":"auditorium-4","name":"مدرج ٤","floor":"الأول","directions":"في ضهر مدرج ٣.","map":"assets/map-floor-1.jpeg"},{"id":"auditorium-5","name":"مدرج ٥","floor":"السابع","directions":"جنب السلم على إيدك اليمين."}],"lab":[{"id":"lab-1","name":"معمل ١","floor":"الأرضي","directions":"في الممر اللي قبل مدرج ١.","map":"assets/map-ground.jpeg"},{"id":"lab-2","name":"معمل ٢","floor":"الأرضي","directions":"في الممر اللي قبل مدرج ١.","map":"assets/map-ground.jpeg"},{"id":"huawei","name":"معمل هواوي","floor":"الأرضي","directions":"في الممر اللي قبل مدرج ١.","map":"assets/map-ground.jpeg"},{"id":"lab-3","name":"معمل ٣","floor":"الأرضي","directions":"قدام قاعة ٣.","map":"assets/map-ground.jpeg"},{"id":"lab-4","name":"معمل ٤","floor":"الأرضي","directions":"قدام قاعة ٣.","map":"assets/map-ground.jpeg"},{"id":"lab-5","name":"معمل ٥","floor":"الأرضي","directions":"في آخر الممر اللي فيه معمل ٣ و٤.","map":"assets/map-ground.jpeg"},{"id":"lab-6","name":"معمل ٦","floor":"الأرضي","directions":"في آخر الممر اللي فيه معمل ٣ و٤.","map":"assets/map-ground.jpeg"},{"id":"lab-7","name":"معمل ٧","floor":"الأرضي","directions":"في آخر الممر اللي فيه معمل ٣ و٤.","map":"assets/map-ground.jpeg"},{"id":"lab-8","name":"معمل ٨","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"جنب معمل المعالج الدقيق، عند الأسانسير.","map":"assets/map-floor-2.jpeg"},{"id":"lab-9","name":"معمل ٩","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"قدام الأسانسير.","map":"assets/map-floor-2.jpeg"},{"id":"lab-10","name":"معمل ١٠","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"بعد ما تطلع السلم الصغير وتعدي قاعة ٦، هتلاقيه جنب الحمام التاني.","map":"assets/map-floor-2.jpeg"},{"id":"lab-11","name":"معمل ١١","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"في ممر الدور الثاني؛ موقعه موضح في الخريطة.","map":"assets/map-floor-2.jpeg"},{"id":"lab-12","name":"معمل ١٢","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"جوا قاعة الدراسات العليا.","map":"assets/map-floor-2.jpeg"},{"id":"lab-13","name":"معمل ١٣","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"في الممر اللي فيه معمل ١٥ وقاعة الدراسات العليا.","map":"assets/map-floor-2.jpeg"},{"id":"lab-14","name":"معمل ١٤","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"انزل السلم اللي على إيدك الشمال؛ هتلاقيه قدام الحمامات.","map":"assets/map-floor-2.jpeg"},{"id":"lab-15","name":"معمل ١٥","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"في الممر اللي فيه معمل ١٣ وقاعة الدراسات العليا.","map":"assets/map-floor-2.jpeg"},{"id":"microprocessor","name":"معمل المعالج الدقيق","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"جنب الأسانسير.","map":"assets/map-floor-2.jpeg"},{"id":"iot","name":"معمل إنترنت الأشياء (IoT)","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"انزل السلم اللي على إيدك الشمال؛ هتلاقيه قدام الحمامات.","map":"assets/map-floor-2.jpeg"},{"id":"physics-1","name":"معمل فيزياء ١","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"امشي لآخر الممر بعد منطقة قاعة الدراسات العليا.","map":"assets/map-floor-2.jpeg"},{"id":"physics-2","name":"معمل فيزياء ٢","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"امشي لآخر الممر بعد منطقة قاعة الدراسات العليا.","map":"assets/map-floor-2.jpeg"},{"id":"multimedia","name":"معمل الوسائط المتعددة","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"بعد ما تلف من عند السلم الصغير، كمل في الممر التاني.","map":"assets/map-floor-2.jpeg"},{"id":"networks","name":"معمل الشبكات","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"بعد ما تلف من عند السلم الصغير، كمل في الممر التاني.","map":"assets/map-floor-2.jpeg"},{"id":"logic-1","name":"معمل لوجيك ١","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"بعد ما تلف من عند السلم الصغير، كمل في الممر التاني.","map":"assets/map-floor-2.jpeg"},{"id":"logic-2","name":"معمل لوجيك ٢","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"بعد ما تلف من عند السلم الصغير، كمل في الممر التاني.","map":"assets/map-floor-2.jpeg"},{"id":"electronics-1","name":"معمل الإلكترونيات ١ / التصميم المنطقي ١","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"موقعه موضح على خريطة الدور الثاني.","map":"assets/map-floor-2.jpeg"},{"id":"electronics-2","name":"معمل الإلكترونيات ٢ / التصميم المنطقي ٢","floor":"الثاني (اللي بيتقال عليه الثالث)","directions":"موقعه موضح على خريطة الدور الثاني.","map":"assets/map-floor-2.jpeg"},{"id":"vr","name":"معمل الواقع الافتراضي","floor":"غير محدد","directions":"اسم المعمل وصلني، لكن الدور وطريقة الوصول محتاجين تأكيد."}]};
   const OFFICIAL_RESOURCES = [
     {
+      id: "schedule-general",
+      name: "جدول المحاضرات النظرية والعملية للفصل الدراسي الأول - المستوى العام (بتاريخ 9-10-2026 للعام الجامعي 2026-2027)",
+      url: "https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk",
+      track: "عام",
+      date: "9-10-2026",
+      academicYear: "2026-2027",
+      description: "الجدول الرسمي المعتمد للمحاضرات النظرية والعملية للفصل الدراسي الأول للمستوى العام (جميع المجموعات 1-7 والسكاشن 1-52) بكلية الحاسبات والذكاء الاصطناعي بنها بتاريخ 9-10-2026 للعام الجامعي 2026-2027.",
+      keywords: ["جدول العام", "جدول المستوى العام", "جدول عام", "المستوى العام", "محاضرات عام", "سكاشن عام", "جدول 9-10", "جدول 2026-2027", "ملف جدول عام", "لينك جدول عام", "رابط جدول عام"]
+    },
+    {
+      id: "schedule-special",
+      name: "جدول المحاضرات النظرية والعملية للفصل الدراسي الأول - المستوى الخاص والبرامج المتميزة (بتاريخ 9-10-2026 للعام الجامعي 2026-2027)",
+      url: "https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk",
+      track: "خاص",
+      date: "9-10-2026",
+      academicYear: "2026-2027",
+      description: "الجدول الرسمي المعتمد للمحاضرات النظرية والعملية للفصل الدراسي الأول للمستوى الخاص وبرامج الساعات المعتمدة (الذكاء الاصطناعي، الأمن السيبراني، المعلوماتية الطبية، هندسة البرمجيات) بكلية الحاسبات والذكاء الاصطناعي بنها بتاريخ 9-10-2026 للعام الجامعي 2026-2027.",
+      keywords: ["جدول الخاص", "جدول المستوى الخاص", "جدول خاص", "المستوى الخاص", "برامج خاصة", "ساعات معتمدة", "كريديت", "credit", "ذكاء اصطناعي خاص", "امن سيبراني خاص", "معلوماتية طبية", "هندسة برمجيات", "جدول البرامج المتميزة", "جدول برامج خاصة"]
+    },
+    {
+      id: "schedule-canterbury",
+      name: "جدول المحاضرات النظرية والعملية للفصل الدراسي الأول - برنامج كانتربيري البريطاني CCCU (بتاريخ 9-10-2026 للعام الجامعي 2026-2027)",
+      url: "https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk",
+      track: "كانتربري",
+      date: "9-10-2026",
+      academicYear: "2026-2027",
+      description: "الجدول الرسمي المعتمد للمحاضرات النظرية والعملية للفصل الدراسي الأول لطلاب برنامج كانتربيري البريطاني (الشهادة المزدوجة مع جامعة Canterbury Christ Church University - CCCU) بكلية الحاسبات والذكاء الاصطناعي بنها بتاريخ 9-10-2026 للعام الجامعي 2026-2027.",
+      keywords: ["جدول كانتربري", "جدول كانتريبري", "كانتربري", "كانتريبري", "canterbury", "cccu", "الشهادة المزدوجة", "برنامج كانتربري", "جدول بريطاني", "dual degree", "برنامج كانتريبري"]
+    },
+    {
       id: "drive-year-1",
       name: "جوجل درايف الفرقة الأولى (Materials، سلايدات المحاضرات، الشيتات، بنوك الامتحانات السابقة)",
       url: "https://drive.google.com/drive/u/4/folders/1HyQEG3Pgw1_h1PzB7KBoBrGewSBF0c-l",
@@ -255,6 +285,18 @@
       ctx += `\n[المصادر والروابط المعتمدة]:\n` + res.map(r => `- ${r.name}: ${r.url}`).join('\n');
     }
 
+    // Official Track-Specific Schedule Links (9-10-2026)
+    const nqQuery = norm(query);
+    if (trackName === 'خاص' || nqQuery.includes(norm('خاص')) || nqQuery.includes(norm('ساعات معتمدة')) || nqQuery.includes(norm('كريديت'))) {
+      ctx += `\n[جدول المحاضرات النظرية والعملية للفصل الدراسي الأول للمستوى الخاص والبرامج المتميزة بتاريخ 9-10-2026 للعام الجامعي 2026-2027]:\nرابط المستند الرسمي: https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk\n`;
+    }
+    if (trackName === 'كانتربري' || nqQuery.includes(norm('كانتربري')) || nqQuery.includes(norm('كانتريبري')) || nqQuery.includes(norm('canterbury')) || nqQuery.includes(norm('cccu'))) {
+      ctx += `\n[جدول المحاضرات النظرية والعملية للفصل الدراسي الأول لبرنامج كانتربيري البريطاني CCCU بتاريخ 9-10-2026 للعام الجامعي 2026-2027]:\nرابط المستند الرسمي: https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk\n`;
+    }
+    if (trackName === 'عام' || nqQuery.includes(norm('عام')) || nqQuery.includes(norm('المستوى العام'))) {
+      ctx += `\n[جدول المحاضرات النظرية والعملية للفصل الدراسي الأول للمستوى العام بتاريخ 9-10-2026 للعام الجامعي 2026-2027]:\nرابط المستند الرسمي: https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk\n`;
+    }
+
     return { context: ctx, venue, section: qSec, group: qGrp, day: qDay };
   };
 
@@ -264,6 +306,46 @@
     const qDay = detectDay(query);
     const qSec = detectSectionNum(query);
     const qGrp = detectGroupNum(query);
+
+    // Track Schedule Official Links
+    if (q.includes(norm('خاص')) || q.includes(norm('ساعات معتمدة')) || q.includes(norm('كريديت'))) {
+      return `### 💎 جدول المحاضرات النظرية والعملية للفصل الدراسي الأول — المستوى الخاص
+**كلية الحاسبات والذكاء الاصطناعي — جامعة بنها**
+- **الفصل الدراسي:** الفصل الدراسي الأول للعام الجامعي 2026-2027
+- **تاريخ الاعتماد:** 9-10-2026
+- **البرامج المشمولة:** الذكاء الاصطناعي (AI)، الأمن السيبراني (Cybersecurity)، المعلوماتية الطبية (Medical Informatics)، وهندسة البرمجيات (Software Engineering).
+
+📥 **رابط تحميل وعرض ملف الجدول الرسمي المعتمد (PDF):**
+👉 [اضغط هنا لفتح وتحميل جدول المستوى الخاص (Google Drive)](https://drive.google.com/file/d/1PxKsy7w-Pgdl2XP3jCaTheb9hE2rsnkQ/view?usp=drivesdk)
+
+> 💡 *يمكنك الاطلاع على أماكن القاعات والمعامل ومخططات الأدوار عبر دليل الأماكن والمعامل بالأعلى.*`;
+    }
+
+    if (q.includes(norm('كانتربري')) || q.includes(norm('كانتريبري')) || q.includes(norm('canterbury')) || q.includes(norm('cccu')) || q.includes(norm('مزدوجة'))) {
+      return `### 🇬🇧 جدول المحاضرات النظرية والعملية للفصل الدراسي الأول — برنامج كانتربيري البريطاني (CCCU)
+**كلية الحاسبات والذكاء الاصطناعي — جامعة بنها**
+- **الفصل الدراسي:** الفصل الدراسي الأول للعام الجامعي 2026-2027
+- **تاريخ الاعتماد:** 9-10-2026
+- **الشراكة:** الشهادة المزدوجة (Dual Degree) بالشراكة مع Canterbury Christ Church University البريطانية.
+
+📥 **رابط تحميل وعرض ملف الجدول الرسمي المعتمد (PDF):**
+👉 [اضغط هنا لفتح وتحميل جدول برنامج كانتربيري (Google Drive)](https://drive.google.com/file/d/14gFH_EshCEc3KKHlu6qb-kaphbfbhEZi/view?usp=drivesdk)
+
+> 💡 *الدراسة باللغة الإنجليزية، ولمتابعة أي إعلانات لحظية انضم لقناة الواتساب الرسمية.*`;
+    }
+
+    if ((q.includes(norm('جدول')) || q.includes(norm('رابط')) || q.includes(norm('لينك')) || q.includes(norm('ملف'))) && (q.includes(norm('عام')) || q.includes(norm('المستوى العام')) || q.includes(norm('الكل')))) {
+      return `### 🏫 جدول المحاضرات النظرية والعملية للفصل الدراسي الأول — المستوى العام
+**كلية الحاسبات والذكاء الاصطناعي — جامعة بنها**
+- **الفصل الدراسي:** الفصل الدراسي الأول للعام الجامعي 2026-2027
+- **تاريخ الاعتماد:** 9-10-2026
+- **المحتوى:** يشمل المجموعات السبع (1 إلى 7) وكافة السكاشن الـ 52 لطلاب علمي علوم وعلمي رياضة.
+
+📥 **رابط تحميل وعرض ملف الجدول الرسمي المعتمد (PDF):**
+👉 [اضغط هنا لفتح وتحميل جدول المستوى العام كامل (Google Drive)](https://drive.google.com/file/d/11fyALG93A7i-wd6hgM6AHFlqaIdjptxU/view?usp=drivesdk)
+
+> 💡 *جميع مواعيد السكاشن والمحاضرات الـ 52 متاحة ومدمجة أيضاً في الأداة لحظياً، ويمكنك اختيار سكشنك بالأعلى أو سؤال الشات مباشرة.*`;
+    }
 
     // 1. If Section query
     if (qSec) {
