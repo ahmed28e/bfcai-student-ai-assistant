@@ -1058,11 +1058,11 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       sec = parseInt(sec, 10);
       if (sec >= 1 && sec <= 7) return 1;
       if (sec >= 8 && sec <= 14) return 2;
-      if (sec >= 15 && sec <= 24) return 3;
-      if (sec >= 25 && sec <= 28) return 4;
-      if (sec >= 29 && sec <= 36) return 5;
-      if (sec >= 37 && sec <= 43) return 6;
-      if (sec >= 44 && sec <= 50) return 7;
+      if (sec >= 15 && sec <= 21) return 3;
+      if (sec >= 22 && sec <= 29) return 4;
+      if (sec >= 30 && sec <= 37) return 5;
+      if (sec >= 38 && sec <= 44) return 6;
+      if (sec >= 45 && sec <= 52) return 7;
       return 1;
     }
 
@@ -1094,16 +1094,16 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       const currentVal = secSelect.value;
       secSelect.innerHTML = '';
 
-      let start = 1, end = 50;
+      let start = 1, end = 52;
       if (filterGroup) {
         const grp = parseInt(filterGroup, 10);
         if (grp === 1) { start = 1; end = 7; }
         else if (grp === 2) { start = 8; end = 14; }
-        else if (grp === 3) { start = 15; end = 24; }
-        else if (grp === 4) { start = 25; end = 28; }
-        else if (grp === 5) { start = 29; end = 36; }
-        else if (grp === 6) { start = 37; end = 43; }
-        else if (grp === 7) { start = 44; end = 50; }
+        else if (grp === 3) { start = 15; end = 21; }
+        else if (grp === 4) { start = 22; end = 29; }
+        else if (grp === 5) { start = 30; end = 37; }
+        else if (grp === 6) { start = 38; end = 44; }
+        else if (grp === 7) { start = 45; end = 52; }
       }
 
       for (let s = start; s <= end; s++) {
