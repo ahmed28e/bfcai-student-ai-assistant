@@ -244,7 +244,7 @@
               <span>استعلام المواعيد والأماكن اللحظي</span>
               <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">نظام AHMIX التفاعلي</span>
             </h2>
-            <p class="text-[10px] text-slate-400">اختر مجموعتك وسكشنك لعرض جدول اليوم والأسبوع والقاعات والمعامل مع خرائط الأدوار</p>
+            <p class="text-[10px] text-slate-400">نظام متكامل لجميع مواعيد وسكاشن وقاعات ومعامل الفرقة الأولى (52 سكشن • دكاترة ومعيدين • بحث لحظي)</p>
           </div>
         </div>
         <div class="flex items-center gap-1.5">
@@ -260,60 +260,162 @@
 
       <!-- Collapsible Body -->
       <div id="hubBody" class="mt-3 space-y-3">
-        <!-- Selectors Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-          <!-- Group Select -->
-          <div>
-            <label for="hubGroupSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
-              <span>👥 المجموعة:</span>
-              <span id="hubTrackBadge" class="text-[10px] text-sky-400 font-normal">علمي رياضة</span>
-            </label>
-            <select id="hubGroupSelect" onchange="onHubGroupChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
-              <option value="1">المجموعة 1 (علمي رياضة • سكاشن 1 - 7)</option>
-              <option value="2">المجموعة 2 (علمي رياضة • سكاشن 8 - 14)</option>
-              <option value="3">المجموعة 3 (علمي رياضة • سكاشن 15 - 21)</option>
-              <option value="4">المجموعة 4 (علمي رياضة • سكاشن 22 - 29)</option>
-              <option value="5">المجموعة 5 (علمي علوم • سكاشن 30 - 37)</option>
-              <option value="6">المجموعة 6 (علمي علوم • سكاشن 38 - 44)</option>
-              <option value="7">المجموعة 7 (علمي علوم • سكاشن 45 - 52)</option>
-            </select>
+        <!-- Sub-Navigation Tabs (Floot Mode Selectors) -->
+        <div class="flex flex-wrap gap-1.5 p-1 bg-[#080a0f] rounded-xl border border-[#1b2232]">
+          <button onclick="switchHubTab('student')" id="btnHubTabStudent" class="flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-sky-600 text-white shadow-sm border border-sky-400">
+            <span>🎓</span>
+            <span>جدول السكاشن واليوم</span>
+          </button>
+          <button onclick="switchHubTab('staff')" id="btnHubTabStaff" class="flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-slate-800">
+            <span>👨‍🏫</span>
+            <span>جدول المحاضرين (دكاترة ومعيدين)</span>
+          </button>
+          <button onclick="switchHubTab('search')" id="btnHubTabSearch" class="flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-slate-800">
+            <span>🔍</span>
+            <span>البحث السريع اللحظي</span>
+          </button>
+          <button onclick="switchHubTab('venues')" id="btnHubTabVenues" class="flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-slate-800">
+            <span>🗺️</span>
+            <span>دليل القاعات والمعامل</span>
+          </button>
+        </div>
+
+        <!-- 1. STUDENT VIEW -->
+        <div id="hubStudentView" class="space-y-3">
+          <!-- Selectors Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+            <!-- Group Select -->
+            <div>
+              <label for="hubGroupSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+                <span>👥 المجموعة:</span>
+                <span id="hubTrackBadge" class="text-[10px] text-sky-400 font-normal">علمي رياضة</span>
+              </label>
+              <select id="hubGroupSelect" onchange="onHubGroupChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+                <option value="1">المجموعة 1 (علمي رياضة • سكاشن 1 - 7)</option>
+                <option value="2">المجموعة 2 (علمي رياضة • سكاشن 8 - 14)</option>
+                <option value="3">المجموعة 3 (علمي رياضة • سكاشن 15 - 21)</option>
+                <option value="4">المجموعة 4 (علمي رياضة • سكاشن 22 - 29)</option>
+                <option value="5">المجموعة 5 (علمي علوم • سكاشن 30 - 37)</option>
+                <option value="6">المجموعة 6 (علمي علوم • سكاشن 38 - 44)</option>
+                <option value="7">المجموعة 7 (علمي علوم • سكاشن 45 - 52)</option>
+              </select>
+            </div>
+
+            <!-- Section Select -->
+            <div>
+              <label for="hubSectionSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+                <span>🔢 السكشن:</span>
+                <span id="hubSecRange" class="text-[10px] text-slate-400 font-normal">من سكشن 1 إلى 52</span>
+              </label>
+              <select id="hubSectionSelect" onchange="onHubSectionChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+              </select>
+            </div>
+
+            <!-- Day View Mode -->
+            <div>
+              <label for="hubDaySelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
+                <span>🗓️ عرض المواعيد:</span>
+                <span id="hubTodayDayLabel" class="text-[10px] text-emerald-400 font-normal">اليوم الحالي</span>
+              </label>
+              <select id="hubDaySelect" onchange="renderHubSchedule()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+                <option value="today">⚡ مواعيد اليوم تلقائياً</option>
+                <option value="all">📅 الأسبوع كاملاً (كل الأيام)</option>
+                <option value="السبت">السبت</option>
+                <option value="الأحد">الأحد</option>
+                <option value="الإثنين">الإثنين</option>
+                <option value="الثلاثاء">الثلاثاء</option>
+                <option value="الأربعاء">الأربعاء</option>
+                <option value="الخميس">الخميس</option>
+              </select>
+            </div>
           </div>
 
-          <!-- Section Select -->
-          <div>
-            <label for="hubSectionSelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
-              <span>🔢 السكشن:</span>
-              <span id="hubSecRange" class="text-[10px] text-slate-400 font-normal">من سكشن 1 إلى 52</span>
-            </label>
-            <select id="hubSectionSelect" onchange="onHubSectionChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
-            </select>
-          </div>
-
-          <!-- Day View Mode -->
-          <div>
-            <label for="hubDaySelect" class="block text-[11px] font-bold text-slate-300 mb-1 flex items-center justify-between">
-              <span>🗓️ عرض المواعيد:</span>
-              <span id="hubTodayDayLabel" class="text-[10px] text-emerald-400 font-normal">اليوم الحالي</span>
-            </label>
-            <select id="hubDaySelect" onchange="renderHubSchedule()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
-              <option value="today">⚡ مواعيد اليوم تلقائياً</option>
-              <option value="all">📅 الأسبوع كاملاً (كل الأيام)</option>
-              <option value="السبت">السبت</option>
-              <option value="الأحد">الأحد</option>
-              <option value="الإثنين">الإثنين</option>
-              <option value="الثلاثاء">الثلاثاء</option>
-              <option value="الأربعاء">الأربعاء</option>
-              <option value="الخميس">الخميس</option>
-            </select>
+          <!-- Schedule Results Container -->
+          <div id="hubResultsContainer" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
+            <!-- Dynamically injected student schedule cards -->
           </div>
         </div>
 
-        <!-- Schedule Results Container -->
-        <div id="hubResultsContainer" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
-          <!-- Dynamically injected schedule cards -->
+        <!-- 2. STAFF VIEW (DOCTORS & TAs) -->
+        <div id="hubStaffView" class="hidden space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+            <!-- Role Select -->
+            <div>
+              <label for="hubStaffRoleSelect" class="block text-[11px] font-bold text-slate-300 mb-1">
+                <span>💼 الرتبة الأكاديمية:</span>
+              </label>
+              <select id="hubStaffRoleSelect" onchange="onHubStaffRoleChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+                <option value="دكتور">دكتور (د/)</option>
+                <option value="معيد">معيد (م/)</option>
+              </select>
+            </div>
+
+            <!-- Staff Name Select -->
+            <div>
+              <label for="hubStaffNameSelect" class="block text-[11px] font-bold text-slate-300 mb-1">
+                <span>👤 الاسم:</span>
+              </label>
+              <select id="hubStaffNameSelect" onchange="onHubStaffNameChange()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+              </select>
+            </div>
+
+            <!-- Subject Select -->
+            <div>
+              <label for="hubStaffSubjectSelect" class="block text-[11px] font-bold text-slate-300 mb-1">
+                <span>📘 المادة / المقرر:</span>
+              </label>
+              <select id="hubStaffSubjectSelect" onchange="renderHubStaffSchedule()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+              </select>
+            </div>
+          </div>
+
+          <!-- Staff Results Container -->
+          <div id="hubStaffResultsContainer" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
+            <!-- Dynamically injected staff schedule -->
+          </div>
         </div>
+
+        <!-- 3. LIVE SEARCH VIEW -->
+        <div id="hubSearchView" class="hidden space-y-3">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="hubSearchInput" 
+              oninput="onHubSearchInput()" 
+              placeholder="🔍 ابحث عن مادة (برمجة، فيزياء...)، أو اسم دكتور/معيد، أو رقم مدرج، قاعة، معمل..." 
+              class="w-full h-10 bg-[#121622] border border-[#222b3e] focus:border-sky-500 rounded-xl pr-4 pl-10 text-xs text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+            />
+            <button onclick="clearHubSearch()" class="absolute left-3 top-2.5 text-xs text-slate-400 hover:text-white transition">✕</button>
+          </div>
+
+          <!-- Search Results Container -->
+          <div id="hubSearchResultsContainer" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
+            <!-- Dynamically injected live search results -->
+          </div>
+        </div>
+
+        <!-- 4. VENUES IN-CARD GUIDE VIEW -->
+        <div id="hubVenuesView" class="hidden space-y-3">
+          <div class="flex gap-2">
+            <button onclick="setInCardVenueType('auditorium')" id="btnInCardVenueAud" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-sky-600 text-white border-sky-400 shadow-sm">🏛️ المدرجات (1 - 5)</button>
+            <button onclick="setInCardVenueType('hall')" id="btnInCardVenueHall" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white">🚪 القاعات (1 - 12)</button>
+            <button onclick="setInCardVenueType('lab')" id="btnInCardVenueLab" class="flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white">🧪 المعامل المتخصصة</button>
+          </div>
+
+          <div>
+            <label for="hubInCardVenueSelect" class="block text-[11px] font-bold text-slate-300 mb-1">اختر المكان:</label>
+            <select id="hubInCardVenueSelect" onchange="renderInCardVenueDetails()" class="w-full h-9 bg-[#121622] border border-[#222b3e] rounded-xl px-2.5 text-xs text-white focus:outline-none focus:border-sky-500 transition">
+            </select>
+          </div>
+
+          <div id="hubInCardVenueDetails" class="p-3 bg-[#080a0f] rounded-xl border border-[#1b2232] text-xs">
+            <!-- Details rendered here -->
+          </div>
+        </div>
+
       </div>
     </section>
+
 
     <!-- Chat Area (Natural Flowing) -->
     <div class="bg-[#0b0e14] rounded-2xl flex flex-col shadow-2xl border border-[#1b2232] overflow-hidden">
@@ -1204,9 +1306,11 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
     renderPrompts();
 
     // ==========================================
-    // FLOOT.APP STYLE INTERACTIVE SCHEDULE & VENUE MECHANISM
+    // FLOOT.APP STYLE INTERACTIVE SCHEDULE & VENUE MECHANISM (AHMIX)
     // ==========================================
+    let currentHubTab = 'student';
     let currentHubVenueType = 'auditorium';
+    let currentInCardVenueType = 'auditorium';
     let isHubCollapsed = false;
 
     function getArabicDayName(date = new Date()) {
@@ -1229,6 +1333,45 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
     function getGroupTrack(grp) {
       grp = parseInt(grp, 10);
       return grp <= 4 ? 'علمي رياضة' : 'علمي علوم';
+    }
+
+    // Switch between AHMIX Sub-tabs
+    function switchHubTab(tab) {
+      currentHubTab = tab;
+      const tabBtns = {
+        student: document.getElementById('btnHubTabStudent'),
+        staff: document.getElementById('btnHubTabStaff'),
+        search: document.getElementById('btnHubTabSearch'),
+        venues: document.getElementById('btnHubTabVenues')
+      };
+      const tabViews = {
+        student: document.getElementById('hubStudentView'),
+        staff: document.getElementById('hubStaffView'),
+        search: document.getElementById('hubSearchView'),
+        venues: document.getElementById('hubVenuesView')
+      };
+
+      const activeBtnClass = "flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-sky-600 text-white shadow-sm border border-sky-400";
+      const inactiveBtnClass = "flex-1 min-w-[130px] py-1.5 px-2.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-slate-800";
+
+      for (const [key, btn] of Object.entries(tabBtns)) {
+        if (btn) btn.className = (key === tab ? activeBtnClass : inactiveBtnClass);
+      }
+      for (const [key, view] of Object.entries(tabViews)) {
+        if (view) view.classList.toggle('hidden', key !== tab);
+      }
+
+      if (tab === 'staff') {
+        initStaffView();
+      } else if (tab === 'venues') {
+        initInCardVenueGuide();
+      } else if (tab === 'search') {
+        const inp = document.getElementById('hubSearchInput');
+        if (inp) {
+          inp.focus();
+          if (inp.value.trim()) onHubSearchInput();
+        }
+      }
     }
 
     function initScheduleHub() {
@@ -1467,6 +1610,300 @@ ${schedInfo.context ? schedInfo.context + '\n' : ''}
       }
 
       container.innerHTML = html;
+    }
+
+    // ==========================================
+    // STAFF DIRECTORY (DOCTORS & TEACHING ASSISTANTS)
+    // ==========================================
+    let staffInitialized = false;
+
+    function initStaffView() {
+      if (!window.BFCAI_STAFF || staffInitialized) return;
+      staffInitialized = true;
+      onHubStaffRoleChange();
+    }
+
+    function onHubStaffRoleChange() {
+      const roleSelect = document.getElementById('hubStaffRoleSelect');
+      const nameSelect = document.getElementById('hubStaffNameSelect');
+      if (!roleSelect || !nameSelect || !window.BFCAI_STAFF) return;
+
+      const role = roleSelect.value;
+      const filteredStaff = window.BFCAI_STAFF.filter(s => s.role === role);
+      nameSelect.innerHTML = '';
+
+      filteredStaff.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.key;
+        opt.textContent = `${s.prefix} ${s.name} (${s.subjects.length} مقررات)`;
+        nameSelect.appendChild(opt);
+      });
+
+      onHubStaffNameChange();
+    }
+
+    function onHubStaffNameChange() {
+      const nameSelect = document.getElementById('hubStaffNameSelect');
+      const subjectSelect = document.getElementById('hubStaffSubjectSelect');
+      if (!nameSelect || !subjectSelect || !window.BFCAI_STAFF) return;
+
+      const staffKey = nameSelect.value;
+      const staff = window.BFCAI_STAFF.find(s => s.key === staffKey);
+      subjectSelect.innerHTML = '';
+
+      if (!staff || !staff.subjects.length) {
+        subjectSelect.innerHTML = '<option value="">لا توجد مواد مسجلة</option>';
+        renderHubStaffSchedule();
+        return;
+      }
+
+      const allOpt = document.createElement('option');
+      allOpt.value = 'all';
+      allOpt.textContent = '🌟 جميع المواد والمقررات';
+      subjectSelect.appendChild(allOpt);
+
+      staff.subjects.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub;
+        opt.textContent = sub;
+        subjectSelect.appendChild(opt);
+      });
+
+      renderHubStaffSchedule();
+    }
+
+    function renderHubStaffSchedule() {
+      const nameSelect = document.getElementById('hubStaffNameSelect');
+      const subjectSelect = document.getElementById('hubStaffSubjectSelect');
+      const container = document.getElementById('hubStaffResultsContainer');
+      if (!nameSelect || !subjectSelect || !container || !window.BFCAI_STAFF) return;
+
+      const staffKey = nameSelect.value;
+      const staff = window.BFCAI_STAFF.find(s => s.key === staffKey);
+      const chosenSubject = subjectSelect.value;
+
+      if (!staff) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-4">اختر المحاضر لعرض جدول مواعيده.</p>`;
+        return;
+      }
+
+      let relevantSlots = [];
+      if (chosenSubject === 'all') {
+        for (const [sub, slots] of Object.entries(staff.subjectSchedules)) {
+          slots.forEach(sl => relevantSlots.push({ ...sl, subject: sub }));
+        }
+      } else {
+        const slots = staff.subjectSchedules[chosenSubject] || [];
+        slots.forEach(sl => relevantSlots.push({ ...sl, subject: chosenSubject }));
+      }
+
+      const DAYS = ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+      const slotsByDay = {};
+      DAYS.forEach(d => { slotsByDay[d] = []; });
+      relevantSlots.forEach(sl => {
+        if (!slotsByDay[sl.day]) slotsByDay[sl.day] = [];
+        slotsByDay[sl.day].push(sl);
+      });
+
+      let html = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-[#1f283b]">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold">${staff.fullName}</span>
+            <span class="text-slate-400 text-xs">(${staff.role} • ${staff.subjects.join('، ')})</span>
+          </div>
+          <span class="text-[11px] text-sky-400 font-mono">${relevantSlots.length} فترات تدريسية</span>
+        </div>
+      `;
+
+      let hasAnySlot = false;
+      DAYS.forEach(d => {
+        const daySlots = slotsByDay[d];
+        if (daySlots && daySlots.length > 0) {
+          hasAnySlot = true;
+          html += `
+            <div class="mb-3 last:mb-0 bg-[#0d1017] border border-[#1b2232] rounded-xl p-2.5 sm:p-3">
+              <div class="flex items-center justify-between mb-2 pb-1 border-b border-[#182030]">
+                <strong class="text-white text-xs flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>يوم ${d}</span>
+                </strong>
+                <span class="text-[10px] text-slate-400 font-mono">${daySlots.length} فترات</span>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          `;
+
+          daySlots.forEach(sl => {
+            const secLabel = sl.sections.length > 4 
+              ? `السكاشن ${sl.sections[0]} إلى ${sl.sections[sl.sections.length - 1]}` 
+              : `سكشن ${sl.sections.join('، ')}`;
+
+            html += `
+              <div class="bg-[#121622] border border-[#1e2638] rounded-xl p-2.5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-[11px] font-bold font-mono px-2 py-0.5 rounded bg-[#182030] text-sky-300 border border-[#222e44]">⏰ ${sl.time}</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">${sl.type}</span>
+                  </div>
+                  <h5 class="text-xs font-bold text-white mb-1">${sl.subject}</h5>
+                  <p class="text-[11px] text-emerald-400 mb-1 flex items-center gap-1">
+                    <span>📍</span>
+                    <span>${sl.room} (${sl.floor ? 'الدور ' + sl.floor : 'غير محدد'})</span>
+                  </p>
+                  <p class="text-[11px] text-slate-300">
+                    👥 المجموعة ${sl.group} (${sl.track}) • <strong>${secLabel}</strong>
+                  </p>
+                </div>
+              </div>
+            `;
+          });
+
+          html += `</div></div>`;
+        }
+      });
+
+      if (!hasAnySlot) {
+        html += `<div class="text-center py-6 text-slate-400">لا توجد مواعيد مسجلة لهذا المحاضر في هذا المقرر.</div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ==========================================
+    // INSTANT LIVE SEARCH
+    // ==========================================
+    function onHubSearchInput() {
+      const input = document.getElementById('hubSearchInput');
+      const container = document.getElementById('hubSearchResultsContainer');
+      if (!input || !container || !window.searchScheduleEvents) return;
+
+      const query = input.value.trim();
+      if (!query) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-4">اكتب في المربع بالأعلى للبحث عن أي مادة، اسم دكتور/معيد، أو قاعة ومعمل...</p>`;
+        return;
+      }
+
+      const matches = window.searchScheduleEvents(query);
+      if (matches.length === 0) {
+        container.innerHTML = `<p class="text-amber-400 text-center py-4">لم يتم العثور على نتائج مطابقة لـ "${query}". جرب كلمة أخرى مثل: فيزياء، برمجة، مصطفى، مدرج 1، معمل 4...</p>`;
+        return;
+      }
+
+      // Group matches by day and session
+      const sampleLimit = Math.min(matches.length, 30);
+      let html = `
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1f283b]">
+          <span class="text-xs text-slate-300">تم العثور على <strong class="text-emerald-400">${matches.length}</strong> نتيجة مطابقة</span>
+          <span class="text-[10px] text-slate-500 font-mono">عرض أول ${sampleLimit} نتيجة</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-96 overflow-y-auto pr-1">
+      `;
+
+      for (let i = 0; i < sampleLimit; i++) {
+        const m = matches[i];
+        html += `
+          <div class="bg-[#121622] border border-[#1e2638] hover:border-sky-500/50 rounded-xl p-2.5 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-mono font-bold text-sky-300 bg-[#182030] px-2 py-0.5 rounded border border-[#222e44]">🗓️ ${m.day} • ${m.time}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">${m.type}</span>
+              </div>
+              <h5 class="text-xs font-bold text-white mb-0.5">${m.subject}</h5>
+              <p class="text-[11px] text-slate-300 mb-0.5">👨‍🏫 ${m.instructor}</p>
+              <p class="text-[11px] text-emerald-400 mb-0.5">📍 ${m.location}</p>
+              <p class="text-[10px] text-slate-400">المجموعة ${m.group} (${m.track}) • سكشن ${m.section}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function clearHubSearch() {
+      const input = document.getElementById('hubSearchInput');
+      if (input) {
+        input.value = '';
+        onHubSearchInput();
+      }
+    }
+
+    // ==========================================
+    // IN-CARD VENUE GUIDE
+    // ==========================================
+    function initInCardVenueGuide() {
+      setInCardVenueType(currentInCardVenueType);
+    }
+
+    function setInCardVenueType(type) {
+      currentInCardVenueType = type;
+      const btnAud = document.getElementById('btnInCardVenueAud');
+      const btnHall = document.getElementById('btnInCardVenueHall');
+      const btnLab = document.getElementById('btnInCardVenueLab');
+
+      const activeClass = "flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-sky-600 text-white border-sky-400 shadow-sm";
+      const inactiveClass = "flex-1 py-1.5 rounded-xl border text-xs font-bold transition bg-slate-900 text-slate-400 border-slate-800 hover:text-white";
+
+      if (btnAud) btnAud.className = (type === 'auditorium' ? activeClass : inactiveClass);
+      if (btnHall) btnHall.className = (type === 'hall' ? activeClass : inactiveClass);
+      if (btnLab) btnLab.className = (type === 'lab' ? activeClass : inactiveClass);
+
+      const select = document.getElementById('hubInCardVenueSelect');
+      if (!select || !window.BFCAI_VENUES) return;
+      select.innerHTML = '';
+
+      const venues = window.BFCAI_VENUES[type] || [];
+      venues.forEach((v, i) => {
+        const opt = document.createElement('option');
+        opt.value = i.toString();
+        opt.textContent = `${v.name} (${v.floor})`;
+        select.appendChild(opt);
+      });
+
+      renderInCardVenueDetails();
+    }
+
+    function renderInCardVenueDetails() {
+      const select = document.getElementById('hubInCardVenueSelect');
+      const display = document.getElementById('hubInCardVenueDetails');
+      if (!select || !display || !window.BFCAI_VENUES) return;
+
+      const venues = window.BFCAI_VENUES[currentInCardVenueType] || [];
+      const idx = parseInt(select.value, 10) || 0;
+      const v = venues[idx];
+
+      if (!v) {
+        display.innerHTML = `<p class="text-slate-400 text-center">اختر المكان لعرض التفاصيل.</p>`;
+        return;
+      }
+
+      display.innerHTML = `
+        <div class="space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[#1b2232]">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <span>📍 ${v.name}</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">${v.floor}</span>
+            </h4>
+          </div>
+          <div>
+            <h5 class="text-xs font-bold text-slate-300 mb-1">🚶 طريقة الوصول والاتجاهات:</h5>
+            <p class="text-xs text-slate-200 leading-relaxed bg-[#121622] p-2.5 rounded-xl border border-[#1e2638]">${v.directions || 'غير محدد'}</p>
+          </div>
+          ${v.map ? `
+            <div>
+              <h5 class="text-xs font-bold text-slate-300 mb-1.5">🗺️ مخطط الدور وموقع المكان:</h5>
+              <div class="overflow-hidden rounded-xl border border-[#1e2638] bg-[#0c1018]">
+                <img src="${v.map}" alt="${v.name}" class="w-full max-h-72 object-contain hover:scale-105 transition duration-300" />
+                <div class="p-1.5 text-center text-[10px] text-slate-400 bg-[#07090e]">مخطط الطابق بالكلية</div>
+              </div>
+            </div>
+          ` : `
+            <div class="p-2.5 bg-amber-950/20 border border-amber-500/30 rounded-xl text-amber-300 text-xs">
+              ℹ️ خريطة هذا الدور في الطوابق العليا، يمكنك الاستدلال بالدور الموضح أعلاه وطريقة الوصول.
+            </div>
+          `}
+        </div>
+      `;
     }
 
     function toggleClassMap(mapId) {
